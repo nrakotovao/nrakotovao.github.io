@@ -1,0 +1,10 @@
+body {
+}
+
+.pre-scrollable {
+  background-color: rgb(255,255,255);
+  color: rgb(26,75,247);
+  padding: 5px 10px 5px 10px;
+  font-size: 12px;
+}
+
