@@ -47,7 +47,7 @@
 
 
     <!-- GIT -->
-    <section id="git" class="section text-center">
+    <section id="flutter" class="section text-center">
         <div style="padding-top:60px"></div>
 		<div class="container">
             <div class="row">
@@ -56,6 +56,337 @@
                 </div>
             </div>
         </div>
+	</section>
+
+
+	<!-- MENU -->
+	<section id="resume" class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 text-left">
+					<div class="mkj-menu"><a href="#commandes" class="smoothScroll">Commandes</a></div>
+					<div class="mkj-menu"><a href="#dialog" class="smoothScroll">Dialogues</a></div>
+				</div>
+				<div class="col-md-4 text-left">
+					<div class="mkj-menu"><a href="#pageroute" class="smoothScroll">Pages & Routes</a></div>
+					<div class="mkj-menu"><a href="#http" class="smoothScroll">Requêtes HTTP</a></div>
+				</div>
+				<div class="col-md-4 text-left">
+					<div class="mkj-menu"><a href="#splash" class="smoothScroll">Splash screen</a></div>
+					<div class="mkj-menu"><a href="#branding" class="smoothScroll">Branding</a></div>
+				</div>
+			</div>
+		</div>
+		<div id="commandes"></div>
+	</section>
+
+
+	<!-- COMMANDES -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Commandes Flutter</h3>
+					<p>
+						<span class="mkj-high">flutter devices</span> Affiche la liste des devices visibles par Flutter.
+						<br><span class="mkj-high">flutter run -d deviceId</span> Execute sur le device indiqué.
+						<br><span class="mkj-high">flutter doctor </span> Vérifie que le setup de Flutter est correct.
+						<br><span class="mkj-high">flutter upgrade </span> Met à jour Flutter à sa version la plus récente.
+						<br><span class="mkj-high">flutter pub get </span> Met à jour la liste des dépendances. Nécessaires après un ajout d'import de package externe.
+						<br><span class="mkj-high">flutter pub add shared_preferences </span> Ajoute le plugin SharedPreferences dans pubspec.yaml puis lance flutter pub get.
+						<br><span class="mkj-high">flutter clean</span> Réinitialise les builds.
+						<br><span class="mkj-high">flutter build appbundle --target-platform android-arm,android-arm64</span> Builde pour ARM avec optimization.
+						<br><span class="mkj-high">flutter build apk --split-per-abi</span> Méthode recommandé pour release. Le APK se trouve dans H:\aketoo\build\app\outputs\flutter-apk.
+						<br><span class="mkj-high">flutter --version</span> Affiche la version de flutter avec ses configs.
+					</p>
+					<br>
+					<p>
+						<u><b>Pour commencer un nouveau projet Flutter:</b></u>
+						<ol>
+							<li>Aller dans le dossier où le dossier du projet sera créé par Flutter.</li>
+							<li><span class="mkj-high">flutter create my_app</span></li>
+							<li><span class="mkj-high">cd my_app</span></li>
+							<li><span class="mkj-high">flutter run</span> Exécute le projet ainsi créé.</li>
+						</ol>
+					</p>
+					<br>
+					<p>
+						<u><b>Manipuler les simulateurs sur Android:</b></u>
+						<br><span class="mkj-high">emulator -list-avds </span> Liste les émulateurs Android dispos.
+						<br><span class="mkj-high">emulator -avd Nom_avd </span> Lancer l'émulateur Nom_avd.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="dialog"></div>
+	</section>
+
+
+    <!-- DIALOGUE -->
+	<section class="section text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Dialogues</h3>
+					<p>
+                        Afficher un toast (messages d'information affichés en bas de l'écran pendant quelques secondes)
+						<pre class="mkj-code">
+ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text(loginController.text),
+));
+</pre>
+                    </p>
+					<br>
+					<p>
+						Afficher un dialogue simple
+						<pre class="mkj-code">
+showDialog(
+    context: context,
+    builder: (context) {
+        return AlertDialog(
+            content: Text(loginController.text),
+        );
+    },
+);
+</pre>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="pageroute"></div>
+	</section>
+
+
+    <!-- PAGES & ROUTES -->
+	<section class="section text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Pages & Routes</h3>
+					<p>
+						Il existe 2 méthodes pour naviguer dans les pages de Flutter:
+						<br>- Les routes anonymes (à la volée)
+						<br>- Les routes nommées
+					</p>
+					<br>
+					<p>
+						<span class="mkj-subtitle">Les routes à la volée</span>
+						<br>Les routes anonymes sont rapides pour les apps simples mais présentent un risque de redondance pour les pages complexes. <span class="mkj-high">MaterialPageRoute</span> utilise l'animation native de la plateforme lors de l'affichage de la page cible. Le passage des paramètres entre pages se fait via le constructeur du widget page. Ici, il n'y a pas de notion d'arguments.
+						<pre class="mkj-code">
+Navigator.push(context, MaterialPageRoute<void>(
+    builder: (BuildContext context) {
+        return SecondePage(title: "Seconde page");
+    }
+));
+</pre>
+						Ou, plus simplement:
+						<pre class="mkj-code">
+Navigator.push(context, MaterialPageRoute(builder: (context) => const SecondePage()));
+</pre>
+						Pour revenir à la page précédente:
+						<pre class="mkj-code">
+Navigator.pop(context);
+</pre>
+                    </p>
+					<br>
+					<p>
+						<span class="mkj-subtitle">Les routes nommées</span>
+						<br>Les routes nommées permettant de définir la navigation dans l'app via un point central: dans la classe principale (ex: MyApp). Pour une app basée sur MaterialApp, celle-ci possède une propriété <span class="mkj-high">routes</span> de type Map&lt;String, WidgetBuilder&gt;. La clé est la route et la valeur est le widget de la page. <span class="mkj-high">InitialRoute</span> permet d'indiquer la route par défaut.
+						<pre class="mkj-code">
+return MaterialApp(
+    title: 'Mon app Flutter',
+    theme: theme,
+    routes: {
+        '/': (context) => MyHomePage(title: "Connexion"),
+        '/secondPage': (context) => MySecondPage(title: "Deuxième page"),
+    },
+    initialRoute: '/',
+);
+</pre>
+						Pour changer de page, il suffit d'appeler comme suit:
+						<pre class="mkj-code">
+Navigator.pushNamed(context, '/secondPage');
+</pre>
+						Pour revenir à la page précédente:
+						<pre class="mkj-code">
+Navigator.pop(context)
+</pre>
+						Il peut être nécessaire de passer des paramètres à l'ouverture de la nouvelle page. On utilise pour cela un argument optionnel arguments à Navigator.pushNamed.
+						<pre class="mkj-code">
+Navigator.pushNamed(context, '/secondPage',
+    arguments: <String, String> {
+        'title': "Deuxième page",
+    },
+);
+</pre>
+						En utilisant les paramètres, la route peut s'écrire simplement:
+						<pre class="mkj-code">
+routes: { ..., '/secondPage': (context) => MySecondPage(), }
+</pre>
+					</p>
+					<br>
+					<p>
+						<span class="mkj-subtitle">ASTUCE:</span>
+						<br>Utiliser <span class="mkj-high">Navigator.pushNamedAndRemoveUntil(...)</span> pour éviter que l'utilisateur puisse retourner à la page précédente. Utile après un login, par exemple.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="http"></div>
+	</section>
+
+
+	<!-- HTTP -->
+	<section class="section text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Requêtes HTTP</h3>
+					<p>
+						Pour pouvoir lancer une requête http vers un serveur, faire comme suit:
+						<ol>
+							<li>Ajouter le package http dans pubspec.yaml
+								<pre class="mkj-code">
+dependencies:
+    flutter:
+        sdk: flutter
+    http:
+</pre>
+							</li>
+							<li>Appliquer le changement sur terminal
+								<pre class="mkj-code">flutter pub get</pre>
+							</li>
+							<li>Dans chaque script qui va utiliser http, importer le package:
+								<pre class="mkj-code">import 'package:http/http.dart' as http;</pre>
+							</li>
+							<li>Puis utiliser comme suit, par exemple:
+								<pre class="mkj-code">
+final url = Uri.https(globals.baseUrl, 'app/confirmAccount/$confirmCode/$sessionId');
+var response = await http.get(url);
+final Map&lt;String, dynamic&gt; result = jsonDecode(response.body);
+if (result['status'] == 'OK') { …. } else { … }
+</pre>
+							</li>
+						</ol>
+					</p>
+					<br>
+					<p>
+						<span class="mkj-subtitle">ERREUR SSL SELF SIGNED (let's encrypt)</span>
+						<br>Flutter refuse de se connecter sur un serveur auto-signé. La meilleure manière de corriger c'est d'avoir un certificat SSL. Mais on peut aussi contourner le problèmen en attendant.
+						<br>
+						<br>Dans main.dart, ajouter une classe qui override la création de session de http:
+						<pre class="mkj-code">
+class MyHttpOverrides extends HttpOverrides{
+    @override
+    HttpClient createHttpClient(SecurityContext? context){
+        return super.createHttpClient(context)..badCertificateCallback = (X509Certificate cert, String host, int port) => host=='my.host.com';
+    }
+}
+</pre>
+						Puis ajouter dans la méthode main():
+						<pre class="mkj-code">
+void main() {
+    HttpOverrides.global = MyHttpOverrides();
+    runApp(const MyApp());
+}
+</pre>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="splash"></div>
+	</section>
+
+
+
+    <!-- SPLASH -->
+	<section class="section text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Splash screen</h3>
+					<p>
+                        On peut utiliser le package <span class="mkj-high">flutter_native_splash</span> pour ajouter un splash screen natif sur Android et iOS, sans faire des changements manuels par plateforme. Le package va faire tous les changements pour vous.
+                        <ol>
+                            <li>Ajouter la dépendance dans pubspec.yaml
+								<pre class="mkj-code">
+dev_dependencies:
+    flutter_native_splash: ^2.2.16 
+</pre>
+							</li>
+                            <li>Appliquer le changement sur terminal
+								<pre class="mkj-code">flutter pub get</pre>
+							</li>
+                            <li>Configurer le package dans pubspec.yaml
+								<pre class="mkj-code">
+flutter_native_splash:
+    image: assets/images/splash.png
+    color: 42a5f5
+</pre>
+							</li>
+                            <li>Exécuter le package sur terminal
+								<pre class="mkj-code">flutter pub run flutter_native_splash:create</pre>
+							</li>
+                        </ol>
+                    </p>
+				</div>
+			</div>
+		</div>
+		<div id="branding"></div>
+	</section>
+
+
+	<!-- BRANDING -->
+	<section class="section text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">BRANDING</h3>
+					<p>
+						<span class="mkj-subtitle">Changer nom application</span>
+						<br>Sur Android:
+						<ol>
+							<li>Aller dans <span class="mkj-high">android &gt; app &gt; src &gt; main</span></li>
+							<li>Ouvrir <span class="mkj-high">AndroidManifest.xml</span></li>
+							<li>Dans tag application, modifier le contenu de<span class="mkj-high">android:label</span></li>
+							<li>Faire un <span class="mkj-high">flutter clean</span> sur le terminal</li>
+							<li>Arrêter puis relancer l'app</li>
+						</ol>
+						Sur iOS:
+						<ol>
+							<li>Aller dans <span class="mkj-high">ios &gt; runner</span></li>
+							<li>Ouvrir <span class="mkj-high">info.plist</span></li>
+							<li>Trouver la clé <span class="mkj-high">CFBundleName</span> et modifier la valeur string (NJ: pareil pour CFBundleDisplayName).</li>
+							<li>Faire un <span class="mkj-high">flutter clean</span> sur le terminal</li>
+							<li>Arrêter puis relancer l'app</li>
+						</ol>
+						<br>
+						<span class="mkj-subtitle">Changer icône application</span>
+						<ol>
+							<li>Ajouter le package <span class="mkj-high">flutter_launcher_icons</span> dans dev_dependencies de pubspec.yaml
+								<pre class="mkj-code">
+dev_dependencies:
+    flutter_launcher_icons: 
+</pre>
+							</li>
+							<li>Ajouter la ligne referencant l'image préalablement ajouté dans le dossier
+								<pre class="mkj-code">
+flutter_icons:
+    android: "launcher_icon"
+    ios: true
+    image_path: "assets/images/logo-mikajy-x4.png"
+</pre>
+							</li>
+							<li>Appliquer
+								<pre class="mkj-code">flutter pub run flutter_launcher_icons</pre>
+							</li>
+							<li>Arrêter l'app et relancer</li>
+						</ol>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div style="padding-bottom:40px"></div>
 	</section>
 
 

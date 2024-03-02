@@ -9,7 +9,7 @@
 body {
 	background: #FFF;
 	font-family: "SF Text","SF Pro Text","SF Pro Icons","Helvetica Neue","Helvetica","Arial",sans-serif;
-	font-size: 17px;
+	font-size: 16px;
 	line-height: 1.52947;
 	font-weight: 400;
 	letter-spacing: -.021em;
@@ -404,7 +404,7 @@ footer .social_icon a:hover
 span.mkj-high {
 	color:#01a738;
 	font-weight:bold; 
-	font-size: 18px;
+	font-size: 16px;
 }
 h3.mkj-title {
 	text-shadow: #666 0.05em 0.05em 0.1em;
@@ -423,6 +423,11 @@ h2.mkj-big-title {
 pre.mkj-code {
 	text-align: left;
 	color:#01a738;
+}
+span.mkj-subtitle {
+	font-weight: bold;
+	font-size:18px;
+	text-decoration: underline;
 }
 
 
