@@ -420,6 +420,10 @@ h2.mkj-big-title {
 .mkj-menu {
 	padding-bottom:8px;
 }
+pre.mkj-code {
+	text-align: left;
+	color:#01a738;
+}
 
 
 @media only screen and (max-width: 1199px) {

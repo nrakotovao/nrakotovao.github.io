@@ -81,14 +81,15 @@
 				</div>
 			</div>
 		</div>
+		<div id="initialisation"></div>
 	</section>
 
 
     <!-- INITIALISATION -->
-	<section id="initialisation" class="section  text-center">
+	<section class="section  text-center">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-justify">
+				<div class="col-md-12 text-left">
 					<h3 class="mkj-title">Initialiser Git</h3>
 					<p>
                         <span class="mkj-high">init</span> Initialise git sur le dossier en cours
@@ -96,22 +97,22 @@
                     </p>
                     <br>
 					<p>
-                        Il existe aussi quelques configurations à faire.
-                        <br>Surtout requises pour plus tard avec les remotes.
+                        Il existe aussi quelques configurations à faire, qui sont surtout requises pour plus tard avec les remotes.
                         <br><span class="mkj-high">git config --global user_name "Njiva RABIO"</span> Change le credential
                         <br><span class="mkj-high">git config --global user.email "njiva.rabio@vondrona.com"</span> Changement de l'adresse mail
                     </p>
 				</div>
 			</div>
 		</div>
+		<div id="local"></div>
 	</section>
 
 
     <!-- LOCAL -->
-	<section id="local" class="section text-center">
+	<section class="section text-center">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-justify">
+				<div class="col-md-12 text-left">
 					<h3 class="mkj-title">Gérer Git en local</h3>
 					<p>
                         <span class="mkj-high">git add nomfichier.ext</span> Indexe un nouveau fichier pour versioning
@@ -129,14 +130,15 @@
 				</div>
 			</div>
 		</div>
+		<div id="branch"></div>
 	</section>
 
 
     <!-- BRANCH -->
-	<section id="branch" class="section text-center">
+	<section class="section text-center">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-justify">
+				<div class="col-md-12 text-left">
 					<h3 class="mkj-title">Les branches</h3>
 					<p>
                         <span class="mkj-high">git branch</span>  liste les branchs, étoile devant celui en cours
@@ -146,23 +148,21 @@
                         <br><span class="mkj-high">git checkout nouvelle-branche</span> se placer dans une autre branche
                         <br><span class="mkj-high">git checkout -b deuxieme-branche </span> créé la branche puis se placer dessus
                         <br><span class="mkj-high">git merge brancheB </span>  ajouter dans la branche courante les mises à jour de brancheB
-                        <br><u>En cas de conflit durant le merge:</u>
-                        <br>git va afficher le conflit => ouvrir le fichier en question et modifier les lignes en défaut.
-                        <br>Durant le conflit, le statut de git sera "unmerged paths".
-                        <br>Une fois le conflit résolu, faire un git commit
-                        <br>git mergetool vimdiff  lance l'outil externe "vimdiff" qui permet de voir les conflits (si l'outil est installé)
+                        <br><br><u><b>En cas de conflit durant le merge:</b></u>
+                        <br>Git va afficher le conflit. D'abord, commencer par ouvrir les fichiers indiqués et modifier les lignes en défaut. Durant le conflit, le statut de git sera "unmerged paths". Une fois tous les conflits résolus, il faut committer les changements. L'outil qui permet de voir les conflits (si il est installé) est lancé par la commande "git mergetool vimdiff" si il est installé.
                     </p>
 				</div>
 			</div>
 		</div>
+		<div id="stash"></div>
 	</section>
 
 
     <!-- STASH -->
-	<section id="stash" class="section text-center">
+	<section class="section text-center">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-justify">
+				<div class="col-md-12 text-left">
 					<h3 class="mkj-title">Les stashes</h3>
 					<p>
                         <span class="mkj-high">git stash </span> mettre les modifs de côté, sans les committer, pour passer à une autre branche
@@ -175,14 +175,15 @@
 				</div>
 			</div>
 		</div>
+		<div id="audit"></div>
 	</section>
 
 
     <!-- AUDIT -->
-	<section id="audit" class="section text-center">
+	<section class="section text-center">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-justify">
+				<div class="col-md-12 text-left">
 					<h3 class="mkj-title">Audits</h3>
 					<p>
                         <span class="mkj-high">git diff</span> affiche les changements non-committés de tous les fichiers modifiés
@@ -194,14 +195,15 @@
 				</div>
 			</div>
 		</div>
+		<div id="remote"></div>
 	</section>
 
 
     <!-- REMOTE -->
-	<section id="remote" class="section text-center">
+	<section class="section text-center">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-justify">
+				<div class="col-md-12 text-left">
 					<h3 class="mkj-title">Gérer les remotes</h3>
 					<p>
                         <span class="mkj-high">git remote</span> liste les remotes créés
@@ -217,14 +219,15 @@
                         <br><span class="mkj-high">git remote remove origin </span> supprime un remote
 			</div>
 		</div>
+		<div id="ignore"></div>
 	</section>
 
 
     <!-- IGNORE -->
-	<section id="ignore" class="section text-center">
+	<section class="section text-center">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-justify">
+				<div class="col-md-12 text-left">
 					<h3 class="mkj-title">Exclure des fichiers</h3>
 					<p>
                         Créer le fichier <span class="mkj-high">.gitignore</span> et ajouter les fichiers et dossiers à ignorer dedans.
@@ -234,26 +237,29 @@
 				</div>
 			</div>
 		</div>
+		<div id="blockcommit"></div>
 	</section>
 
 
     <!-- BLOCKCOMMIT -->
-	<section id="blockcommit" class="section text-center">
+	<section class="section text-center">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-justify">
+				<div class="col-md-12 text-left">
 					<h3 class="mkj-title">Bloquer les commits sur master</h3>
 					<p>
                         Ceci fonctionne pour un repository local seulement.
                         <ol>
                             <li>Aller dans dossier projet</li>
                             <li>Créer fichier ".git/hooks/pre-commit" avec le contenu ci-après:
-                                <br><span class="mkj-high">#!/bin/sh</span>
-                                <br><span class="mkj-high">branch="$(git rev-parse --abbrev-ref HEAD)"</span>
-                                <br><span class="mkj-high">if [ "$branch" = "master" ]; then</span>
-                                <br><span class="mkj-high">&nbsp;&nbsp;echo "You can't commit directly to master branch"</span>
-                                <br><span class="mkj-high">&nbsp;&nbsp;exit 1</span>
-                                <br><span class="mkj-high">fi</span>
+								<pre class="mkj-code">
+#!/bin/sh
+branch="$(git rev-parse --abbrev-ref HEAD)"
+if [ "$branch" = "master" ]; then
+    echo "You can't commit directly to master branch"
+    exit 1
+fi
+</pre>
                             </li>
                             <li>Si en dehors de Windows, rendre le fichier executable: <span class="mkj-high">chmod +x .git/hooks/pre-commit</span></li>
                         </ol>
@@ -261,14 +267,15 @@
 				</div>
 			</div>
 		</div>
+		<div id="master"></div>
 	</section>
 
 
     <!-- MASTER -->
-	<section id="master" class="section text-center">
+	<section class="section text-center">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-justify">
+				<div class="col-md-12 text-left">
 					<h3 class="mkj-title">Faire d'une branche le master</h3>
 					<p>
                         Technique pour rendre une branche branch2 le master
@@ -284,14 +291,15 @@
 				</div>
 			</div>
 		</div>
+		<div id="opensource"></div>
 	</section>
 
 
     <!-- OPENSOURCE -->
-	<section id="opensource" class="section text-center">
+	<section class="section text-center">
 		<div class="container">
 			<div class="row">
-				<div class="col-md-12 text-justify">
+				<div class="col-md-12 text-left">
 					<h3 class="mkj-title">Participer à un projet open source</h3>
 					<p>
                         Faire un PR (pull request) consiste à proposer une modification sur un projet.
