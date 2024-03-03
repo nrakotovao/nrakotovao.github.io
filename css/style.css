@@ -424,10 +424,17 @@ pre.mkj-code {
 	text-align: left;
 	color:#01a738;
 }
+span.mkj-motcle {
+	color:#1c7038;
+	font-weight: bold;
+}
 span.mkj-subtitle {
 	font-weight: bold;
 	font-size:18px;
 	text-decoration: underline;
+}
+span.mkj-comment {
+	color:#aca4a4;
 }
 
 
