@@ -76,6 +76,9 @@
                     <div class="mkj-menu"><a href="#conditions" class="smoothScroll">Conditions</a></div>
                     <div class="mkj-menu"><a href="#boucles" class="smoothScroll">Boucles</a></div>
                     <div class="mkj-menu"><a href="#dialog" class="smoothScroll">Dialogues</a></div>
+                    <div class="mkj-menu"><a href="#textfield" class="smoothScroll">TextField</a></div>
+                    <div class="mkj-menu"><a href="#textarea" class="smoothScroll">TextArea</a></div>
+                    <div class="mkj-menu"><a href="#listbox" class="smoothScroll">ListBox</a></div>
 				</div>
 				<div class="col-md-4 text-left">
                     <div class="mkj-menu"><a href="#debug" class="smoothScroll">Débogage</a></div>
@@ -335,6 +338,12 @@ While x < 10
 Wend
 </pre>
                         ATTENTION: A chaque itération, les boucles réévaluent les conditions de sortie. Donc, éviter de mettre une fonction car elle est appelée à chaque fois. Au lieu de ça, affecter à une variable et utiliser la variable comme limite.
+                        <br>
+                        <br>Sortie prématurée d'une boucle:
+                        <pre class="mkj-code">
+Continue  <span class="mkj-comment">'Passe directement à l'itération suivante</span>
+Exit  <span class="mkj-comment">'Sort directement de la boucle</span>
+</pre>
 					</p>
 				</div>
 			</div>
@@ -351,7 +360,80 @@ Wend
 					<h3 class="mkj-title">Dialogues</h3>
 					<p>
                         Simple message d'information
-                        <pre class="mkj-code">MessageDialog.Show("Hello world")</pre>
+                        <pre class="mkj-code">
+MessageBox("Un message")
+MessageDialog.Show("Hello world")
+</pre>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="textfield"></div>
+	</section>
+
+
+    <!-- TEXTFIELD -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">TextField</h3>
+					<p>
+                        Un <span class="mkj-high">TextField</span> est une zone de saisie avec une seule ligne.
+                        <pre class="mkj-code">
+Var s As String
+s = Me.<span class="mkj-motcle">Text</span>  <span class="mkj-comment">'Récupérer valeur</span>
+Me.<span class="mkj-motcle">Text</span> = "Ce texte là"  <span class="mkj-comment">'Assigner une valeur</span>
+</pre>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="textarea"></div>
+	</section>
+
+
+	<!-- TEXTAREA -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">TextArea</h3>
+					<p>
+                        Un <span class="mkj-high">TextArea</span> est une zone de saisie avec plusieurs lignes. Le contenu est représenté par un texte séparé par <span class="mkj-high">EndOfLine</span>.
+                        <pre class="mkj-code">
+Var s As String
+s = composant.<span class="mkj-motcle">Value</span>  <span class="mkj-comment">'Récupérer valeur</span>
+composant.Value = s + <span class="mkj-motcle">EndOfLine</span> + "Nouvelle ligne"  <span class="mkj-comment">'Assigner une valeur par code</span>
+composant.<span class="mkj-motcle">Text</span> = "Ce texte là"  <span class="mkj-comment">'Le texte</span>
+composant.<span class="mkj-motcle">FontSize</span> = 36  <span class="mkj-comment">'Changer la taille de la police</span>
+composant.<span class="mkj-motcle">FontName</span> = "Courrier Sans"  <span class="mkj-comment">'Changer la police de caractère</span>
+</pre>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="listbox"></div>
+	</section>
+
+
+	<!-- LISTBOX -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">ListBox</h3>
+					<p>
+                        Un <span class="mkj-high">ListBox</span> est un composant graphique contenant une liste de texte.
+                        <pre class="mkj-code">
+composant.<span class="mkj-motcle">AddRow</span>("Une ligne")  <span class="mkj-comment">'Ajouter une ligne de valeur</span>
+composant.<span class="mkj-motcle">RemoveAllRows</span>  <span class="mkj-comment">'Vider la liste</span>
+
+<span class="mkj-comment">'Sur evenement SelectionChanged</span>
+If Me.<span class="mkj-motcle">SelectedRowIndex</span> &lt;&gt; -1 Then  <span class="mkj-comment">'Index de la ligne séléctionnée</span>
+    sSelection = Me.<span class="mkj-motcle">SelectedRowValue</span>  <span class="mkj-comment">'Valeur séléctionnée</span>
+End If
+</pre>
 					</p>
 				</div>
 			</div>
