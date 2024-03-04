@@ -75,12 +75,12 @@
 				<div class="col-md-4 text-left">
                     <div class="mkj-menu"><a href="#conditions" class="smoothScroll">Conditions</a></div>
                     <div class="mkj-menu"><a href="#boucles" class="smoothScroll">Boucles</a></div>
-                    <div class="mkj-menu"><a href="#dialog" class="smoothScroll">Dialogues</a></div>
-                    <div class="mkj-menu"><a href="#textfield" class="smoothScroll">TextField</a></div>
-                    <div class="mkj-menu"><a href="#textarea" class="smoothScroll">TextArea</a></div>
-                    <div class="mkj-menu"><a href="#listbox" class="smoothScroll">ListBox</a></div>
+                    <div class="mkj-menu"><a href="#methodes" class="smoothScroll">Méthodes & Fonctions</a></div>
+                    <div class="mkj-menu"><a href="#tableaux" class="smoothScroll">Tableaux</a></div>
+                    <div class="mkj-menu"><a href="#dictionnaire" class="smoothScroll">Dictionnaire (clé/valeur)</a></div>
 				</div>
 				<div class="col-md-4 text-left">
+                    <div class="mkj-menu"><a href="#composantsvisuels" class="smoothScroll">Composants visuels</a></div>
                     <div class="mkj-menu"><a href="#debug" class="smoothScroll">Débogage</a></div>
                     <div class="mkj-menu"><a href="#objetsystem" class="smoothScroll">Objet System</a></div>
 				</div>
@@ -133,8 +133,8 @@
                         <br>Les string utilisent "", il faut doubler pour afficher "
                         <br>L'index d'un tableau commence à 0 (comme C)
                         <br>
-                        <br><span class="mkj-high">Variables</span>
-                        <br>Les variables s'introduisent avec le mot clé Var et doivent avoir un type.
+                        <br><span class="mkj-high">Variables & Propriétés</span>
+                        <br>Les variables s'introduisent avec le mot clé <span class="mkj-high">Var</span> et doivent avoir un type. Des variables spéciaux, appelées <span class="mkj-high">Propriétés</span>, existent et sont généralement lié à la fenêtre principale pour être accessible partout dans les événements et méthodes de la fenêtre et des composants.
                         <pre class="mkj-code">
 <span class="mkj-comment">//Déclaration de variable</span>
 <span class="mkj-motcle">Var</span> nomEmploye <span class="mkj-motcle">As</span> String
@@ -348,22 +348,133 @@ Exit  <span class="mkj-comment">'Sort directement de la boucle</span>
 				</div>
 			</div>
 		</div>
-		<div id="dialog"></div>
+		<div id="methodes"></div>
 	</section>
 
 
-	<!-- DIALOG -->
+	<!-- METHODES -->
 	<section class="section  text-center">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-left">
-					<h3 class="mkj-title">Dialogues</h3>
+					<h3 class="mkj-title">Méthodes & Fonctions</h3>
 					<p>
-                        Simple message d'information
+                        <span class="mkj-subtitle">Méthodes</span>
+                        <br>
+                        <br>Pour ajouter une nouvelle méthode, aller dans menu <span class="mkj-high">Insert&gt; Method</span>, puis indiquez les valeurs des paramètres attendues (nom, paramètres, type de retour, portée).
+                        <br>
+                        <br>Paramètres:
                         <pre class="mkj-code">
-MessageBox("Un message")
-MessageDialog.Show("Hello world")
+<span class="mkj-comment">'Déclaration de paramètres (dans UI):</span>
+nomFiltre As String  <span class="mkj-comment">'une seule param</span>
+nomFiltre As String, avecParam As Boolean  <span class="mkj-comment">'plusieurs params</span>
+nomFiltre As String = ""  <span class="mkj-comment">'avec valeur par défaut</span>
+
+<span class="mkj-comment">'Appel de méthode:</span>
+maMethode  <span class="mkj-comment">'sans param, ou avec param par défaut</span>
+maMethode("filtre")  <span class="mkj-comment">'avec param</span>
 </pre>
+                        <br><span class="mkj-subtitle">Fonctions</span>
+                        <br>
+                        <br>Une fonction est une méthode avec valeur de retour (le champ type de retour doit être indiqué à la création de la méthode). La valeur de retour est renvoyé par le mot-clé <span class="mkj-high">Return</span>.
+                        <pre class="mkj-code">
+Return valeurRetour  <span class="mkj-comment">'retourner valeur dans fonction</span>
+maVal = maFonction  <span class="mkj-comment">'appel d'une fonction pour avoir sa valeur</span>
+</pre>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="tableaux"></div>
+	</section>
+
+
+	<!-- TABLEAUX -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Tableaux</h3>
+					<p>
+                        Un tableau est une liste d'éléments ayant le même type. Dans Xojo, l'index d'un tableau commence à 0.
+                        <pre class="mkj-code">
+<span class="mkj-comment">'Déclarer un tableau</span>
+Var maListe() As String  <span class="mkj-comment">'tableau de chaine à taille variable</span>
+Var maListe(10) As String  <span class="mkj-comment">'tableau de chaine à taille fixe</span>
+
+<span class="mkj-comment">'Utiliser un tableau</span>
+valeur = maListe<span class="mkj-motcle">(0)</span>  <span class="mkj-comment">'récupérer un élément</span>
+<span class="mkj-motcle">For Each Row As String In </span>maListe ... Next  <span class="mkj-comment">'parcourir les éléments de la liste</span>
+maListe<span class="mkj-motcle">(2)</span> = "Valeur"  <span class="mkj-comment">'mettre valeur</span>
+maListe.<span class="mkj-motcle">Add</span>("Valeur")  <span class="mkj-comment">'ajouter un élément, count augmente</span>
+maListe.<span class="mkj-motcle">AddAt</span>(1, "Valeur")  <span class="mkj-comment">'ajouter un élément à la 2ème position, count augmente</span>
+maListe.<span class="mkj-motcle">RemoveAt</span>(1)  <span class="mkj-comment">'supprime le 2ème élément, count diminue</span>
+maListe.<span class="mkj-motcle">RemoveAll</span>  <span class="mkj-comment">'supprime tous les éléments</span>
+count = maListe.<span class="mkj-motcle">Count</span>  <span class="mkj-comment">'nombre d'éléments du tableau</span>
+lastIndex = maListe.<span class="mkj-motcle">LastIndex</span>  <span class="mkj-comment">'indique l'index du dernier élément (fonction), -1 si vide</span>
+maListe.<span class="mkj-motcle">Sort</span>  <span class="mkj-comment">'ordonner les contenus</span>
+maListe.<span class="mkj-motcle">Shuffle</span>  <span class="mkj-comment">'réordonner aléatoirement les contenus</span>
+maListe = unTexte.<span class="mkj-motcle">ToArray</span>(",")  <span class="mkj-comment">'split d'un texte par ","</span>
+unTexte = String.<span class="mkj-motcle">FromArray</span>(maListe, ",")  <span class="mkj-comment">'join d'un texte par ","</span>
+</pre>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="dictionnaire"></div>
+	</section>
+
+
+    <!-- DICTIONNAIRE -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Dictionnaire (clé/valeur)</h3>
+					<p>
+                        Un dictionnaire est un tableau associatif clé/valeur. Dans un dictionnaire, la valeur peut être de type différent.
+                        <pre class="mkj-code">
+<span class="mkj-comment">'Déclarer un dictionnaire</span>
+Var pairs As New Dictionary  <span class="mkj-comment">'liste clé/valeur</span>
+
+<span class="mkj-comment">'Utiliser un dictionnaire</span>
+pairs.<span class="mkj-motcle">Value("Cle1")</span> = "Valeur 1"  <span class="mkj-comment">'ajouter une valeur (ou modifier si clé existant)</span>
+maValeur = pairs.<span class="mkj-motcle">Value("Cle1")</span>  <span class="mkj-comment">'récupérer valeur</span>
+maValeur = pairs.<span class="mkj-motcle">Lookup</span>("Cle possible", "Valeur si clé non trouvé")  <span class="mkj-comment">'récupérer valeur si clé trouvé, sinon valeur par défaut</span>
+If pairs.<span class="mkj-motcle">HasKey</span>("Cle") Then ...  <span class="mkj-comment">'check si clé existe</span>
+pairs.<span class="mkj-motcle">Remove</span>("Cle") <span class="mkj-comment">'supprime l'élément</span>
+pairs.<span class="mkj-motcle">RemoveAll</span> <span class="mkj-comment">'supprime tous les éléments</span>
+</pre>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="composantsvisuels"></div>
+	</section>
+
+
+	<!-- COMPOSANTS VISUELS -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Composants visuels</h3>
+					<p>
+                        <div class="col-md-4 text-left">
+                            <div class="mkj-menu"><a href="#textfield" class="smoothScroll">TextField</a></div>
+                            <div class="mkj-menu"><a href="#textarea" class="smoothScroll">TextArea</a></div>
+                        </div>
+                        <div class="col-md-4 text-left">
+                            <div class="mkj-menu"><a href="#combobox" class="smoothScroll">ComboBox</a></div>
+                            <div class="mkj-menu"><a href="#checkbox" class="smoothScroll">CheckBox</a></div>
+                            <div class="mkj-menu"><a href="#listbox" class="smoothScroll">ListBox</a></div>
+                            <div class="mkj-menu"><a href="#button" class="smoothScroll">Button</a></div>
+                        </div>
+                        <div class="col-md-4 text-left">
+                            <div class="mkj-menu"><a href="#dialog" class="smoothScroll">Dialog</a></div>
+                            <div class="mkj-menu"><a href="#window" class="smoothScroll">Window</a></div>
+                            <div class="mkj-menu"><a href="#canvas" class="smoothScroll">Canvas</a></div>
+                        </div>
 					</p>
 				</div>
 			</div>
@@ -384,8 +495,15 @@ MessageDialog.Show("Hello world")
 Var s As String
 s = Me.<span class="mkj-motcle">Text</span>  <span class="mkj-comment">'Récupérer valeur</span>
 Me.<span class="mkj-motcle">Text</span> = "Ce texte là"  <span class="mkj-comment">'Assigner une valeur</span>
+selection = Me.<span class="mkj-motcle">SelectedText</span>  <span class="mkj-comment">'Texte séléctionné</span>
+selectionPos = Me.<span class="mkj-motcle">SelectionStart</span>  <span class="mkj-comment">'Position (index) texte séléctionné</span>
+selectionLen = Me.<span class="mkj-motcle">SelectionLength</span>  <span class="mkj-comment">'Nombre caractères texte séléctionné</span>
+
+<span class="mkj-comment">'Event courants</span>
+Opening  <span class="mkj-comment">'Lorsque le composant est créé</span>
 </pre>
 					</p>
+                    <div class="mkj-menu" style="text-align: right;"><img src="images/caret_up.png" width="20px"/> <a href="#composantsvisuels" class="smoothScroll">Composants visuels</a> </div>
 				</div>
 			</div>
 		</div>
@@ -408,8 +526,67 @@ composant.Value = s + <span class="mkj-motcle">EndOfLine</span> + "Nouvelle lign
 composant.<span class="mkj-motcle">Text</span> = "Ce texte là"  <span class="mkj-comment">'Le texte</span>
 composant.<span class="mkj-motcle">FontSize</span> = 36  <span class="mkj-comment">'Changer la taille de la police</span>
 composant.<span class="mkj-motcle">FontName</span> = "Courrier Sans"  <span class="mkj-comment">'Changer la police de caractère</span>
+selection = Me.<span class="mkj-motcle">SelectedText</span>  <span class="mkj-comment">'Texte séléctionné</span>
+selectionPos = Me.<span class="mkj-motcle">SelectionStart</span>  <span class="mkj-comment">'Position (index) texte séléctionné</span>
+selectionLen = Me.<span class="mkj-motcle">SelectionLength</span>  <span class="mkj-comment">'Nombre caractères texte séléctionné</span>
+
+<span class="mkj-comment">'Event courants</span>
+Opening  <span class="mkj-comment">'Lorsque le composant est créé</span>
 </pre>
 					</p>
+                    <div class="mkj-menu" style="text-align: right;"><img src="images/caret_up.png" width="20px"/> <a href="#composantsvisuels" class="smoothScroll">Composants visuels</a> </div>
+				</div>
+			</div>
+		</div>
+		<div id="combobox"></div>
+	</section>
+
+
+    <!-- COMBOBOX -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Combobox</h3>
+					<p>
+                        Un <span class="mkj-high">ComboBox</span> est un composant graphique contenant une liste de texte mais dont une seule valeur est affichée. Un combobox peut avoir une liste fixe ou modifiable à l'exécution.
+                        <pre class="mkj-code">
+me.<span class="mkj-motcle">AddRow</span>("Une ligne")  <span class="mkj-comment">'Ajouter une ligne de valeur</span>
+me.<span class="mkj-motcle">AddRowAt</span>(1, "Une ligne")  <span class="mkj-comment">'Ajoute une valeur au 2ème position</span>
+me.<span class="mkj-motcle">RemoveAllRows</span>  <span class="mkj-comment">'Vider la liste</span>
+
+<span class="mkj-comment">'Sur evenement SelectionChanged</span>
+If Me.<span class="mkj-motcle">SelectedRowIndex</span> &lt;&gt; -1 Then  <span class="mkj-comment">'Index de la ligne séléctionnée</span>
+    sSelection = Me.<span class="mkj-motcle">SelectedRowValue</span>  <span class="mkj-comment">'Valeur séléctionnée</span>
+End If
+
+<span class="mkj-comment">'Event courants</span>
+Opening  <span class="mkj-comment">'Lorsque le composant est créé</span>
+</pre>
+					</p>
+                    <div class="mkj-menu" style="text-align: right;"><img src="images/caret_up.png" width="20px"/> <a href="#composantsvisuels" class="smoothScroll">Composants visuels</a> </div>
+				</div>
+			</div>
+		</div>
+		<div id="checkbox"></div>
+	</section>
+
+
+    <!-- CHECKBOX -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Checkbox</h3>
+					<p>
+                        <pre class="mkj-code">
+res = me.<span class="mkj-motcle">Value</span>  <span class="mkj-comment">'Renvoie true ou false</span>
+
+<span class="mkj-comment">'Event courants</span>
+ValueChanged  <span class="mkj-comment">'Lorsque le checkbox change de valeur</span>
+</pre>
+					</p>
+                    <div class="mkj-menu" style="text-align: right;"><img src="images/caret_up.png" width="20px"/> <a href="#composantsvisuels" class="smoothScroll">Composants visuels</a> </div>
 				</div>
 			</div>
 		</div>
@@ -424,17 +601,129 @@ composant.<span class="mkj-motcle">FontName</span> = "Courrier Sans"  <span clas
 				<div class="col-md-12 text-left">
 					<h3 class="mkj-title">ListBox</h3>
 					<p>
-                        Un <span class="mkj-high">ListBox</span> est un composant graphique contenant une liste de texte.
+                        Un <span class="mkj-high">ListBox</span> est un composant graphique simulant une table.
                         <pre class="mkj-code">
-composant.<span class="mkj-motcle">AddRow</span>("Une ligne")  <span class="mkj-comment">'Ajouter une ligne de valeur</span>
-composant.<span class="mkj-motcle">RemoveAllRows</span>  <span class="mkj-comment">'Vider la liste</span>
+Me.<span class="mkj-motcle">AddRow</span>("Une ligne")  <span class="mkj-comment">'Ajouter une ligne de valeur</span>
+Me.<span class="mkj-motcle">AddRowAt</span>(1, "Une ligne")  <span class="mkj-comment">'Insère une ligne de valeur</span>
+Me.<span class="mkj-motcle">RemoveAllRows</span>  <span class="mkj-comment">'Vider la liste</span>
+
+<span class="mkj-comment">'Ajout rows sur un listbox à plusieurs colonnes</span>
+Me.AddRow("Valeur 1")
+Me.CellTextAt(Me.LastAddedRowIndex, 1) = "Valeur 2"
+Me.CellTextAt(Me.LastAddedRowIndex, 2) = "Valeur 3"
+
+<span class="mkj-comment">'Modifier valeur cell donné</span>
+Me.CellTextAt(1, 2) = "Entrepreneur"  <span class="mkj-comment">'2ème row, 3ème colonne</span>
 
 <span class="mkj-comment">'Sur evenement SelectionChanged</span>
 If Me.<span class="mkj-motcle">SelectedRowIndex</span> &lt;&gt; -1 Then  <span class="mkj-comment">'Index de la ligne séléctionnée</span>
     sSelection = Me.<span class="mkj-motcle">SelectedRowValue</span>  <span class="mkj-comment">'Valeur séléctionnée</span>
 End If
+
+<span class="mkj-comment">'Propriétés courants</span>
+ColumnCount  <span class="mkj-comment">'nombre de colonnes</span>
+HasHeader  <span class="mkj-comment">'affiche une entête ?</span>
+InitialValue  <span class="mkj-comment">'texte du header, séparé par des tabs, sur la première ligne</span>
+
+<span class="mkj-comment">'Event courants</span>
+Opening  <span class="mkj-comment">'Lorsque le composant est créé</span>
+SelectionChanged  <span class="mkj-comment">'Sélection d'une ligne</span>
+DoublePressed  <span class="mkj-comment">'Double-clic</span>
 </pre>
 					</p>
+                    <div class="mkj-menu" style="text-align: right;"><img src="images/caret_up.png" width="20px"/> <a href="#composantsvisuels" class="smoothScroll">Composants visuels</a> </div>
+				</div>
+			</div>
+		</div>
+		<div id="button"></div>
+	</section>
+
+
+	<!-- BUTTON -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Button</h3>
+					<p>
+                        En plus du bouton standard, Xojo propose le BevelButton. Il se comporte comme un checkbox avec sa propriété Value (True/False).
+                        <pre class="mkj-code">
+Me.enabled = False  <span class="mkj-comment">'Désactiver le bouton</span>
+
+<span class="mkj-comment">'Event courants</span>
+Pressed  <span class="mkj-comment">'Lorsque le bouton est appuyé puis relaché</span>
+</pre>
+					</p>
+                    <div class="mkj-menu" style="text-align: right;"><img src="images/caret_up.png" width="20px"/> <a href="#composantsvisuels" class="smoothScroll">Composants visuels</a> </div>
+				</div>
+			</div>
+		</div>
+		<div id="dialog"></div>
+	</section>
+
+
+	<!-- DIALOG -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Dialog</h3>
+					<p>
+                        Simple message d'information
+                        <pre class="mkj-code">
+MessageBox("Un message")
+MessageDialog.Show("Hello world")
+</pre>
+					</p>
+                    <div class="mkj-menu" style="text-align: right;"><img src="images/caret_up.png" width="20px"/> <a href="#composantsvisuels" class="smoothScroll">Composants visuels</a> </div>
+				</div>
+			</div>
+		</div>
+		<div id="window"></div>
+	</section>
+
+
+	<!-- WINDOW -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Window</h3>
+					<p>
+                        Un window représente un écran principal pour une app desktop.
+                        <pre class="mkj-code">
+<span class="mkj-comment">'Event courants</span>
+Opening  <span class="mkj-comment">'Lorsque le window est créé</span>
+Closing  <span class="mkj-comment">'Lorsque le window est fermé</span>
+</pre>
+					</p>
+                    <div class="mkj-menu" style="text-align: right;"><img src="images/caret_up.png" width="20px"/> <a href="#composantsvisuels" class="smoothScroll">Composants visuels</a> </div>
+				</div>
+			</div>
+		</div>
+		<div id="canvas"></div>
+	</section>
+
+
+	<!-- CANVAS -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Canvas</h3>
+					<p>
+                        Un Canvas est un composant graphique exposant sa surface pour dessiner.
+                        <pre class="mkj-code">
+g.<span class="mkj-motcle">DrawText</span>("Texte", 20, 20)    <span class="mkj-comment">'Dessiner texte</span>
+g.<span class="mkj-motcle">DrawRectangle</span>(20, 20, 100, 100)
+g.<span class="mkj-motcle">FillRectangle</span>(40, 40, 40, 40)
+g.<span class="mkj-motcle">DrawOval</span>(60, 60, 60, 60)
+
+<span class="mkj-comment">'Event courants</span>
+Paint(g As Graphics)  <span class="mkj-comment">'Lors rafraichissement affichage</span>
+</pre>
+					</p>
+                    <div class="mkj-menu" style="text-align: right;"><img src="images/caret_up.png" width="20px"/> <a href="#composantsvisuels" class="smoothScroll">Composants visuels</a> </div>
 				</div>
 			</div>
 		</div>
