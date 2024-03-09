@@ -75,6 +75,7 @@
 					<div class="mkj-menu"><a href="#http" class="smoothScroll">Requêtes HTTP</a></div>
 				</div>
 				<div class="col-md-4 text-left">
+					<div class="mkj-menu"><a href="#riverpod" class="smoothScroll">Riverpod</a></div>
 					<div class="mkj-menu"><a href="#splash" class="smoothScroll">Splash screen</a></div>
 					<div class="mkj-menu"><a href="#branding" class="smoothScroll">Branding</a></div>
 				</div>
@@ -297,9 +298,177 @@ void main() {
 				</div>
 			</div>
 		</div>
-		<div id="splash"></div>
+		<div id="riverpod"></div>
 	</section>
 
+
+	<!-- RIVERPOD -->
+	<section class="section text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Riverpod state management</h3>
+					<p>
+						Utilisation de Riverpod:
+						<ol>
+							<li>Ajout de la dépendance Riverpod</li>
+							<li>Prise en compte par l'application</li>
+							<li>Usage via un StateProvider (facile)
+								<ol>
+									<li>Config de Riverpod</li>
+									<li>Usage sur widget (ConsumerWidget, WidgetRef)</li>
+									<li>Ecoute via Watch</li>
+									<li>Edition via Read</li>
+								</ol>
+							</li>
+							<li>Usage via un ChangeNotifierProvider (avancé)
+								<ol>
+									<li>Création modèle</li>
+									<li>Config de Riverpod</li>
+									<li>Usage sur widget (ConsumerWidget, WidgetRef)</li>
+									<li>Ecoute via Watch</li>
+									<li>Edition via Read</li>
+								</ol>
+							</li>
+						</ol>
+					</p>
+					<p>
+						<br><span class="mkj-subtitle">AJOUT DEPENDANCE RIVERPOD</span>
+						<br>
+						<br>Ajouter dans pubspec.yaml
+						<pre class="mkj-code">
+dependencies:
+    flutter:
+	    sdk: flutter
+    <span class="mkj-motcle">flutter_riverpod: ^2.4.9</span>
+</pre>
+					</p>
+					<p>
+						<br><span class="mkj-subtitle">PRISE EN COMPTE PAR APP</span>
+						<br>
+						<br>Modifier main() pour englober l'app par ProviderScope
+						<pre class="mkj-code">
+void main() {
+    runApp(
+        <span class="mkj-motcle">const ProviderScope(</span>
+            child: MyApp()
+        <span class="mkj-motcle">),</span>
+    );
+}
+</pre>
+					</p>
+					<p>
+						<br><span class="mkj-subtitle">USAGE VIA STATEPROVIDER</span>
+						<br>
+						<br>StateProvider permet d'utiliser Riverpod via des states simples. Ceci s'applique généralement sur les données basiques.
+						<br>
+						<br>Configuration de Riverpod
+						<pre class="mkj-code">
+<span class="mkj-comment">//mettre dans fichier riverpod.dart par exemple</span>
+import 'package: flutter_riverpod/flutter_riverpod.dart'
+
+final riverpod = StateProvider&lt;int&gt;((ref) {
+    return 0;    <span class="mkj-comment">//valeur par défaut</span>
+})
+</pre>
+						<br>Usage sur widget
+						<pre class="mkj-code">
+<span class="mkj-comment">//Il faut faire deux choses:</span>
+<span class="mkj-comment">//  - Modifier StatelessWidget par ConsumerWidget</span>
+<span class="mkj-comment">//  - Ajouter WidgetRef comme params dans build()</span>
+import 'package: flutter_riverpod/flutter_riverpod.dart'
+class MaClasse extends <span class="mkj-motcle">ConsumerWidget</span> {
+    const MaClass({super.key});
+
+    @override
+    Widget build(BuildContext context<span class="mkj-motcle">, WidgetRef ref</span>) {
+        ...
+	}
+}
+</pre>
+						<br>Ecoute du notifier pour avoir la valeur du state
+						<pre class="mkj-code">
+Text(
+    ref.<span class="mkj-motcle">watch(riverpod)</span>.toString(),    <span class="mkj-comment">//exemple affichant valeur 0</span>
+    ...
+)
+</pre>
+						<br>Edition du notifier pour modifier la valeur du state
+						<pre class="mkj-code">
+ElevatedButton.icon(
+    onPressed: () {
+        ref.<span class="mkj-motcle">read(riverpod.notifier).state</span>++;    <span class="mkj-comment">//exemple changement valeur de state</span>
+    }
+)
+</pre>
+					</p>
+					<p>
+						<br><span class="mkj-subtitle">USAGE VIA CHANGENOTIFIERPROVIDER</span>
+						<br>
+						<br>ChangeNotifierProvider permet d'utiliser Riverpod via des modèles.
+						<br>
+						<br>Création de modèle
+						<pre class="mkj-code">
+import 'package:flutter/material.dart'
+
+class RiverpodModel extends <span class="mkj-motcle">ChangeNotifier</span> {
+    int compteur;
+
+    RiverpodModel({
+        required this.compteur;
+    });
+
+    void incrementerCompteur() {
+        compteur++;
+        <span class="mkj-motcle">notifyListeners();</span>
+    }
+}
+</pre>
+						<br>Configuration de Riverpod
+						<pre class="mkj-code">
+<span class="mkj-comment">//mettre dans fichier riverpod.dart par exemple</span>
+import 'package: flutter_riverpod/flutter_riverpod.dart'
+
+final riverpod = ChangeNotifierProvider&lt;RiverpodModel&gt;((ref) {
+    return RiverpodModel(compteur: 0);    <span class="mkj-comment">//valeur par défaut</span>
+})
+</pre>
+						<br>Usage sur widget
+						<pre class="mkj-code">
+<span class="mkj-comment">//Il faut faire deux choses:</span>
+<span class="mkj-comment">//  - Modifier StatelessWidget par ConsumerWidget</span>
+<span class="mkj-comment">//  - Ajouter WidgetRef comme params dans build()</span>
+import 'package: flutter_riverpod/flutter_riverpod.dart'
+class MaClasse extends <span class="mkj-motcle">ConsumerWidget</span> {
+    const MaClass({super.key});
+
+    @override
+    Widget build(BuildContext context<span class="mkj-motcle">, WidgetRef ref</span>) {
+        ...
+	}
+}
+</pre>
+						<br>Ecoute du notifier pour avoir la valeur du state
+						<pre class="mkj-code">
+Text(
+    ref.<span class="mkj-motcle">watch(riverpod)</span>.compteur.toString(),    <span class="mkj-comment">//exemple affichant valeur 0</span>
+    ...
+)
+</pre>
+						<br>Edition du notifier pour modifier la valeur du state
+						<pre class="mkj-code">
+ElevatedButton.icon(
+    onPressed: () {
+        ref.<span class="mkj-motcle">read(riverpod).incrementerCompteur()</span>;    <span class="mkj-comment">//exemple changement valeur modèle</span>
+    }
+)
+</pre>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="splash"></div>
+	</section>
 
 
     <!-- SPLASH -->
