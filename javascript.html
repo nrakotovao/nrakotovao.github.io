@@ -1,0 +1,109 @@
+
+    <!-- JS -->
+    <section id="javascript" class="section text-center">
+        <div style="padding-top:60px"></div>
+		<div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mkj-big-title">JAVASCRIPT</h2>
+                </div>
+            </div>
+        </div>
+	</section>
+
+
+	<!-- MENU --
+	<section id="resume" class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 text-left">
+					<div class="mkj-menu"><a href="javascript_lit.html">LIT *</a></div>
+					<div class="mkj-menu"><a href="#commandes" class="smoothScroll">Commandes</a></div>
+				</div>
+				<div class="col-md-4 text-left">
+					<div class="mkj-menu"><a href="#pageroute" class="smoothScroll">Pages & Routes</a></div>
+				</div>
+				<div class="col-md-4 text-left">
+					<div class="mkj-menu"><a href="#riverpod" class="smoothScroll">Riverpod</a></div>
+				</div>
+			</div>
+		</div>
+		<div id="commandes"></div>
+	</section>
+
+
+	<!-- COMMANDES --
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Commandes Flutter</h3>
+					<p>
+						<span class="mkj-high">flutter devices</span> Affiche la liste des devices visibles par Flutter.
+						<br><span class="mkj-high">flutter run -d deviceId</span> Execute sur le device indiqué.
+						<br><span class="mkj-high">flutter doctor </span> Vérifie que le setup de Flutter est correct.
+						<br><span class="mkj-high">flutter upgrade </span> Met à jour Flutter à sa version la plus récente.
+						<br><span class="mkj-high">flutter pub get </span> Met à jour la liste des dépendances. Nécessaires après un ajout d'import de package externe.
+						<br><span class="mkj-high">flutter pub add shared_preferences </span> Ajoute le plugin SharedPreferences dans pubspec.yaml puis lance flutter pub get.
+						<br><span class="mkj-high">flutter clean</span> Réinitialise les builds.
+						<br><span class="mkj-high">flutter build appbundle --target-platform android-arm,android-arm64</span> Builde pour ARM avec optimization.
+						<br><span class="mkj-high">flutter build apk --split-per-abi</span> Méthode recommandé pour release. Le APK se trouve dans H:\aketoo\build\app\outputs\flutter-apk.
+						<br><span class="mkj-high">flutter --version</span> Affiche la version de flutter avec ses configs.
+					</p>
+					<br>
+					<p>
+						<u><b>Pour commencer un nouveau projet Flutter:</b></u>
+						<ol>
+							<li>Aller dans le dossier où le dossier du projet sera créé par Flutter.</li>
+							<li><span class="mkj-high">flutter create my_app</span></li>
+							<li><span class="mkj-high">cd my_app</span></li>
+							<li><span class="mkj-high">flutter run</span> Exécute le projet ainsi créé.</li>
+						</ol>
+					</p>
+					<br>
+					<p>
+						<u><b>Manipuler les simulateurs sur Android:</b></u>
+						<br><span class="mkj-high">emulator -list-avds </span> Liste les émulateurs Android dispos.
+						<br><span class="mkj-high">emulator -avd Nom_avd </span> Lancer l'émulateur Nom_avd.
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="dialog"></div>
+	</section>
+
+
+    <!-- DIALOGUE -- >
+	<section class="section text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Dialogues</h3>
+					<p>
+                        Afficher un toast (messages d'information affichés en bas de l'écran pendant quelques secondes)
+						<pre class="mkj-code">
+ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    content: Text(loginController.text),
+));
+</pre>
+                    </p>
+					<br>
+					<p>
+						Afficher un dialogue simple
+						<pre class="mkj-code">
+showDialog(
+    context: context,
+    builder: (context) {
+        return AlertDialog(
+            content: Text(loginController.text),
+        );
+    },
+);
+</pre>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="pageroute"></div>
+	</section>
+
