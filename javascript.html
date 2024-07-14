@@ -1,109 +1,125 @@
 
-    <!-- JS -->
-    <section id="javascript" class="section text-center">
-        <div style="padding-top:60px"></div>
-		<div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="mkj-big-title">JAVASCRIPT</h2>
-                </div>
+<!-- JS -->
+<section id="javascript" class="section text-center">
+    <div style="padding-top:60px"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mkj-big-title">JAVASCRIPT</h2>
             </div>
         </div>
-	</section>
+    </div>
+</section>
 
 
-	<!-- MENU --
-	<section id="resume" class="section  text-center">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 text-left">
-					<div class="mkj-menu"><a href="javascript_lit.html">LIT *</a></div>
-					<div class="mkj-menu"><a href="#commandes" class="smoothScroll">Commandes</a></div>
-				</div>
-				<div class="col-md-4 text-left">
-					<div class="mkj-menu"><a href="#pageroute" class="smoothScroll">Pages & Routes</a></div>
-				</div>
-				<div class="col-md-4 text-left">
-					<div class="mkj-menu"><a href="#riverpod" class="smoothScroll">Riverpod</a></div>
-				</div>
-			</div>
-		</div>
-		<div id="commandes"></div>
-	</section>
+<!-- MENU -->
+<section id="resume" class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-left">
+                <div class="mkj-menu"><a href="#string" class="smoothScroll">Chaines de caractères</a></div>
+                <div class="mkj-menu"><a href="#array" class="smoothScroll">Tableaux</a></div>
+                <div class="mkj-menu"><a href="#null" class="smoothScroll">Valeurs Null et Undefined</a></div>
+            </div>
+            <div class="col-md-4 text-left">
+                <div class="mkj-menu"><a href="#fetch" class="smoothScroll">Fetch API</a></div>
+            </div>
+            <div class="col-md-4 text-left">
+                <div class="mkj-menu"><a href="#" onclick="javascript: ouvrirlien('javascript_lit.html','JAVASCRIPT');">Composants web LIT *</a></div>
+            </div>
+        </div>
+    </div>
+    <div id="string"></div>
+</section>
 
 
-	<!-- COMMANDES --
-	<section class="section  text-center">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-left">
-					<h3 class="mkj-title">Commandes Flutter</h3>
-					<p>
-						<span class="mkj-high">flutter devices</span> Affiche la liste des devices visibles par Flutter.
-						<br><span class="mkj-high">flutter run -d deviceId</span> Execute sur le device indiqué.
-						<br><span class="mkj-high">flutter doctor </span> Vérifie que le setup de Flutter est correct.
-						<br><span class="mkj-high">flutter upgrade </span> Met à jour Flutter à sa version la plus récente.
-						<br><span class="mkj-high">flutter pub get </span> Met à jour la liste des dépendances. Nécessaires après un ajout d'import de package externe.
-						<br><span class="mkj-high">flutter pub add shared_preferences </span> Ajoute le plugin SharedPreferences dans pubspec.yaml puis lance flutter pub get.
-						<br><span class="mkj-high">flutter clean</span> Réinitialise les builds.
-						<br><span class="mkj-high">flutter build appbundle --target-platform android-arm,android-arm64</span> Builde pour ARM avec optimization.
-						<br><span class="mkj-high">flutter build apk --split-per-abi</span> Méthode recommandé pour release. Le APK se trouve dans H:\aketoo\build\app\outputs\flutter-apk.
-						<br><span class="mkj-high">flutter --version</span> Affiche la version de flutter avec ses configs.
-					</p>
-					<br>
-					<p>
-						<u><b>Pour commencer un nouveau projet Flutter:</b></u>
-						<ol>
-							<li>Aller dans le dossier où le dossier du projet sera créé par Flutter.</li>
-							<li><span class="mkj-high">flutter create my_app</span></li>
-							<li><span class="mkj-high">cd my_app</span></li>
-							<li><span class="mkj-high">flutter run</span> Exécute le projet ainsi créé.</li>
-						</ol>
-					</p>
-					<br>
-					<p>
-						<u><b>Manipuler les simulateurs sur Android:</b></u>
-						<br><span class="mkj-high">emulator -list-avds </span> Liste les émulateurs Android dispos.
-						<br><span class="mkj-high">emulator -avd Nom_avd </span> Lancer l'émulateur Nom_avd.
-					</p>
-				</div>
-			</div>
-		</div>
-		<div id="dialog"></div>
-	</section>
-
-
-    <!-- DIALOGUE -- >
-	<section class="section text-center">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-left">
-					<h3 class="mkj-title">Dialogues</h3>
-					<p>
-                        Afficher un toast (messages d'information affichés en bas de l'écran pendant quelques secondes)
-						<pre class="mkj-code">
-ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    content: Text(loginController.text),
-));
+<!-- STRING -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Chaines de caractères</h3>
+                Gestion des chaines de caractères en JS:
+                <pre>
+var position           = s.<b>indexOf</b>('x');       <i>//position de x dans s, -1 sinon</i>
+var nbcaracteres       = s.<b>length</b>;             <i>//nb caractères de s</i>
+var fVal               = <b>parseFloat</b>(s);        <i>//conversion s en float</i>
 </pre>
-                    </p>
-					<br>
-					<p>
-						Afficher un dialogue simple
-						<pre class="mkj-code">
-showDialog(
-    context: context,
-    builder: (context) {
-        return AlertDialog(
-            content: Text(loginController.text),
-        );
-    },
-);
-</pre>
-					</p>
-				</div>
-			</div>
-		</div>
-		<div id="pageroute"></div>
-	</section>
+            </div>
+        </div>
+    </div>
+    <div id="array"></div>
+</section>
 
+
+<!-- TABLEAU -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Tableaux</h3>
+                Gestion des tableaux en JS:
+                <pre>
+var nbElt = t.<b>length</b>;                          <i>//nb elements de t</i>
+t.<b>push</b>(val);                                   <i>//ajoute val dans t</i>
+var nouvTab = [<b>...</b>ancienTab, nouvValeur]       <i>//ajout d'élément par création de nouveau tableau (éviter la mutabilité)</i>
+t.<b>splice</b>(pos, number);                         <i>//supprime valeur depuis l'index pos jusqu'au nombre number</i>
+
+unTab.<b>forEach</b>((element)=>{ ... })              <i>//parcours et action sur chaque élément</i>
+</pre>
+            </div>
+        </div>
+    </div>
+    <div id="null"></div>
+</section>
+
+
+<!-- NULL -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Null</h3>
+                Gestion des valeurs null en JS:
+                <pre>
+return this.renderRoot<b>?</b>.querySelector('#ito') <b>??</b> null;  <i>// ? empêche l'appel sur null, ?? remplace undefined</i>
+</pre>
+            </div>
+        </div>
+    </div>
+    <div id="fetch"></div>
+</section>
+
+
+<!-- FETCH API -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Fetch API</h3>
+                En utilisant la méthode moderne de Fetch():
+                <pre>
+<b>fetch</b>(BASE_URL+'activite/nb_notifications_mobile')
+    .<b>then</b>(resp => resp.text())
+    .<b>then</b>(text => {
+        if (text.indexOf('html')>=0) {
+            document.querySelector('#notif-content').innerText = '?'
+            document.querySelector('#notif-content').style.color = '#3B8FD2'
+        } else {
+            document.querySelector('#notif-content').innerText = text
+            document.querySelector('#notif-content').style.color = text == '0' ? '#3B8FD2' : '#DD4B39'
+        }
+    })
+</pre>
+            <br>
+            En utilisant l'ancienne méthode de XMLHttpRequest:
+            <pre>
+<i>//En utilisant jQuery</i>
+$.get(BASE_URL+url, function (data) { ... });
+</pre>
+            </div>
+        </div>
+    </div>
+    <!-- div id="langage"></div -->
+    <div style="padding-bottom:40px"></div>
+</section>

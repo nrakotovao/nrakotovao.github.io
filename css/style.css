@@ -240,6 +240,16 @@ a.logo:hover {
 	
 
 /* GALLERIE */
+.section pre i {
+	color:#aca4a4;
+}
+.section pre b {
+	color:#1c7038;
+	font-weight: bold;
+}
+.section p {
+	margin-bottom:24px;
+}
 .section ul {       
 	padding:0 0 0 0;
     margin:0 0 0 0;
@@ -247,6 +257,17 @@ a.logo:hover {
 .section ul li {     
 	list-style:none;
     margin-bottom:25px;           
+    }
+.section ul.simple {
+	margin-bottom:16px;
+}
+.section ul.simple li:nth-child(1) {
+	margin-top:-16px;
+}
+.section ul.simple li {     
+	list-style: square;
+	margin-left: 16px;
+    margin-bottom:8px;           
     }
 .section ul li img {
 	cursor: pointer;
@@ -420,7 +441,7 @@ h2.mkj-big-title {
 .mkj-menu {
 	padding-bottom:8px;
 }
-pre.mkj-code {
+pre {
 	text-align: left;
 	color:#01a738;
 	font-size: 14px;
@@ -436,6 +457,12 @@ span.mkj-subtitle {
 }
 span.mkj-comment {
 	color:#aca4a4;
+}
+
+b {
+	color:#01a738;
+	font-weight:bold; 
+	font-size: 16px;
 }
 
 

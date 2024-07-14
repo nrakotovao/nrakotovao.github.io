@@ -1,0 +1,519 @@
+<!-- TITRE -->
+<section id="flutter" class="section text-center">
+    <div style="padding-top:60px"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mkj-big-title">Librairie LIT</h2>
+                <div style="margin-top:-24px">
+                    <img src="images/caret_up.png" width="20px"/>
+                    <a href="#" onclick="javascript: ouvrirlien('javascript.html','JAVASCRIPT');">Langage JAVASCRIPT</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- MENU -->
+<section id="resume" class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 text-left">
+                <div class="mkj-menu"><a href="#demarrer" class="smoothScroll">Démarrer</a></div>
+                <div class="mkj-menu"><a href="#concept" class="smoothScroll">Notion de composant</a></div>
+                <div class="mkj-menu"><a href="#rendu" class="smoothScroll">Rendu</a></div>
+                <div class="mkj-menu"><a href="#proprietes" class="smoothScroll">Propriétés</a></div>
+            </div>
+            <div class="col-md-4 text-left">
+                <div class="mkj-menu"><a href="#expressions" class="smoothScroll">Expressions</a></div>
+                <div class="mkj-menu"><a href="#styles" class="smoothScroll">Styles</a></div>
+                <div class="mkj-menu"><a href="#listes" class="smoothScroll">Listes</a></div>
+            </div>
+            <div class="col-md-4 text-left">
+                <div class="mkj-menu"><a href="#evenements" class="smoothScroll">Evènements</a></div>
+                <div class="mkj-menu"><a href="#callbacks" class="smoothScroll">Callbacks</a></div>
+                <div class="mkj-menu"><a href="#shadowdom" class="smoothScroll">Shadow DOM</a></div>
+                <div class="mkj-menu"><a href="#references" class="smoothScroll">Références</a></div>
+            </div>
+        </div>
+    </div>
+    <div id="demarrer"></div>
+</section>
+
+
+<!-- DEMARRER -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Démarrer avec Lit</h3>
+                <p>
+                    Pour commencer à utiliser Lit, il faut aller chercher la source JS sur <a href='https://cdn.jsdelivr.net/gh/lit/dist/'>https://cdn.jsdelivr.net/gh/lit/dist/</a>. La version actuelle est celle de <a href='https://cdn.jsdelivr.net/gh/lit/dist@3.1.4/core/'>https://cdn.jsdelivr.net/gh/lit/dist@3.1.4/core/</a>. Une fois le fichier <b>lit-core.min.js</b> placé dans le dossier <b>js</b> de CI, on peut l'appeler depuis les scripts JS comme suit:
+                </p>
+                <pre class="mkj-code">
+import {LitElement, html} from '../js/lit-core.min.js';
+
+class MyElement extends LitElement {
+render() {
+    return html`
+        &lt;div&gt;Hello from MyElement!&lt;/div&gt;
+        `;
+    }
+}
+
+customElements.define('my-element', MyElement);
+</pre>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="concept"></div>
+</section>
+
+<!-- CONCEPT -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Notion de composant</h3>
+                <p>
+                    Un composant Lit est un élément réutilisable du DOM. Un composant est comme un conteneur qui dispose des états et qui s'affiche suivant la valeur de ces états. Il peut aussi réagir aux évènements et en enclencher. Surtout, un composant Lit est une balise HTML valide et supporté par les navigateurs modernes.
+                </p>
+                <p>Créer un composant inclut les actions ci-après:</p>
+                <ul class="simple">
+                    <li><b>Définir le composant: </b>un composant Lit est un custom element, enregistré auprès du navigateur.</li>
+                    <li><b>Rendu: </b>un composant est une classe contenant une méthode render() qui indique son modèle d'affichage.</li>
+                    <li><b>Propriété réactif: </b>les propriétés détiennent les états d'un composant. Le changement de valeur d'une propriété provoque le re-rendu du composant.</li>
+                    <li><b>Styles: </b>un composant dispose de son propre style (encapsulé et n'impactant pas les autres éléments du DOM)</li>
+                    <li><b>Cycle de vie: </b>Lit définit une liste de fonctions callbacks auxquels on peut s'adhérer (en les redéfinissant) pour exécuter des actions durant les étapes du cycle de vie du composant.</li>
+                </ul>
+                Ci-après la définition d'un composant minimaliste:
+                <pre>
+import {LitElement, css, html} from 'lit';
+
+export class SimpleGreeting extends LitElement {
+    static properties = {
+        name: {},
+    };
+
+    <i>// Define scoped styles right with your component, in plain CSS</i>
+    static styles = css`
+        :host {
+            color: blue;
+        }
+    `;
+
+    constructor() {
+        super();
+        <i>// Declare reactive properties</i>
+        this.name = 'World';
+    }
+
+    <i>// Render the UI as a function of component state</i>
+    render() {
+        return html`&lt;p&gt;Hello, ${this.name}!&lt;/p&gt;`;
+    }
+}
+
+customElements.define('simple-greeting', SimpleGreeting);
+
+<i>//on peut remplacer le customeElements... en utilisant un décorateur:</i>
+@customElement('simple-greeting')
+export class SimpleGreeting extends LitElement { ... }
+</pre>
+            </div>
+        </div>
+    </div>
+    <div id="rendu"></div>
+</section>
+
+
+<!-- RENDU -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Rendu</h3>
+                <p>
+                    Le rendu (affichage) du composant est assuré par la méthode <b>render()</b>. Cette méthode doit retourner un HTML valide, via le modèle litéral <b>html`...`</b>. Par défaut, le composant personnalisé est de type <b>inline</b>, comme &lt;span&gt;. Il faut ajout un <b>CSS</b> comme display:block pour avoir un comportement comme &lt;div&gt;.
+                </p>
+                <p>La méthode render() est appelée lorsque le composant est ajouté au DOM. Puis, appelé lorsqu'un état est mis à jour. Lit s'arrange pour ne mettre à jour que les parties de son DOM qui a changé.</p>
+                <pre>
+render() {
+    return html`&lt;p&gt;Un texte html&lt;/p&gt;`;
+}
+</pre>
+                <br>
+                <p>Pour un meilleur rendu du composant, il faut respecter les 4 règles ci-après:</p>
+                <ul class="simple">
+                    <li>Eviter de muter un état. A la place, il faut changer sa valeur en créant un nouvel état, reprendre les valeurs et indiquer les changements.</li>
+                    <li>Eviter les effets de bord.</li>
+                    <li>Utiliser seulement les propriétés du composant comme input.</li>
+                    <li>Retourner le même résultat pour les mêmes inputs.</li>
+                </ul>
+                <br>
+                Il est possible d'appeler aussi directement le refresh du rendu depuis une méthode en appelant:
+                <pre>
+this.requestUpdate();
+</pre>
+            </div>
+        </div>
+    </div>
+    <div id="proprietes"></div>
+</section>
+
+
+<!-- PROPRIETES -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Propriétés</h3>
+                <p><b>Propriétés réactives</b></p>
+                <p>Une propriété réactive détient l'état du composant. Elle provoque le re-rendu du composant lorsque sa valeur change. Lorsqu'une propriété réactive est publique (accessible depuis l'extérieur), elle devrait être un attribut.</p>
+                <pre>
+class MyElement extends LitElement {
+    static properties = {
+        name: {},                           <i>//propriété réactive publique</i>
+        count: {type:Number}                <i>//en spécifiant le type, Lit s'occupe de la conversion propriété/attribut en string/type</i>
+        count: {type:Number, reflect:true}  <i>//reflect s'assure que la valeur de la propriété est synchonisée à l'attribut</i>
+        _adress: {state:true}               <i>//propriété réactive privée (state:true)</i>    
+        myValue: {attribute:'my-value'}     <i>//propriété avec nom d'attribut différent</i>
+        autreVal: {attribute:false}         <i>//propriété n'ayant pas besoin d'attribut correspond</i>
+    };                  
+}
+
+<i>//En utilisant les décorateurs:</i>
+@property() name;
+@state() _active;
+</pre>
+                <br>
+                <p>Une propriété réactive publique est toujours liée à un attribut du composant. Un attribut est toujours de <b>type String</b>. Pour assurer une bonne synchronisation entre propriété et attribut, il faut toujours convertir un attribut d'un string vers le type de la propriété, et convertir une propriété de son type vers string pour l'affecter à attribut.</p>
+            </div>
+        </div>
+    </div>
+    <div id="expressions"></div>
+</section>
+
+
+<!-- EXPRESSIONS -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Expressions</h3>
+                <p>Le template HTML du composant peut contenir des valeurs dynamiques, appelées expressions. Les expressions sont réévaluées à chaque fois que la méthode render() est appelée. La validité des valeurs des expressions dépend de l'endroit où elles sont placées dans le template.</p>
+                Noeud enfant:
+                <pre>
+html`
+    &lt;h1&gt;Hello ${name}&lt;/h1&gt;
+    &lt;ul&gt;
+        ${listitems}
+    &lt;/ul&gt;`
+</pre>
+            <br>Attribut:
+            <pre>
+html`&lt;div class=${hightlightClass}&gt;&lt;/div&gt;`
+
+<i>//annulation d'attribut: si la valeur n'existe pas, l'attribut est enlevé du DOM</i>
+<i>//pour cet exemple, l'attribut src est enlevé pour éviter un erreur réseau si imagePath ou imageFile est nul</i>
+html`&lt;img src="/images/${this.imagePath ?? <b>nothing</b>}/${this.imageFile ?? <b>nothing</b>}"&gt;`;
+
+<i>//on a la même annulation en utilisant ifDefined</i>
+html`&lt;img src="/images/${ifDefined(this.imagePath)}/${ifDefined(this.imageFile)}"&gt;`;
+
+<i>//annulation d'attribut: si la valeur vaut false ou ''</i>
+html`&lt;button aria-label="${this.ariaLabel || nothing}"&gt;&lt;/button&gt;`
+</pre>
+            <br>Attribut booléen:
+            <pre>
+html`&lt;div ?hidden=${!show}&gt;&lt;/div&gt;`
+</pre>
+            <br>Propriété:
+            <pre>
+html`&lt;input .value=${value}&gt;`  <i>//équivaut à: inputEl.value = this.itemCount;</i>
+</pre>
+            <br>Event listener:
+            <pre>
+html`&lt;button @click=${this.clickHandler}&gt;Go&lt;/button&gt;`  <i>//équivaut à: addEventListener('click', this.clickHandler)</i>
+html`&lt;button @click=${() => (this.show = !this.show)}&gt;Todo&lt;/button&gt;  <i>//inline handler</i>
+
+<i>//INFO: Lit lie automatiquement le handler au composant.
+//On peut donc utiliser this pour accéder aux propriétés et méthodes du composant.</i>
+</pre>
+            <br>Instance d'élément:
+            <pre>
+html`&lt;input ${ref(inputRef)}&gt;`  <i>//fournit une référence de l'élément 'input' rendu</i>
+</pre>
+            <br>Conditionnelle (et imbriquée):
+            <pre>
+html`
+    &lt;p&gt;Titre&lt;/p&gt;
+    ${
+        this.show
+            ? html`
+                &lt;ul&gt;${this.todos.map((i) => html`&lt;li&gt;${i}&lt;/li&gt;`)}&lt;/ul&gt;
+            `
+            : ''
+    }
+`;
+</pre>
+            <br>
+            <p>Faîtes attention aux contraintes suivante:</p>
+            <ul class="simple">
+                <li>L'expression d'élément (instance) se trouve uniquement après le tag d'ouverture.</li>
+                <li>Pour 'textarea', utiliser .value=${valeur} au lieu de &lt;textarea&gt;${valeur}&lt;/textarea&gt;</li>
+            </ul>
+            </div>
+        </div>
+    </div>
+    <div id="styles"></div>
+</section>
+
+
+<!-- STYLES -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Styles</h3>
+                <p>Les styles indiqués dans un composant est propre au composant. On parle de Shadow DOM. Ils n'affectent pas les autre éléments du DOM.</p>
+                Pour définir le style d'un composant:
+                <pre>
+import {LitElement, html, <b>css</b>} from 'lit';
+...
+static styles = css`
+    :host { display:block; }            <i>//styler le composant</i>
+    p { color:green; }                  <i>//styler un élément qui sera dans html``</i>
+    ::slotted(*) { font-family:Roboto}  <i>//éléments enfants (directs seulement)</i>
+    ::slotted(p) { ... }                <i>//p comme enfant</i>
+`;
+
+export class MyElement extends SuperElement {
+    static styles = [             <i>//un style peut aussi recevoir un tableau de style</i>
+        SuperElement.style,       <i>//hériter des styles de la classe parente</i>
+        css`div { color:red; },
+    ];
+}
+</pre>
+                <br>Il est possible de partager les styles entre differents composants. Pour ce faire, il faut créer un style et le rendre accessible aux composants:
+                <pre>
+export const buttonStyles = css`
+    .blue-button {              
+        color: white;
+        background-color: blue;          
+    }
+    .blue-button:disabled {              
+        background-color: grey;          
+    }
+`;   
+</pre>
+                <pre>
+import { buttonStyles } from './button-styles.js';
+...
+static styles = [
+    buttonStyles,
+    css` ... `
+];
+</pre>
+                <br>
+                Appliquer conditionnellement des classes avec <b>classMap</b>:
+                <pre>
+import {classMap} from 'lit/directives/class-map.js';
+...
+render() {
+    const classes = { enabled: this.enabled, hidden: false };
+    return html`&lt;div class=${classMap(classes)}&gt;Classy text&lt;/div&gt;`;
+}  
+</pre>
+            <br>
+            Appliquer conditionnellement des styles avec <b>styleMap</b>:
+            <pre>
+import {styleMap} from 'lit/directives/style-map.js';
+...
+render() {
+    const styles = { backgroundColor: this.enabled ? 'blue' : 'gray', color: 'white' };
+    return html`&lt;p style=${styleMap(styles)}&gt;Hello style!&lt;/p&gt;`;
+}
+</pre>
+            </div>
+        </div>
+    </div>
+    <div id="listes"></div>
+</section>
+
+
+<!-- LISTES -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Listes</h3>
+                Faire un rendu de tableau en liste de templates avec <b>map</b>:
+                <pre>
+static properties = {
+    colors: {},
+};
+
+constructor() {
+    super();
+    this.colors = ['red', 'green', 'blue'];
+}
+
+render() {
+    return html`
+        &lt;ul&gt;
+        ${this.colors.map((color) =>
+            html`&lt;li style="color: ${color}"&gt;${color}&lt;/li&gt;`
+        )}
+        &lt;/ul&gt;
+    `;
+}
+</pre>
+            <br>
+            Faire un rendu de tableau avec <b>repeat</b>:
+            <pre>
+import {repeat} from 'lit/directives/repeat.js';
+...
+render() {
+    return html`
+        &lt;ul&gt;
+            ${<b>repeat</b>(
+                this.employees,               <i>//le tableau</i>
+                (employee) => employee.id,    <i>//valeur de chaque element du tableau qui est unique</i>
+                (employee, index) => html`    <i>//l'élément et son index dans le tableau pour son rendu</i>
+                    &lt;li&gt;${index}: ${employee.familyName}, ${employee.givenName}&lt;/li&gt;
+                `
+            )}
+        &lt;/ul&gt;
+        &lt;button @click=${this.toggleSort}&gt;Toggle sort&lt;/button&gt;
+    `;
+}
+</pre>
+            </div>
+        </div>
+    </div>
+    <div id="evenements"></div>
+</section>
+
+
+<!-- EVENEMENTS -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Evènements</h3>
+                Quelques méthodes d'attache d'évènements au composant HTML:
+                <pre>
+html`&lt;button @click=${this.clickHandler}&gt;Go&lt;/button&gt;`  <i>//équivaut à: addEventListener('click', this.clickHandler)</i>
+return html`&lt;input @input="${this.changeName}" value="${this.oldValue}" type="text"&gt;`;
+
+changeName(event) {
+    const input = event.target;
+    this.name = input.value;
+}
+</pre>
+            <br>
+            Passage d'évènements parent-enfant:
+            <pre>
+@customElement('text-input')
+export class TextInput extends LitElement {
+    static styles = css`input { border: none;}`;              
+    @property() oldValue = "";
+    dispatchInput(e) {
+        this.dispatchEvent(new CustomEvent("new-value", { 
+            bubbles: true,
+            detail: e.target.value
+        }));
+    }
+    render() {
+        return html`&lt;input @input="${this.dispatchInput}" value="${this.oldValue}" type="text"&gt;`;
+    }
+}
+<i>//Parent -&gt; enfant: c'est simple. Il faut créer une ppté (ici oldValue) et passer à l'enfant via un attribut (ici l'attribt value d'input).</i>
+<i>//Enfant -&gt; parent: il faut dispatcher l'évènement. Ici, l'event input et dispatché par dispatchInput.</i>
+<i>//Dans le custom event, il faut indiquer bubbles:true car l'évènement doit monter dans l'arbre des composants.</i>
+</pre>
+            </div>
+        </div>
+    </div>
+    <div id="callbacks"></div>
+</section>
+
+
+<!-- CALLBACKS -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Callbacks</h3>
+                <p>Lit expose des fonctions callbacks sur lequel on peut se connecter pour exécuter des actions spécifiques à ces moments-là.</p>
+                Lorsque le composant est ajouté au DOM:
+                <pre>
+connectedCallback() {
+    super.connectedCallback()                  
+    window.addEventListener('keydown', this._handleKeydown);              
+}
+</pre>
+            <br>
+            Lorsque le composant est enlevé du DOM:
+            <pre>
+disconnectedCallback() {
+    super.disconnectedCallback()              
+    window.removeEventListener('keydown', this._handleKeydown);              
+}
+</pre>
+            </div>
+        </div>
+    </div>
+    <div id="shadowdom"></div>
+</section>
+
+
+<!-- SHADOW DOM -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Shadow DOM</h3>
+                Quelques manipulations dans le Shadow DOM:
+                <pre>
+<i>//this.renderRoot au lieu de document pour sélectionner un élément</i>
+this.staticNode = this.renderRoot.querySelector('#item');
+
+<i>//créer un composant avec un enfant</i>
+<i>//&lt;slot&gt; joue le role de placeholder pour les enfants</i>
+return html`
+    &lt;p&gt;
+        &lt;slot&gt;&lt;/slot&gt;
+    &lt;/p&gt;
+`;
+</pre>
+            </div>
+        </div>
+    </div>
+    <div id="references"></div>
+</section>
+
+
+<!-- REFERENCES -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Références</h3>
+                <p>
+                    <a href="https://lit.dev/">Le site officiel</a>
+                    <br>Le site officiel de Lit.
+                </p>
+                <p>
+                    <a href="https://lit.dev/docs/">La documentation officielle</a>
+                    <br>La documentation officielle de Lit.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- div id="langage"></div -->
+    <div style="padding-bottom:40px"></div>
+</section>
