@@ -1,0 +1,102 @@
+    <!-- DART -->
+    <section id="flutter" class="section text-center">
+        <div style="padding-top:60px"></div>
+		<div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h2 class="mkj-big-title">WIDGETS</h2>
+                    <div style="margin-top:-24px"><img src="images/caret_up.png" width="20px"/> <a href="#" onclick="javascript: ouvrirlien('flutter.html','FLUTTER');">Framework FLUTTER</a></div>
+                </div>
+            </div>
+        </div>
+	</section>
+
+
+	<!-- MENU -->
+	<section id="resume" class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4 text-left">
+                    <div class="mkj-menu"><a href="#images" class="smoothScroll">Images</a></div>
+				</div>
+				<div class="col-md-4 text-left">
+				</div>
+				<div class="col-md-4 text-left">
+                    <div class="mkj-menu"><a href="#utilitaires" class="smoothScroll">Utilitaires</a></div>
+				</div>
+			</div>
+		</div>
+		<div id="images"></div>
+	</section>
+
+
+	<!-- IMAGES -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Images</h3>
+                        <pre class="mkj-code">
+<span class="mkj-comment">//Afficher simplement une image</span>
+Image.asset('assets/images/logo-mikajy.png')
+
+<span class="mkj-comment">//Avec dimension</span>
+Image.asset('assets/images/logo-mikajy.png', width:100, height:100)
+
+<span class="mkj-comment">//Avec bord arrondi (la taille du bord s'ajuste à la taille de l'image)</span>
+ClipRRect(
+    borderRadius: BorderRadius.circular(30.0),
+    child: Image.asset('assets/images/logo-mikajy.png', width: 100, height: 100),
+)
+
+<span class="mkj-comment">//Ajouter action sur tape de l'image</span>
+GestureDetector(
+    onTap: () {
+        setState(() {
+            pageMode = PAGE_MODE_SUBSCRIBE;
+        }),
+    },
+    child: Image.asset('assets/images/logo-mikajy.png'),
+)
+</pre>
+				</div>
+			</div>
+		</div>
+		<div id="utilitaires"></div>
+	</section>
+
+
+    <!-- UTILITAIRES -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Utilitaires</h3>
+                        <br><span class="mkj-subtitle">Dimensions</span>
+                        <pre class="mkj-code">
+<span class="mkj-comment">//Largeur et hauteur de l'écran</span>
+double width = MediaQuery.sizeOf(context).width;
+double height = MediaQuery.sizeOf(context).height;
+
+<span class="mkj-comment">//Largeur et hauteur du safe area (zone manipulable) de l'écran</span>
+var padding = MediaQuery.paddingOf(context);
+double newheight = height - padding.top - padding.bottom;
+
+<span class="mkj-comment">//Sans contexte</span>
+<span class="mkj-comment">// First get the FlutterView</span>
+FlutterView view = WidgetsBinding.instance.platformDispatcher.views.first;
+<span class="mkj-comment">// Dimensions in physical pixels (px)</span>
+Size size = view.physicalSize;
+double width = size.width;
+double height = size.height;
+<span class="mkj-comment">// Dimensions in logical pixels (dp)</span>
+Size size = view.physicalSize / view.devicePixelRatio;
+double width = size.width;
+double height = size.height;
+</pre>
+				</div>
+			</div>
+		</div>
+		<!-- div id="langage"></div -->
+		<div style="padding-bottom:40px"></div>
+	</section>

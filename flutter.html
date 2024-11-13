@@ -17,15 +17,18 @@
 			<div class="row">
 				<div class="col-md-4 text-left">
 					<div class="mkj-menu"><a href="#" onclick="javascript: ouvrirlien('flutter_dart.html','FLUTTER');">Langage DART *</a></div>
+					<div class="mkj-menu"><a href="#" onclick="javascript: ouvrirlien('flutter_widgets.html','FLUTTER');">Widgets *</a></div>
 					<div class="mkj-menu"><a href="#commandes" class="smoothScroll">Commandes</a></div>
 					<div class="mkj-menu"><a href="#dialog" class="smoothScroll">Dialogues</a></div>
 				</div>
 				<div class="col-md-4 text-left">
 					<div class="mkj-menu"><a href="#pageroute" class="smoothScroll">Pages & Routes</a></div>
 					<div class="mkj-menu"><a href="#http" class="smoothScroll">Requêtes HTTP</a></div>
+					<div class="mkj-menu"><a href="#bdd" class="smoothScroll">Base de données</a></div>
+					<div class="mkj-menu"><a href="#riverpod" class="smoothScroll">Riverpod</a></div>
 				</div>
 				<div class="col-md-4 text-left">
-					<div class="mkj-menu"><a href="#riverpod" class="smoothScroll">Riverpod</a></div>
+					<div class="mkj-menu"><a href="#cycle" class="smoothScroll">Cycle de vie app</a></div>
 					<div class="mkj-menu"><a href="#splash" class="smoothScroll">Splash screen</a></div>
 					<div class="mkj-menu"><a href="#branding" class="smoothScroll">Branding</a></div>
 				</div>
@@ -244,6 +247,128 @@ void main() {
     runApp(const MyApp());
 }
 </pre>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="bdd"></div>
+	</section>
+
+
+	<!-- BASE DE DONNEES -->
+	<section class="section text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Base de données</h3>
+					<p>
+						Ci-après une méthode classique de traitement de données via <span class="mkj-high">SQFLITE</span>. A mettre dans une fichier database.dart, par exemple, puis à importer depuis les autres fichiers sources au besoin.
+						<pre class="mkj-code">
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
+
+class DB {
+    static const DB_NAME = "mabase.db";
+    static final DB_VERSION = 1;
+    static final DB_TABLE = 'unetable';
+    static final DB_COLUMN_ID = 'id';
+    static final DB_COLUMN_VAL = 'val';
+
+    <span class="mkj-comment">// créer une classe singleton</span>
+    DB._privateConstructor();
+    static final DB instance = DB._privateConstructor();
+
+    <span class="mkj-comment">// partager un accè unique au database sur toute l'application</span>
+    static Database? _database;
+    Future<Database> get database async => _database ??= await _initDatabase();
+
+    <span class="mkj-comment">// ouvre le database (ou le crééer si il n'existe pas encore)</span>
+    Future<Database> _initDatabase() async {
+        String path = join(await getDatabasesPath(), DB_NAME);
+        return await openDatabase(path, version: DB_VERSION, onCreate: _onCreate);
+    }
+
+    <span class="mkj-comment">// initialisation structure de la base</span>
+    Future _onCreate(Database db, int version) async {
+        await db.execute("drop table if exists $DB_TABLE");
+        await db.execute("create table $DB_TABLE ($DB_COLUMN_ID text primary key, $DB_COLUMN_VAL text)");
+        await db.execute("insert into $DB_TABLE ($DB_COLUMN_ID, $DB_COLUMN_VAL) values ('uneligne', '')");
+        await db.execute("insert into $DB_TABLE ($DB_COLUMN_ID, $DB_COLUMN_VAL) values ('uneautreligne', '')");
+    }
+
+    <span class="mkj-comment">// écrire une valeur dans une table</span>
+    Future&lt;int&gt; setValeur(String valeur) async {
+        Database db = await instance.database;
+        return await db.update(DB_TABLE, {"val": user}, where: "id = ?", whereArgs: ["uneligne"]);
+    }
+
+    <span class="mkj-comment">// récupérer une valeur depuis une table</span>
+    Future<String> getValeur() async {
+        Database db = await instance.database;
+        final results = await db.rawQuery("SELECT val FROM unetable WHERE id='uneligne'");
+        return results[0]["val"].toString();
+    }
+}
+</pre>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="cycle"></div>
+	</section>
+
+
+	<!-- CYCLE DE VIE APP -->
+	<section class="section text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Cycle de vie app</h3>
+					<p>
+					Savoir écouter les événèments qui surviennent durant le cycle de vie d'une app permet de faire des actions au moment où les changements surviennent. Par exemple, remettre automatiquement la sécurité lorsque l'app est mis en background.
+					<br>Une manière de faire est d'utiliser le mixin <span class="mkj-high">WidgetsBindingObserver</span>.
+					<br>La mise en place se fait en 4 étapes:
+					<ol>
+						<li>
+							Lier le mixin au state de l'app pour indiquer qu'il l'observe
+							<pre class="mkj-code">
+class _MyAppState extends State&lt;MyApp&gt; <span class="mkj-motcle">with WidgetsBindingObserver</span> {
+...
+</pre>
+						</li>
+						<li>
+							Lancer l'observation à l'initialisation
+							<pre class="mkj-code">
+@override
+void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+}
+</pre>
+						</li>
+						<li>
+							Désactiver l'observation à la destruction
+							<pre class="mkj-code">
+@override
+void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
+}
+</pre>
+						</li>
+						<li>
+							Ecouter le callback <span class="mkj-high">didChangeAppLifecycleState</span>
+							<pre class="mkj-code">
+@override
+void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused ) {
+        ...
+		<span class="mkj-comment">Etats: detached / inactive / hidden / paused / resumed / detached </span>
+    }
+}
+</pre>
+						</li>
+					</ol>
 					</p>
 				</div>
 			</div>
@@ -483,7 +608,27 @@ flutter_native_splash:
 							<li>Arrêter puis relancer l'app</li>
 						</ol>
 						<br>
-						<span class="mkj-subtitle">Changer icône application</span>
+						<br>
+						<span class="mkj-subtitle">Changer icône application (méthode alternative)</span>
+						<ol>
+							<li>Récupérer un fichier image du logo à utiliser avec une taille de 1024px x 1024px</li>
+							<li>Aller sur <a href='appicon.co'>appicon.co</a>, et drag-and-drop le fichier sur l'espace prévu</li>
+							<li>Sélectionner les plate-formes cibles des icônes (iphone, ipad, android, etc)</li>
+							<li>Cliquer sur Génerate pour créer et télécharger les fichiers</li>
+							<li>Dézipper le fichier appicons.zip généré</li>
+							<li><span class="mkj-subtitle">Pour Android:</span></li>
+							<li>Dans finder, aller dans le dossier (projet) > android > app > src > main > res</li>
+							<li>Supprimer les dossiers mipmap***</li>
+							<li>Copier dans le dossier les dossiers mipmap*** depuis (fichier dézippé) > android</li>
+							<li><span class="mkj-subtitle">Pour iOS:</span></li>
+							<li>Dans finder, aller dans le dossier (projet) > ios > runner</li>
+							<li>Supprimer le dossier assets.xcassets</li>
+							<li>Copier assets.xcassets depuis le dossier dézippé</li>
+							<li>Arrêter et relancer l'app pour voir les changements</li>
+						</ol>
+						<br>
+						<br>
+						<span class="mkj-subtitle">Changer icône application (méthode alternative)</span>
 						<ol>
 							<li>Ajouter le package <span class="mkj-high">flutter_launcher_icons</span> dans dev_dependencies de pubspec.yaml
 								<pre class="mkj-code">
