@@ -126,6 +126,14 @@ a = a + 1;  <c>//ERREUR A L'EXECUTION: syntaxiquement correct mais provoque une 
 				Pour connaitre le type d'une variable à l'exécution:
 				<pre>print(a.<b>runtimeType</b>)  <c>//affiche "int" par exemple</c></pre>
 				<p></p>
+				<st>MODIFICATEURS</st>
+				<br><b>dynamic</b> est un type de donnée qui peut recevoir n'importe quelle valeur (même type différent)
+				<br><b>var</b> indique que le type de la variable sera inféré suivant la valeur qui lui sera assignée
+				<br><b>final</b> non modifiable, peut recevoir des valeurs obtenues après traitement dans le programme (ex: valeur de retour d'une fonction), donc le contrôle de constance est effectué à l'execution-time
+				<br><b>const</b> non modifiable, doit recevoir une valeur constante aussi, donc le contrôle de constance est effectué au compile-time
+				<br><b>static</b> indique une propriété de classe
+				<br><b>late</b> indique que la valeur d'une variable non-nullable sera assignée ultérieurement
+				<p></p>
 				<st>PORTEES DES VARIABLES</st>
 				<br><b>Global</b>: défini en dehors d'une classe ou fonction, accessible partout (même depuis d'autres fichiers)
 				<br><b>Static</b>: liée à une classe (ex: MaClasse.ceVariable), défini dans une classe et précédé du mot-clé <b>static</b>
