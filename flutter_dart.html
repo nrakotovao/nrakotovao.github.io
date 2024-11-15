@@ -5,7 +5,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <h2 class="mkj-big-title">Langage DART</h2>
-                    <div style="margin-top:-24px"><img src="images/caret_up.png" width="20px"/> <a href="#" onclick="javascript: ouvrirlien('flutter.html','FLUTTER');">Framework FLUTTER</a></div>
+                    <div style="margin-top:-24px"><img src="images/caret_up.png" width="20px"/> <a href="#" onclick="javascript: ouvrirlien('flutter.html','FLUTTER');">FLUTTER</a></div>
                 </div>
             </div>
         </div>
@@ -18,14 +18,24 @@
 			<div class="row">
 				<div class="col-md-4 text-left">
                     <div class="mkj-menu"><a href="#caracteristiques" class="smoothScroll">Caractéristiques</a></div>
+                    <div class="mkj-menu"><a href="#variables" class="smoothScroll">Variables & Types de données</a></div>
+                    <div class="mkj-menu"><a href="#controles" class="smoothScroll">Structures de contrôles</a></div>
+					<div class="mkj-menu"><a href="#fonctions" class="smoothScroll">Fonctions</a></div>
+					<div class="mkj-menu"><a href="#collections" class="smoothScroll">Collections</a></div>
 				</div>
 				<div class="col-md-4 text-left">
+					<div class="mkj-menu"><a href="#classes" class="smoothScroll">Classes & Objets</a></div>
+					<div class="mkj-menu"><a href="#erreurs" class="smoothScroll">Exceptions</a></div>
+					<div class="mkj-menu"><a href="#async" class="smoothScroll">Async-await</a></div>
+					<div class="mkj-menu"><a href="#null" class="smoothScroll">Null safety</a></div>
 				</div>
 				<div class="col-md-4 text-left">
+					<div class="mkj-menu"><a href="#utilitaires" class="smoothScroll">Utilitaires</a></div>
+					<div class="mkj-menu"><a href="#references" class="smoothScroll">References</a></div>
 				</div>
 			</div>
 		</div>
-		<div id="caracteristiques"></div>
+		<div id="caracteristiques">&nbsp;</div>
 	</section>
 
 
@@ -34,24 +44,416 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-left">
-					<h3 class="mkj-title">Caractéristiques</h3>
+					<h3 class="mkj-title">CARACTERISTIQUES</h3>
 					<p>
-                        - Ecriture direct de code dans <a href="https://dartpad.dev/">dartpad.dev</a>
-                        <br>- Optimisé pour créer du UI
-                        <br>- Dispo sur Windows, Linux et Mac
-                        <br>- Génère app pour mobile, web et desktop
-                        <br>- Async/await
-                        <br>- Nullsafety
-                        <br>- Programme simple:
-                        <pre class="mkj-code">
+                        Dart a été créé par Google, pour faciliter la création d'interface graphique pour plusieurs plateformes. Dart est <b>multiplateformes</b> (disponible sur Windows, Linux et Mac) et est <b>multi-cibles</b> (peut générer une application native Android, iOS, web, Mac, Windows et Linux). Dart utilise des fonctionnalités des langages modernes comme l'<b>async/await</b> et le <b>null safety</b>. L'environnement de développement propose quant à lui des fonctions comme le <b>hot reload</b> qui améliore la productivité de développement.
+                        <br>
+						<br>En réalité, Dart n'utilise pas la notion de projet ou programme, mais de Package. Tout ce que vous créez est un package. Certains développeurs partagent leurs packages en libre accès. Ce lieu de partage est <a href="https://pub.dev" target="_blank">pub.dev</a>.
+						<br>
+						<br>Ci-après un programme minimal fonctionnel en Dart:
+                        <pre>
 void main() {
     print("Hello world!");
 }
 </pre>
+					Pour tester du code Dart, on a à disposition un playground en ligne: <a href="https://dartpad.dev/">dartpad.dev</a>
 					</p>
 				</div>
 			</div>
 		</div>
-		<!-- div id="langage"></div -->
+		<div id="variables">&nbsp;</div>
+	</section>
+
+
+	<!-- VARIABLES & CONSTANTES -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">VARIABLES & TYPES DE DONNÉES</h3>
+					Flutter est un langage fortement typé. Le mot-clé <b>var</b> peut se soustraire au type si on veut laisser Flutter inférer le type de la variable suivant la valeur affectée.
+					<br>
+					<br>Pour afficher la valeur d'une variable dans une chaîne de caractère, on la précéde de signe <b>$</b>
+					<p></p>
+					Entier :
+					<pre>
+<b>int</b> _counter = 5;  <c>//déclaration</c>
+<b>var</b> _counter = 5;  <c>//avec inférence</c>
+print(_counter.<b>toDouble()</b>);  <c>//exemple conversion</c>
+</pre>
+					<p></p>
+					Double :
+					<pre>
+<b>double</b> prix = 500.0;
+print(prix.<b>round()</b>);  <c>//arrondi</c>
+</pre>
+					<p></p>
+					Chaines de caractères :
+					<pre>
+<b>String</b> nom = "Votre nom";
+<b>String</b> nom = """Votre nom
+est partout
+""";
+<b>String</b> nom = 'Votre nom';
+<b>String</b> nom = '''Votre nom
+est partout
+''';
+
+print("Mon nom est <b>$variable</b>");  <c>//insertion variable</c>
+print("3 + 4 = <b>${3+4}</b>");  <c>//insertion expression</c>
+int nbCars = nom.<b>length</b>;
+String ensemble = "Une chaine " <b>+</b> "est une autre";
+int converti = <b>int.parse</b>("345");
+String premierCar = nom<b>[0]</b>;
+String sousString = nom<b>.substring(0, 3)</b>;
+</pre>
+					<p></p>
+					Bouléen :
+					<pre>
+<b>bool</b> estMajeur = <b>true</b>;
+
+if (estMajeur) { ... }  <c>//usage</c>
+</pre>
+				<p></p>
+				<st>DYNAMIC</st>
+				<br>Flutter utilise un type spécial <b>dynamic</b> pour indiquer une variable qui peut contenir n'importe quel type de valeur, et dont la valeur peut changer de type en cours d'exécution.
+				<pre>
+dynamic a = 5;
+a = "texte maintenant";
+a = a + 1;  <c>//ERREUR A L'EXECUTION: syntaxiquement correct mais provoque une erreur à l'exécution</c>
+</pre>
+				<p></p>
+				Pour connaitre le type d'une variable à l'exécution:
+				<pre>print(a.<b>runtimeType</b>)  <c>//affiche "int" par exemple</c></pre>
+				<p></p>
+				<st>PORTEES DES VARIABLES</st>
+				<br><b>Global</b>: défini en dehors d'une classe ou fonction, accessible partout (même depuis d'autres fichiers)
+				<br><b>Static</b>: liée à une classe (ex: MaClasse.ceVariable), défini dans une classe et précédé du mot-clé <b>static</b>
+				<br><b>Instance</b>: liée aux objets d'une classe
+				<br><b>Local</b>: accessible uniquement au sein d'un bloc
+				</div>
+			</div>
+		</div>
+		<div id="controles">&nbsp;</div>
+	</section>
+
+
+	<!-- CONTROLES -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">STRUCTURES DE CONTROLES</h3>
+					Les structures de contrôles standard dans Flutter:
+					<p></p>
+					<pre>
+<b>if</b> (estMajeur) { ... }
+<b>if</b> (estMajeur) { ... } <b>else</b> { ... }
+<b>if</b> (estMajeur) { ... } <b>else if </b> { ... } <b>else</b> { ... }
+
+<b>for</b> (int i=0; i&lt;5; i++) { ... }
+<b>while</b> (num &lt; 5) { ... }
+</pre>
+				</div>
+			</div>
+		</div>
+		<div id="fonctions">&nbsp;</div>
+	</section>
+
+
+	<!-- FONCTIONS -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">FONCTIONS</h3>
+					Une fonction permet de factoriser les traitements. Une fonction se <b>définit</b> d'abord, puis est <b>appelée</b> à son utilisation.
+					<p></p>
+					<pre>
+void main() { ... }  <c>//définition d'une fonction sans valeur de retour</c>
+main();  <c>//appel de la fonction</c>
+
+<b>String</b> renvoyerTexte() {  <c>//définition d'une fonction avec valeur de retour</c>
+    ...
+    <b>return</b> "Hey";
+}
+String valeur = renvoyerTexte();  <c>//appel de la fonction</c>
+
+void fonction(<b>String param</b>) { ... }  <c>//définition de fonction avec paramètres</c>
+fonction('hey');  <c>//appel avec paramètres, le type doit correspondre à la définition</c>
+</pre>
+				<br>Lorsqu'une fonction ne contient qu'une ligne d'instruction, on peut utiliser la présentation flêchée à la place de l'accolade habituel.
+				<p></p>
+				<pre>void main() <b>=></b> FaireCeci();</pre>
+				</div>
+			</div>
+		</div>
+		<div id="collections">&nbsp;</div>
+	</section>
+
+
+	<!-- COLLECTIONS -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">COLLECTIONS</h3>
+					Flutter utilise principalement 3 types de collections: les Listes, les Maps et les Sets. Les Sets s'utilisent rarement, par rapport aux listes et maps.
+					<p></p> 
+					<b>LISTS</b>
+					<pre>
+<b>List</b> nombres = [1, 5, 3, 6];
+<b>List&lt;int&gt;</int></b> nombres = [1, 5, 3, 6];  <c>//avec le type explicité</c>
+
+nombres.<b>add</b>(6);  <c>//ajoute un élément à la fin</c>
+nombres.<b>remove</b>(4);  <c>//supprime l'élément ayant la valeur 4</c>
+int indice = nombres.<b>indexOf</b>(4);  <c>//renvoie l'indice de l'élément 4, commence à 0</c>
+</pre>
+				<br>
+				<b>SETS</b>
+				<pre>
+<b>Set</b> pays = {"USA", "CANADA", "MADAGASCAR"};
+<b>Set&lt;String&gt;</b> pays = {"USA", "CANADA", "MADAGASCAR"};  <c>//type explicite</c>
+
+pays.<b>add</b>("Japon");
+pays.<b>remove</b>("CANADA");
+</pre>
+				<br>
+				<b>MAPS</b>
+				<pre>
+<b>Map</b> capitales = {
+    "France": "Paris",
+    "Allemagne": "Berlin",
+    "Espagne": "Madrid",
+};
+
+print(capitales['France']);  <c>//usage: accès par clé</c>
+capitales<b>['Senegal']</b> = 'Dakar';  <c>//usage: ajout d'un élément</c>
+capitales.<b>remove</b>('Allemagne');
+</pre>
+				</div>
+			</div>
+		</div>
+		<div id="classes">&nbsp;</div>
+	</section>
+
+
+	<!-- CLASSES -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">CLASSES & OBJETS</h3>
+					<pre>
+<c>=> Définition d'une classe</c>
+<b>class</b> Personne {
+    String nom = '';  <c>//attribut: propriété</c>
+    int age = 0;  <c>//à cause du null safety, les attributs doivent avoir des valeurs par défaut</c>
+
+    <b>Personne</b>(String nom, int age) {  <c>//constructeur: même nom que la classe, ne renvoie rien</c>
+        <b>this</b>.nom = nom;   <c>//this reference la classe elle-même</c>
+        this.age = age;
+    }
+
+    <c>//le constructeur ci-dessus peut être raccourci comme suit:</c>
+    <cb>Personne(this.nom, this.age);</cb>
+
+    void sePresenter() {   <c>//méthode</c>
+        print('Bonjour, je suis $nom');
+    }
+}
+
+<c>=> Utilisation d'une classe: création d'une instance de la classe</c>
+void main() {
+    Personne personne = Personne('Rakoto', 24);
+    print(personne.nom);
+    personne.sePresenter();
+}
+</pre>
+				<br><st>Encapsulation: accès aux attributs</st>
+				<br>Dart permet de garder des propriétés ou méthodes privées. Pour ce faire, il faut les précéder de <b>underscore _</b>. ATTENTION: pour Dart, la privation se fait au niveau du fichier, cad si un autre class (ou main) dans le même fichier accède à la propriété, il le peut.
+				<p></p>
+				<pre>
+class Compte {
+    double _solde = 0;  <c>//propriété privée (accessible dans le même fichier seulement)</c>
+    double <b>get</b> solde => _solde;  <c>//méthode getter</c>
+    <b>set</b> solde(double montant) {   <c>//méthode setter</c>
+        if (montant >= 0) {
+            _solde = montant;
+        }
+    }
+}
+
+<c>/** utilisation **/</c>
+Compte compte = Compte();
+compte.solde = 1000;    <c>//affectation directe comme une propriété</c>
+print(compte.solde);    <c>//usage direct comme une propriété</c>
+</pre>
+				<br><st>Héritage</st>
+				<p></p>
+				<pre>
+class SousCompte <b>extends</b> Compte {
+    SousCompte(String nom, int age) : <b>super</b>(nom, age);  <c>//définir constructeur en s'appuyant sur la classe mère</c>
+    <b>@override</b> void sePresenter() { ... };  <c>//surcharge de la méthode héritée sePresenter()</c>
+}
+</pre>
+				</div>
+			</div>
+		</div>
+		<div id="erreurs">&nbsp;</div>
+	</section>
+
+
+	<!-- EXCEPTIONS -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">EXCEPTIONS</h3>
+					Les erreurs d'exécutions (exceptions) se capturent en utilisant les blocs try-catch.
+					<p></p>
+					<pre class="mkj-code">
+try { ... } catch (e) { ... }
+try { ... } catch (_) { ... }  <c>//la variable d'exception n'est pas nécessaire</c>
+try { ... } <b>on</b> IntegerDivisionByZeroException catch (_) { ... }  <c>//catch sur une exception spécifique</c>
+</pre>
+				<p></p>
+				Pour faire une exception personnalisée, on peut créer une classe implémentant une exception existante. Ne pas oublier de overrider toString() pour faciliter l'intégration.
+				<p></p>
+				<pre>
+class ExceptionZero implements Exception {
+    String message;
+
+    ExceptionZero(this.message);
+
+    @override
+    String toString() {
+        return 'Exception zéro: $message';
+    }
+}
+
+<c>=> Usage: on peut lancer l'exception avec le mot-clé throw</c>
+<b>throw</b> ExceptionZero('Exception zero');
+</pre>
+				</div>
+			</div>
+		</div>
+		<div id="async">&nbsp;</div>
+	</section>
+
+
+	<!-- ASYNC AWAIT -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">ASYNC AWAIT</h3>
+					Async await est la méthode de gestion des appels asynchrones en Flutter. Certaines fonctionnalités de Flutter sont en effet implémentées avec l'asynchrone en tête: accès base de données, accès http, accès fichier, etc. Par définition, l'appel d'une fonction (ou méthode) asynchrone indique à Flutter de poursuivre l'exécution du programme vers l'instruction suivante sans attendre la fin d'exécution de la fonction.
+					<br><span class="mkj-high">Async</span> permet d'indiquer qu'une fonction va contenir des appels asynchrones.
+					<br><span class="mkj-high">Then</span> permet d'indiquer l'action à faire quand l'appel asynchrone est fini.
+					<br><span class="mkj-high">Await</span> permet d'indiquer qu'il faut attendre l'exécution d'une fonction asynchrone avant de continuer vers l'instruction suivante.
+					<br>
+					<br>Les fonctions asynchrones s'implémentent en renvoyant toujours des <span class="mkj-high">Future</span> comme type de retour.
+					<br>
+					<br>Les fonctions asynchrones doivent toujours être appelées dans des fonctions asynchrones. Si ce n'est pas le cas, il faut englober l'appel dans une fonction anonyme asynchrone auto-appelante.
+					<p></p>
+					<pre class="mkj-code">
+<span class="mkj-comment">=> Usage classique:</span>
+uneFonctionAsynchrone()<span class="mkj-motcle">.then</span>((valeurRetour) { ... });  <span class="mkj-comment">//appel classique</span>
+<span class="mkj-motcle">await</span> uneFonctionAsynchrone();  <span class="mkj-comment">//appel avec attente</span>
+
+<c>=> Improvisation d'une fonction anonyme asynchrone auto-appelante:</c>
+<b>() async {</b>
+    await uneFonctionAsynchrone();
+<b>}();</b>
+
+<c>=> Implémentation d'une fonction asynchrone:</c>
+<b>Future&lt;String&gt;</b> foncAsync() <b>async</b> {
+    return Future.delayed(Duration(secondes:2), ()=>'Données reçues');
+}
+</pre>
+				</div>
+			</div>
+		</div>
+		<div id="null">&nbsp;</div>
+	</section>
+
+
+	<!-- NULL SAFETY -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">NULL SAFETY</h3>
+					Depuis la version 1.12 de Dart, toutes les variables ne sont plus nullables par défaut.
+					<br><b>?</b> explicite la déclaration d'une variable qui peut être nulle (ex: int? age;).
+					<br><b>late</b> explicite la déclaration d'une variable non null mais dont la valeur sera assignée plus tard.
+					<br><b>?</b> indique aussi d'utiliser si la valeur est non nulle (ex: int? age;).
+					<br><b>!</b> indique d'accepter une variable nullable là où cela n'est pas prévu.
+					<br><b>??</b> indique une action alternative si la valeur d'une variable nullable est nulle.
+					<p></p>
+					<pre>
+int a;  print(a);  <c>//ERREUR: a est non-nullable</c>
+int<b>?</b> b;  print(b);  <c>//OK: b est nullable</c>
+int a;  print(a<b>!</b>);  <c>//OK: a est non-nullable mais Dart est notifié</c>
+int a;  print(liste<b>?</b>.length);  <c>//OK: a est non-nullable mais Dart doit ignorer l'instruction si null</c>
+int a;  print(liste <b>??</b> "valeur si nulle");  <c>//OK: affiche "valeur si null" si liste est null</c>
+<b>late</b> String message;  <c>//message recevra sa valeur plus tard, mais avant son utilisation</c>
+
+List&lt;String<b>?</b>&gt; liste;  <c>//liste dont les valeurs sont nullables</c>
+List&lt;String&gt;<b>?</b> liste;  <c>//Liste dont la liste est nullable</c>
+</pre>
+				<p></p>
+				Après l'introduction de <b>late</b>, les instructions comme "int a;" ne sont plus autorisées. Exceptionnelement, Flutter accepte "int a;", sans late, dans une classe si la propriété est <b>required</b> dans le constructeur: MyClass({required this.a});
+				</div>
+			</div>
+		</div>
+		<div id="utilitaires">&nbsp;</div>
+	</section>
+
+
+	<!-- UTILITAIRES -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">UTILITAIRES</h3>
+					Ci-après quelques fonctions utiles durant le développement Flutter:
+					<p></p>
+					<pre>
+<b>print</b>('Imprime du texte dans le console, peut embarquer une <b>$</b>variable')
+</pre>
+				</div>
+			</div>
+		</div>
+		<div id="references">&nbsp;</div>
+	</section>
+
+
+	<!-- REFERENCES -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">REFERENCES</h3>
+					<p>
+						<a href="https://dart.dev" target="_blank">dart.dev</a>
+						<br>Le site officiel de Dart.
+					</p>
+					<p>
+						<a href="https://pub.dev" target="_blank">pub.dev</a>
+						<br>Contient tous les packages mis à disposition par les développeurs.
+					</p>
+					<p>
+						<a href="http://dartpad.dev" target="_blank">dartpad.dev</a>
+						<br>Playground en ligne permettant de tester un programme Dart.
+					</p>
+					<p>
+						<a href="https://www.youtube.com/playlist?list=PLptHs0ZDJKt_fLp8ImPQVc1obUJKDSQL7" target="_blank">Dart - from Novice to Expert</a>
+						<br>Playlist Youtube contenant un cours approfondi sur le développement Dart (en Anglais).
+					</p>
+				</div>
+			</div>
+		</div>
 		<div style="padding-bottom:40px"></div>
 	</section>
