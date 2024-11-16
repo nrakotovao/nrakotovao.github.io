@@ -193,6 +193,38 @@ fonction('hey');  <c>//appel avec paramètres, le type doit correspondre à la d
 				<br>Lorsqu'une fonction ne contient qu'une ligne d'instruction, on peut utiliser la présentation flêchée à la place de l'accolade habituel.
 				<p></p>
 				<pre>void main() <b>=></b> FaireCeci();</pre>
+				<br>Pour Dart, une fonction est un objet (type Function) et peut donc être utilisé comme tout autre objet (être assigné comme valeur, utilisé comme paramètre de fonction, ...)
+				<p></p>
+				<pre>
+void main(List&lt;String&gt; arguments) {
+    var objetFonction = ceci;
+	cela(objetFonction, 5);
+}
+
+int ceci(int a) => a;
+
+void cela(int Function(int) f, int a) {
+    print(f.call(a));
+    print(f(a));
+}
+</pre>
+				<br><st>FONCTIONS ANONYMES (CLOSURES)</st><br>
+				<br>Les fonctions anonymes ou closures sont très utilisées en Flutter. Il s'agit de fonctions utilisées temporairement auxquelles nous ne voulons pas donner de noms.
+				<p></p>
+				<pre>
+var liste = ['bonjour', 'bonsoir'].map((a)=>a.toUpperCase()).toList();  <c>//ici, (a) est une fonction anonyme avec un seule argument</c>
+() { print ('hi'); }();  <c>//ici, nous avons une fonction anonyme auto-appelante sans argument</c>
+</pre>
+				<br><st>PARAMETRES</st><br>
+				<br>Les paramètres des fonctions peuvent s'utiliser de 4 manières différentes:
+				<pre>
+void fonc(int a, int b) {...}  <c>//requis et positionnés</c>
+void fonc(<b>[</b>int a=3, int b=5<b>]</b>) {...}  <c>//optionnels et positionnés</c>
+void fonc(<b>{</b><b>required</b> int a, <b>required</b> int b<b>}</b>) {...}  <c>//requis et nommés</c>
+void fonc(<b>{</b>int a=3, int b=5<b>}</b>) {...}  <c>//optionnels (avec valeurs par défaut) et nommés</c>
+
+void fonc(int a, int b, [int c, int d=4]) {...}  <c>//et on peut les combiner</c>
+</pre>
 				</div>
 			</div>
 		</div>
@@ -216,6 +248,9 @@ fonction('hey');  <c>//appel avec paramètres, le type doit correspondre à la d
 nombres.<b>add</b>(6);  <c>//ajoute un élément à la fin</c>
 nombres.<b>remove</b>(4);  <c>//supprime l'élément ayant la valeur 4</c>
 int indice = nombres.<b>indexOf</b>(4);  <c>//renvoie l'indice de l'élément 4, commence à 0</c>
+
+<c>//map() sur une liste</c>
+var list = ['bonjour', 'bonsoir'].<b>map</b>((a)=>a.toUpperCase()).<b>toList</b>();
 </pre>
 				<br>
 				<b>SETS</b>
@@ -278,7 +313,8 @@ void main() {
     personne.sePresenter();
 }
 </pre>
-				<br><st>Encapsulation: accès aux attributs</st>
+				<br><st>ENCAPSULATIONS</st>
+				<br>
 				<br>Dart permet de garder des propriétés ou méthodes privées. Pour ce faire, il faut les précéder de <b>underscore _</b>. ATTENTION: pour Dart, la privation se fait au niveau du fichier, cad si un autre class (ou main) dans le même fichier accède à la propriété, il le peut.
 				<p></p>
 				<pre>
@@ -297,12 +333,128 @@ Compte compte = Compte();
 compte.solde = 1000;    <c>//affectation directe comme une propriété</c>
 print(compte.solde);    <c>//usage direct comme une propriété</c>
 </pre>
-				<br><st>Héritage</st>
-				<p></p>
+				<br><st>HERITAGES</st>
+				<br>- Copie d'attributs d'une autre classe
+				<br>- Limitée à une seule classe
+				<br>- Se protège en créant un constructeur privé
 				<pre>
 class SousCompte <b>extends</b> Compte {
     SousCompte(String nom, int age) : <b>super</b>(nom, age);  <c>//définir constructeur en s'appuyant sur la classe mère</c>
-    <b>@override</b> void sePresenter() { ... };  <c>//surcharge de la méthode héritée sePresenter()</c>
+    <b>@override</b> void sePresenter() {};  <c>//surcharge de la méthode héritée sePresenter()</c>
+    <b>@overload</b> void sePresenter(String nom) {};  <c>//surdéfinition de la méthode sePresenter()</c>
+
+    <c>//Surcharge d'une méthode dans la classe de base avec un paramètre de type sous-classe (animal ==> mouse)</c>
+    <c>//Dans ce cas précis, le mot-clé covariant est nécessaire pour permettre la compilation</c>
+    <c>//Covariant bypass le static check et indique à Dart que c'est vraiment ce que vous voulez faire</c>
+    @override void chase(covariant Mouse a) {}
+}
+
+<c>//Pour éviter qu'une classe soit héritée:</c>
+class NonHeritable {
+    NonHeritable._();  <c>//constructeur privé, héritage bloquée en dehors de ce fichier</c>
+}
+</pre>
+				<br><st>INTERFACES</st>
+				<br>- Contrats passés entre classes 
+				<br>- S'utilisent avec le mot-clé <b>implements</b>
+				<br>- Implémentation multiple possible
+				<br>- Toutes les classes sont des interfaces
+				<br>
+				<br>Dart propose 2 méthodes de mises en oeuvres des interfaces:
+				<br>- les classes abstraites
+				<br>- les méthodes external
+				<br>
+				<br><st>Classes abstraites</st>
+				<br>- Classes contenant propriétés et méthodes non-implémentées
+				<br>- Méthodes doivent être overridé par la classe qui implémentante
+				<pre>
+<c>=> Définition</c>
+<b>abstract</b> class RepoInterface {
+    late final List&lt;int&gt; listeUtilisateur;
+    void creer();  <c>//définition seulement, sans implémentation</c>
+    List&lt;int&gt; lister();
+}
+
+<c>=> Usage</c>
+class MyRepo <d>implements</d> RepoInterface {
+    ...
+    @override               <c>//toutes les méthodes sont à overrider</c>
+    void creer() {...}
+    
+    @override
+    List&lt;int&gt; liste() {...}
+}
+
+void main() {
+    MyRepo repo = MyRepo();
+    repo.creer();
+}
+</pre>
+				<br>
+				<st>Méthodes external</st>
+				<br>- Méthodes de classe standard mais sans implémentation
+				<br>- Utilise le mot-clé <b>external</b>
+				<br>- Implémentées via <b>implements</b> ou <b>extends</b>
+				<pre>
+<c>=>Définition</c>
+class MaClasse {
+    void uneMethode() {...}
+    <b>external</b> int autreMethode;
+}
+
+class AutreClasses extends MaClasse {
+    @override
+    int autreMethode() {...}
+}
+
+class EtAutreClasse implements MaClasse {
+    @override
+    int autreMethode() {...}
+}
+</pre>
+				<br><st>MIXINS</st>
+				<br>- Partage de comportements entre classes
+				<br>- Résoud le problèmes de l'héritage multiple
+				<br>- Une sorte de classe <b>sans constructeur</b> (non instantiable)
+				<br>- Contient des méthodes standards ou abstraites
+				<br>- S<b>'appuie sur l'ordre d'implémentation</b> (dernière appelée valide)
+				<br>- S'ajoute avec le mot-clé <b>with</b>.
+				<pre>
+class Joueur {
+    void jouer() => print('Jouer');
+}
+
+<b>mixin</b> Guitariste {
+    void jouer() => print('Jouer guitare');
+}
+
+<b>mixin</b> Bassiste {
+    void jouer() => print('Jouer basse');
+}
+
+class Musicien extends Joueur <b>with</b> Guitariste, Bassiste {}
+
+void main() {
+    Musicien musicien = Musicien();
+    musicien.jouer();  <c>//affiche "Jouer basse" car le mixin Bassiste est le dernier ajouté contenant jouer()</c>
+}
+</pre>
+				Il peut arriver qu'un mixin a besoin d'attributs d'une classe. Dans ce cas, il faut indiquer que le mixin doit être mixé avec cette class (soit en étant classe principale, soit en étant une classe héritée) via le mot-clé <b>on</b>.
+				<pre>
+class Joueur {...}
+<b>mixin</b> Guitariste <b>on</b> Performer {...}  <c>//indique que Guitariste nécessite Joueur pour s'exécuter</c>
+</pre>
+				<br><st>EXTENSION METHODS</st>
+				<br>- Ajoute des fonctionnalités aux classes existantes sans hériter
+				<br>- Utilise mot-clé <b>extension</b> ... <b>on</b>
+				<pre>
+<b>extension</b> IntegerExtension <b>on</b> int {
+    int get luckyInteger => 12;
+    int add15() => this + 15;
+}
+void main() {
+    print(1.luckyInteger);  <c>//affiche 12</c>
+	print(10.add15());  <c>//affiche 25</c>
 }
 </pre>
 				</div>
