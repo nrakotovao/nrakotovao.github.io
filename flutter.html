@@ -31,6 +31,7 @@
 					<div class="mkj-menu"><a href="#cycle" class="smoothScroll">Cycle de vie app</a></div>
 					<div class="mkj-menu"><a href="#splash" class="smoothScroll">Splash screen</a></div>
 					<div class="mkj-menu"><a href="#branding" class="smoothScroll">Branding</a></div>
+					<div class="mkj-menu"><a href="#play" class="smoothScroll">Play Store</a></div>
 				</div>
 			</div>
 		</div>
@@ -72,6 +73,15 @@
 						<u><b>Manipuler les simulateurs sur Android:</b></u>
 						<br><span class="mkj-high">emulator -list-avds </span> Liste les émulateurs Android dispos.
 						<br><span class="mkj-high">emulator -avd Nom_avd </span> Lancer l'émulateur Nom_avd.
+					</p>
+					<br>
+					<p>
+						<u><b>Changer la version de Java à utiliser (version 17) sur Mac M1:</b></u>
+						<ol>
+							<li>Télécharger le JDK depuis <a href="https://www.oracle.com/java/technologies/javase/jdk17-archive-downloads.html">ce lien</a></li>
+							<li>Mettre le path d'installation dans la variable d'environnement <b>JAVA_HOME</b>. Par défaut, le jdk est installé dans /Library/Java/JavaVirtualMachines/jdk-***</li>
+							<li>Faire un: <b>flutter config --jdk-dir=$JAVA_HOME</b></li>
+						</ol>
 					</p>
 				</div>
 			</div>
@@ -640,7 +650,7 @@ flutter_native_splash:
 						<span class="mkj-subtitle">Changer icône application (méthode alternative)</span>
 						<ol>
 							<li>Récupérer un fichier image du logo à utiliser avec une taille de 1024px x 1024px</li>
-							<li>Aller sur <a href='appicon.co'>appicon.co</a>, et drag-and-drop le fichier sur l'espace prévu</li>
+							<li>Aller sur <a href='https://www.appicon.co/' target="_blank">appicon.co</a>, et drag-and-drop le fichier sur l'espace prévu</li>
 							<li>Sélectionner les plate-formes cibles des icônes (iphone, ipad, android, etc)</li>
 							<li>Cliquer sur Génerate pour créer et télécharger les fichiers</li>
 							<li>Dézipper le fichier appicons.zip généré</li>
@@ -677,6 +687,66 @@ flutter_icons:
 							</li>
 							<li>Arrêter l'app et relancer</li>
 						</ol>
+					</p>
+				</div>
+			</div>
+		</div>
+		<div id="play">&nbsp;</div>
+	</section>
+
+
+	<!-- PLAY STORE -->
+	<section class="section text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">DEPLOYER SUR PLAY STORE</h3>
+					<p>
+						<b>Signer l'application</b>
+						<ol>
+							<li>
+								Créer une clé "keystore" (sur mac)
+								<ol>
+									<li>Exécuter la commande ci-après: <pre>keytool -genkey -v -keystore ~/upload-keystore.jks -keyalg RSA -keysize 2048 -validity 10000 -alias upload</pre>
+									<li>Créer un fichier <b>key.properties</b> dans le dossier projet &gt; android</li>
+									<li>Ajouter le contenu ci-après dans le fichier key.properties, changer "LeMotDePasseSaisiePlusHaut" par le mot de passe:
+										<pre>
+storePassword=LeMotDePasseSaisiePlusHaut
+keyPassword=LeMotDePasseSaisiePlusHaut
+keyAlias=upload
+storeFile=/Users/utilisateur/upload-keystore.jks
+										</pre>
+									</li>
+									<li><span style='color:red'>Important! ajouter le fichier key.properties dans .gitignore</span></li>
+									<li>Editer le fichier <b>build.gradle</b> dans le dossier projet &gt; android &gt; app:
+										<pre>
+<c>//Ajouter avant la propriété android {</c>
+def keystoreProperties = new Properties()
+def keystorePropertiesFile = rootProject.file('key.properties')
+if (keystorePropertiesFile.exists()) {
+    keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+}
+
+<c>//Supprimer la signature pour le debug dans la propriété buildTypes { release {</c>
+signingConfig = signingConfigs.debug
+
+<c>//Remplacer par:</c>
+signingConfig = signingConfigs.release
+</pre>
+									</li>
+									<li>Faire un: <pre>
+flutter clean
+flutter pub get
+</pre>
+									<li>Créer un release bundle<pre>flutter build appbundle</pre>
+										<br>Le bundle est généré dans: [project]/build/app/outputs/bundle/release/app-release.aab
+									</li>
+								</ol>
+							</li>
+						</ol>
+					</p>
+					<p>
+						Pour une complète référence, suivre les indications sur <a href="https://docs.flutter.dev/deployment/android" target="_blank">https://docs.flutter.dev/deployment/android</a>
 					</p>
 				</div>
 			</div>

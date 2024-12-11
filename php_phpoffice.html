@@ -1,0 +1,133 @@
+<!-- PHPOFFICE -->
+<section id="flutter" class="section text-center">
+    <div style="padding-top:60px"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mkj-big-title">PHPOFFICE</h2>
+                <div style="margin-top:-24px"><img src="images/caret_up.png" width="20px"/> <a href="#" onclick="javascript: ouvrirlien('php.html','PHP');">PHP</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- MENU -->
+<section id="resume" class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 text-left">
+                <div class="mkj-menu"><a href="#setup" class="smoothScroll">Mise en place</a></div>
+            </div>
+            <div class="col-sm-4 text-left">
+                <div class="mkj-menu"><a href="#formats" class="smoothScroll">Formats</a></div>
+            </div>
+            <div class="col-sm-4 text-left">
+                <div class="mkj-menu"><a href="#references" class="smoothScroll">References</a></div>
+            </div>
+        </div>
+    </div>
+    <div id="setup">&nbsp;</div>
+</section>
+
+
+<!-- SETUP -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">MISE EN PLACE</h3>
+                <p>
+                    <pre>
+
+</pre>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="formats">&nbsp;</div>
+</section>
+
+
+<!-- FORMATTAGES -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">FORMATS</h3>
+                    Alignements :
+                    <pre>
+<c>//formattage isolé</c>
+$worksheet->getStyle("C1:G3")->getAlignment()->setHorizontal('right');  <c>//general, left, right, center, conterContinuous, justify, fill, distributed</c>
+$worksheet->getStyle("C1:G3")->getAlignment()->setVertical('right');  <c>//bottom, top, center, justify, distributed</c>
+</pre>
+                <br>
+                Nombres :
+                <pre>
+<c>//nombre entier avec séparateur</c>
+$worksheet->getStyle("C2:G5")->getNumberFormat()->setFormatCode('#,##0');
+
+<c>//récupérer format nombre depuis cellule puis l'appliquer sur d'autres cellules</c>
+$format_nombre = $worksheet->getStyle('E1')->getNumberFormat()->getFormatCode();
+$worksheet->getStyle("C5:G8")->getNumberFormat()->setFormatCode($format_nombre);
+</pre>
+                <br>
+                Dates :
+                <pre>
+<c>//ATTENTION: la cellule doit contenir un nombre 34512 pour la date et non un string</c>
+$worksheet->setCellValue('D4', \PhpOffice\PhpSpreadsheet\Shared\Date::PHPToExcel($detail->daty));  <c>//convertir date en nombre</c>
+$worksheet->getStyle("D4")->getNumberFormat()->setFormatCode('dd/mm/yyyy');  <c>//appliquer le formattage</c>
+$worksheet->getStyle("D4")->getAlignment()->setHorizontal('left'); <c>//aligner à gauche si besoin</c>
+</pre>
+                <br>
+                Bordures, font, background, alignement :
+                <pre>
+$worksheet->getStyle("A2:J8")->applyFromArray([
+    'borders'=>[
+        'bottom'=>[
+            'borderStyle'=>'thin',  <c>// none, dashDot, dashDotDot, dashed, dotted, double, hair, medium, mediumDashDot, mediumDashDotDot, mediumDashed, slantDashDot, thick, thin</c>
+            'color'=>['argb' => 'FF000000']
+        ]
+    ],
+    'font'=>['bold'=>true],
+    'fill'=>[
+        'fillType'=>'solid',
+        'color'=>['argb'=>'FFE7E7E7']
+    ],
+    'alignment' => [
+        'vertical' => 'center',  <c>//bottom, top, center, justify, distributed</c>
+        'horizontal' => 'right',  <c>//general, left, right, center, conterContinuous, justify, fill, distributed</c>
+    ],
+]);
+
+<c>//On peut voir des codes utilisant des constantes comme:</c>
+<c>\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER</c>
+<c>\PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER</c>
+</pre>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="references">&nbsp;</div>
+</section>
+
+
+<!-- REFERENCES -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">REFERENCES</h3>
+                <p>
+                    <a href="https://phpoffice.github.io/PhpSpreadsheet/" target="_blank">phpoffice.github.io</a>
+                    <br>Le site officiel github de PHPOFFICE
+                </p>
+                <p>
+                    <a href="https://phpspreadsheet.readthedocs.io" target="_blank">phpspreadsheet.readthedocs.io</a>
+                    <br>La documentation READ THE DOCS de PHPOFFICE
+                </p>
+            </div>
+        </div>
+    </div>
+    <div style="padding-bottom:40px"></div>
+</section>
