@@ -72,6 +72,13 @@ $format_nombre = $worksheet->getStyle('E1')->getNumberFormat()->getFormatCode();
 $worksheet->getStyle("C5:G8")->getNumberFormat()->setFormatCode($format_nombre);
 </pre>
                 <br>
+                Aller à la ligne:
+                <pre>
+<c>//attention: toujours utiliser " pour le texte afin que \n soit interprété</c>
+$worksheet->setCellValue('H3', "Ce texte \nva aller à la ligne");
+$worksheet->getStyle('H3')->getAlignment()->setWrapText(true);
+</pre>
+                <br>
                 Dates :
                 <pre>
 <c>//ATTENTION: la cellule doit contenir un nombre 34512 pour la date et non un string</c>
