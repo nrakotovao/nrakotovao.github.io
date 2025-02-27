@@ -17,12 +17,33 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4 text-left">
+					<div class="mkj-menu"><a href="#composer" class="smoothScroll">Composer</a></div>
+				</div>
+				<div class="col-sm-4 text-left">
 					<div class="mkj-menu"><a href="#" onclick="javascript: ouvrirlien('php_phpoffice.html','PHP');">PHPOFFICE *</a></div>
 				</div>
 				<div class="col-sm-4 text-left">
 					<div class="mkj-menu"><a href="#references" class="smoothScroll">Références *</a></div>
 				</div>
-				<div class="col-sm-4 text-left">
+			</div>
+		</div>
+		<div id="composer">&nbsp;</div>
+	</section>
+
+
+	<!-- COMMANDES -->
+	<section class="section  text-center">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-left">
+					<h3 class="mkj-title">Composer</h3>
+					<p>
+						Sur le Mac, PHP se trouve sur <b>/Applications/XAMPP/xamppfiles/bin/php-8.2.4</b>. Donc au lieu de <b>php</b>, il faut utiliser ce path complet.
+						<br><b>php composer.phar show -i</b> Affiche la liste des packages installés.
+						<br><b>php composer.phar require phpoffice/phpword</b> Installe le package PHPWord, par exemple.
+						<br><b>php composer.phar update phpunit/phpunit</b> Met à jour individuellement un package.
+						<br><b>php composer.phar update phpunit/phpunit --with-all-dependencies</b> Met à jour individuellement un package, et met à jour les dépendances.
+					</p>
 				</div>
 			</div>
 		</div>
