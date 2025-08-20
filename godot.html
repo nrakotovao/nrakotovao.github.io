@@ -223,6 +223,93 @@ func _handle_item_event(event, item_id):
             </div>
         </div>
     </div>
+    <div id="release">&nbsp;</div>
+</section>
+
+
+
+<!-- CONFIGURATION ANDROID -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Release Android</h3>
+                <p>
+                    Fomba famoahana app android (release mode)
+                    <pre>
+<c># Mampiditra export templates:</c>
+Efa misy fomba fanaovana an'izay ao ambony ao
+
+<c># Asiana configuration export:</c>
+1. Project > Export...
+2. Manamboatra Android export preset (raha mbola tsisy)
+3. Ampidirina ireto options ireto:
+   Version > Code: 1 (par défaut)
+   Version > Name: NOMAPP
+   Package > Unique name: com.company.nomapp
+   Package > Name: NOMAPP
+   Package > App category: productivity
+
+<c># Manamboatra keystore:</c>
+1. Manokatra console
+2. $ keytool -genkey -v -keystore my-release-key.keystore -alias myalias -keyalg RSA -keysize 2048 -validity 10000
+3. Valiana izay info tadiaviny ao
+
+<c># Ampiasaina @ projet ilay keystore</c>
+1. Project > Export...
+2. Keystore > Release: safidiana ilay fichier .keystore
+   Keystore > Release user: omena ilay user nampidirina t@ nanao ilay keystore
+   Keystore > Release password: omena ilay password nampidirina t@ nanao ilay keystore
+
+<c># Mamoaka ilay APK</c>
+1. Project > Export...
+2. Safidiana ilay Android preset
+3. Potserina ny bokotra Export project...
+4. Soloina hifanaraka @ ilay version ilay anaran'ny APK hahamora ny suivi (tsy voatery)
+5. Export with debug: off
+
+<b>NAOTY</b>: raha misy error password
+1. Manokatra console dia alefa ity kaomandy ity:
+   $ keytool -list -v -keystore my-release-key.keystore
+2. Angatahiny ny tenimiafina. Raha marina ny omena dia misokatra ny momba ilay keystore.
+3. Jerena ny hoe: alias, izay alias apetrany eo no atao user name (oh: myalias)
+
+<b>NAOTY</b>: raha tsy mety installer-na ilay APK
+- Désinstaller-na ilay version debug alohan'ny hi-installer-na ilay release
+- Installer-na amin'ny alalan'i ADB mba ahitàna ilay error
+  $ adb install -r MyApp-release.apk
+- Raha ohatra ka misy app mila désinstaller-na ao
+  $ adb uninstall com.yourcompany.yourapp
+</pre>
+                </p>
+                <br>
+                <p>
+                    Fampandehanana ny scroll android:
+                    <pre>
+<c># Esorina ny émulation ao @ famaritana ny tetikasa:</c>
+<c># Ny tanjona eto dia ny manavaka ny soria sy ny touch screen</c>
+Project settings > Input devices > Pointing
+    Emulate touch from mouse: off
+    Emulate mouse from touch: on
+    Enable pan and scale gestures: on
+
+<c>Avahina ny clic sy scroll</c>
+@onready var _touch_position_y: int = 0
+...
+list_item.gui_input.connect(func(event): _handle_item_event(event, item.id))
+...
+func _handle_item_event(event, item_id):
+    if event is InputEventScreenTouch:
+        if event.pressed:
+            _touch_position_y = int(event.position.y)
+        if !event.pressed:
+            if _touch_position_y == int(event.position.y):
+                <c>#traiter le clic</c>
+                    </pre>
+                </p>
+            </div>
+        </div>
+    </div>
     <div id="sqlite">&nbsp;</div>
 </section>
 
