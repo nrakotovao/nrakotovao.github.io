@@ -1,0 +1,493 @@
+
+<!-- GODOT -->
+<section id="godot" class="section text-center">
+    <div style="padding-top:60px"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mkj-big-title">GODOT</h2>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- MENU -->
+<section id="resume" class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 text-left">
+                <div class="mkj-menu"><a href="#generalites" class="smoothScroll">Mikasika an'i Godot</a></div>
+                <div class="mkj-menu"><a href="#ui" class="smoothScroll">Endrika (UI)</a></div>
+                <div class="mkj-menu"><a href="#export_android" class="smoothScroll">Fandefasana @ android</a></div>
+                <div class="mkj-menu"><a href="#config_android" class="smoothScroll">Famaritana tetikasa android</a></div>
+            </div>
+            <div class="col-sm-4 text-left">
+                <div class="mkj-menu"><a href="#sqlite" class="smoothScroll">SQLite</a></div>
+            </div>
+            <div class="col-sm-4 text-left">
+                <div class="mkj-menu"><a href="#sources" class="smoothScroll">Rindrambaiko nilaina</a></div>
+                <div class="mkj-menu"><a href="#ressources" class="smoothScroll">Fitaovana</a></div>
+                <div class="mkj-menu"><a href="#madeby" class="smoothScroll">Vita t@ Godot</a></div>
+            </div>
+        </div>
+    </div>
+    <div id="generalite">&nbsp;</div>
+</section>
+
+
+<!-- GENERALITE -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Mikasika an'i Godot</h3>
+                <p>
+                    Afaka mampiasa tenibaiko maromaro: <b>GDScript</b>, <b>C#</b>, <b>C/C++</b><br>
+                    Mandeha amina rindrambaiko fototra maro: Window/Mac/Linux @ fanamboarana, Windows/Mac/Android/iOS/sns @ fampiasàna
+                </p>
+                <p>
+                    <b>Mamorona tetikasa vaovao:</b>
+                    <ol style="margin-top:-16px">
+                        <li>Mampiditra ny rindrambaiko Godot
+                            <ol>
+                                <li>
+                                    Alaina ny rindrambaiko Godot avy any amin'ny <a href="https://godotengine.org/" target="_blank">tranonkala ofisialy</a>.
+                                    Ohatra: <a href="https://1drv.ms/u/c/30aaffec3a3da961/EWUUq79ab-ZElU3_08WXiAIB4_o6az7GpE4hqnXYi5co6Q?e=XwBUgx" target="_blank">Godot 4.4.1</a> ho an'ny Mac Silicon.
+                                </li>
+                                <li>Borahina ilay rakitra nafintina</li>
+                            </ol>
+                        </li>
+                        <li>Sokafana ny rindrambaiko <b>Godot</b></li>
+                        <li>Eo @ pejy misokatra, safidiana ny bokotra <b>+ Créer</b></li>
+                        <li>Omena ny anaran'ilay tetikasa, ny vata hisy ilay tetikasa (mamorona vata ao anatin'io i Godot mandritry ny famoronany ilay tetikasa), 
+                            safidiana ny moteur de rendu <b>Mobile</b></li>
+                        <li>Kitihina ny bokotra <b>Créer</b></li>
+                    </ol>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="ui">&nbsp;</div>
+</section>
+
+
+<!-- UI -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Endrika (UI)</h3>
+                Ny singa fototra
+                <pre>
+<c># Mameno ny ekrà ny singa fototra</c>
+a. Safidiana ny singa fototra (panel, label, vboxcontainer, etc)
+b. Eo @ propriete: Layout > Anchors pres = full rect
+</pre>
+            </div>
+        </div>
+    </div>
+    <div id="export_android">&nbsp;</div>
+</section>
+
+
+<!-- EXPORT ANDROID -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Fandefasana @ Android</h3>
+                <p>
+                    Ireto ny dingana arahina raha handefa ny vokatry ny tetikasa mankany @ Android (Mac ny ampiasaina eto):
+                    <ol style="margin-top:-16px">
+                        <li>Mamaritra ny fepetra famoahana tetikasa (@ voalohany ihany)</li>
+                        <li>Manome ny modèle d'export Android (@ voalohany ihany)</li>
+                        <li>Mamoaka ny APK vokatr'ilay tetikasa</li>
+                    </ol>
+                </p>
+
+                <br>
+                <b>Mamaritra ny fepetra famoahana tetikasa</b>
+                <ol>
+                    <li>Mankao @ menoa <b>Godot > Paramèters de l'éditeur... > Exporter > Android</b></li>
+                    <li>Efa fenoiny ary tsy mila kitihina ny <b>Debug keystore</b> sy ny <b>Debug keystore pass</b> @ izao voalohany izao aloha</li>
+                    <li>
+                        Omena ny toerana misy ny <b>SDK JAVA</b>.<br>
+                        Ohatra hoe <b>/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home</b>.<br>
+                        @ Mac dia ao @ vata /Library/Java/JavaVirtualMachines/ no toerana mahazatra misy azy.
+                    </li>
+                    <li>
+                        Omena ny toerana misy ny <b>SDK Android</b>.<br>
+                        Ohatra hoe <b>/Users/unuser/Library/Android/sdk</b>.<br>
+                        Raha mbola tsy manana SDK Android dia ny fampidirana ny praograma <a href="https://developer.android.com/studio" target="_blank">Android Studio</a>
+                        no tsotra indrindra hahazahoana azy.
+                    </li>
+                </ol>
+
+                <br>
+                <b>Manome ny modèle d'export Android</b>
+                <ol>
+                    <li>Mankao @ menoa <b>Projet > Exporter sous... > Ajouter... > Android</b></li>
+                    <li>Kitihina ny bokotra <b>Télécharger...</b> (mila omena alàlana handeha @ Internet i Godot @ bokotra <b>Aller en ligne</b>)</li>
+                    <li>Raha tapaka ny fakàna ilay maodely dia alaina mivantana @ Internet aloha ilay maodely (avy @ Sourceforge ohatra).
+                        Rehefa azo ilay rakitra dia ampidirina @ bokotra <b>Choisir le fichier...</b><br>
+                        Ohatra: <a href="https://1drv.ms/u/c/30aaffec3a3da961/EXVEd0AnLhlMtMd29HhgNEoBnc1pV-_ap-pkFJ43kBnySQ?e=qyapou"
+                            target="_blank">Modely Android</a> ho an'ny Godot 4.4.1.
+                    </li>
+                </ol>
+
+                <br>
+                <b>Mamoaka ny APK vokatr'ilay tetikasa</b>
+                <ol>
+                    <li>Mankao @ menoa <b>Projet > Exporter sous... > Exporter le projet...</b></li>
+                    <li>Omena ny toeran'ny vata hasiana ilay rakitra APK, dia kitihina ny <b>Enregistrer</b></li>
+                </ol>
+
+                <br>
+                <b><u>Mampiasa finday Android @ famokarana</u></b>
+                <ol>
+                    <li>Alefa ny <b>Developer options</b> ao @ finday</li>
+                    <li>Alefa ny <b>USB debugging</b> ao @ io option io</li>
+                    <li>Atsatoka @ ordinatera @ alalan'ny USB ny finday. Tokony hitan'ny ordinatera ilay izy.</li>
+                    <li>Ao @ Godot: safidy Déboggage > Déployer avec débogage distant</li>
+                    <li></li>
+                    <li>Misy safidy: Déboggage > Déploiment minime avec système de fichier, afaka manova eo noho eo
+                        ny scene tsy mila mamerina mandefa ilay app.
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+    <div id="config_android">&nbsp;</div>
+</section>
+
+
+<!-- CONFIGURATION ANDROID -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Famaritana tetikasa android</h3>
+                <p>
+                    Ireto ny  famaritana tokony hapetraka raha hanamboatra vokatra ho an'ny android:
+                    <pre>
+<c># Firafitry ny ekrà:</c>
+Projet > Project Settings > Display > Window
+    Window Width:1080
+    Window Height:1920
+    Viewport Width:360
+    Viewport Height:640
+    Mode: Viewport <c># ilaina @ resaka responsive</c>
+    Aspect:Keep <c># na Keep width</c>
+    Stretch Scale:2.0   <c># mba hampandeha ny xxhdpi</c>
+
+<c># Fandefasana @ android:</c>
+Projet > Export > Android: asiana valera ny Name, Package, Version, Orientation
+    XR Mode:Disabled
+
+<c># Ampisehoina ny lohateny eny ambony (daty, aratra, sns)</c>
+Projet > Project Settings > Display > Window
+    mode: windowed
+    borderless: off
+<c>Ampiana an'ito aorian'ny _ready() an'ny scene principale:</c>
+DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_EXTEND_TO_TITLE, false)
+DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+</pre>
+                </p>
+                <br>
+                <p>
+                    Fampandehanana ny scroll android:
+                    <pre>
+<c># Esorina ny émulation ao @ famaritana ny tetikasa:</c>
+<c># Ny tanjona eto dia ny manavaka ny soria sy ny touch screen</c>
+Project settings > Input devices > Pointing
+    Emulate touch from mouse: off
+    Emulate mouse from touch: on
+    Enable pan and scale gestures: on
+
+<c>Avahina ny clic sy scroll</c>
+@onready var _touch_position_y: int = 0
+...
+list_item.gui_input.connect(func(event): _handle_item_event(event, item.id))
+...
+func _handle_item_event(event, item_id):
+    if event is InputEventScreenTouch:
+        if event.pressed:
+            _touch_position_y = int(event.position.y)
+        if !event.pressed:
+            if _touch_position_y == int(event.position.y):
+                <c>#traiter le clic</c>
+                    </pre>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="release">&nbsp;</div>
+</section>
+
+
+
+<!-- CONFIGURATION ANDROID -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Release Android</h3>
+                <p>
+                    Fomba famoahana app android (release mode)
+                    <pre>
+<c># Mampiditra export templates:</c>
+Efa misy fomba fanaovana an'izay ao ambony ao
+
+<c># Asiana configuration export:</c>
+1. Project > Export...
+2. Manamboatra Android export preset (raha mbola tsisy)
+3. Ampidirina ireto options ireto:
+   Version > Code: 1 (par défaut)
+   Version > Name: NOMAPP
+   Package > Unique name: com.company.nomapp
+   Package > Name: NOMAPP
+   Package > App category: productivity
+
+<c># Manamboatra keystore:</c>
+1. Manokatra console
+2. $ keytool -genkey -v -keystore my-release-key.keystore -alias myalias -keyalg RSA -keysize 2048 -validity 10000
+3. Valiana izay info tadiaviny ao
+
+<c># Ampiasaina @ projet ilay keystore</c>
+1. Project > Export...
+2. Keystore > Release: safidiana ilay fichier .keystore
+   Keystore > Release user: omena ilay user nampidirina t@ nanao ilay keystore
+   Keystore > Release password: omena ilay password nampidirina t@ nanao ilay keystore
+
+<c># Mamoaka ilay APK</c>
+1. Project > Export...
+2. Safidiana ilay Android preset
+3. Potserina ny bokotra Export project...
+4. Soloina hifanaraka @ ilay version ilay anaran'ny APK hahamora ny suivi (tsy voatery)
+5. Export with debug: off
+
+<b>NAOTY</b>: raha misy error password
+1. Manokatra console dia alefa ity kaomandy ity:
+   $ keytool -list -v -keystore my-release-key.keystore
+2. Angatahiny ny tenimiafina. Raha marina ny omena dia misokatra ny momba ilay keystore.
+3. Jerena ny hoe: alias, izay alias apetrany eo no atao user name (oh: myalias)
+
+<b>NAOTY</b>: raha tsy mety installer-na ilay APK
+- Désinstaller-na ilay version debug alohan'ny hi-installer-na ilay release
+- Installer-na amin'ny alalan'i ADB mba ahitàna ilay error
+  $ adb install -r MyApp-release.apk
+- Raha ohatra ka misy app mila désinstaller-na ao
+  $ adb uninstall com.yourcompany.yourapp
+</pre>
+                </p>
+                <br>
+                <p>
+                    Fampandehanana ny scroll android:
+                    <pre>
+<c># Esorina ny émulation ao @ famaritana ny tetikasa:</c>
+<c># Ny tanjona eto dia ny manavaka ny soria sy ny touch screen</c>
+Project settings > Input devices > Pointing
+    Emulate touch from mouse: off
+    Emulate mouse from touch: on
+    Enable pan and scale gestures: on
+
+<c>Avahina ny clic sy scroll</c>
+@onready var _touch_position_y: int = 0
+...
+list_item.gui_input.connect(func(event): _handle_item_event(event, item.id))
+...
+func _handle_item_event(event, item_id):
+    if event is InputEventScreenTouch:
+        if event.pressed:
+            _touch_position_y = int(event.position.y)
+        if !event.pressed:
+            if _touch_position_y == int(event.position.y):
+                <c>#traiter le clic</c>
+                    </pre>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="sqlite">&nbsp;</div>
+</section>
+
+
+<!-- SQLITE -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">SQLITE</h3>
+                Alohan'ny hampiasa SQLite ao @ Godot dia mila ampidirina ny <b>plugin Godot-SQLite</b>.
+                <pre>
+1. Sokafana ny rindrambaiko Godot
+2. Mankao @ menoa AssetLib ery ambony
+3. Tadiavina ny hoe "godot-sqlite"
+4. Klikena ilay singa Godot-SQLite asehony
+5. Manao "Download" (eo @ 60Mo ny habeny)
+6. Klikena ny bokotra "Install"
+7. Rehefa vita ny installlation dia vata "addons" miampy ao @ tetikasa
+8. Mandeha ao @ Project > Projects settings > tab Plugins, dia cocher-na plugin Godot SQLite
+</pre>
+                <br>
+                Mba tsy hanokafana/hanakatonana ny bazy isaky ny miova script dia tsara raha atambatra amina
+                <b>singleton</b> anankiray.
+                <pre>
+<c>1. Manamboatra script manokatra ny bazy. Ohatra: <b>res://DB.gd</b></c>
+extends Node
+var sql: SQLite
+func _ready():
+    sql = SQLite.new()
+    sql.path = "user://labase.db"
+    var ok = sql.open_db()
+    if not ok:
+        push_error("Échec d'ouverture DB: " + error_string(ok))
+    <c>//tokony atao eto ny fanamboarana ny structure bazy sql (DDL)</c>
+
+<c>2. Atao <b>Autoload</b> ny script mba ho lasa singleton</c>
+Mankao @ Project > Project Settings > tab Globals > Autoload
+Nom: DB
+Chemin: res://DB.gd
+Cocher "Add"  <c>// azo @ DB ny bazy</c>
+
+<c>3. Fampiasàna amina script iray</c>
+var result = DB.sql.query("SELECT * FROM utilisateurs")
+for ligne in result:
+    print(ligne["nom"])
+</pre>
+                <br>
+                Baiko mamaritra ny bazy (DDL)
+                <pre>
+</pre>
+                <br>
+                Baiko manova ny bazy (DML)
+                <pre>
+</pre>
+                <br>
+                <p><a href="https://www.youtube.com/watch?v=j-BRiTrw_F0" target="_blank">Ito</a> misy vidéo Youtube manazava ny fampiasàna ny plugin SQLite .</p>
+                <p>
+                    <a href="https://sqlitebrowser.org/" target="_blank">DB Browser for SQLite</a><br>
+                    Rindrambaiko manamora ny fampiasàna ny fichier SQLite.<br>
+                    Ohatra: version
+                    <a href="https://1drv.ms/u/c/30aaffec3a3da961/EQ6twwTkMrRGs_vWIMVuK1kBhPGskRVYsQbEQDP94r55lA?e=fn6T0g" target="_blank">DB.Browser.for.SQLite-v3.13.1</a>
+                    ho an'ny Mac Silicon ity.
+                </p>
+                <br>
+            </div>
+        </div>
+    </div>
+    <div id="sources">&nbsp;</div>
+</section>
+
+
+<!-- SOURCES -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Sources & Librairies</h3>
+                <p>
+                    <a href="https://https://godotengine.org/" target="_blank">Godot</a>
+                    <br>Site officiel de Godot
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="ressources">&nbsp;</div>
+</section>
+
+
+<!-- RESSOURCES -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Ressources</h3>
+                <p>
+                    <a href="https://www.youtube.com/@godotneers" target="_blank">Godotneers</a>
+                    <br>Chaîne Youtube (EN) montrant plusieurs usages de Godot, dont des vidéos tutoriels (EN) sur:
+                    <ul style="margin-left:32px">
+                        <li style="margin-top:-20px">- <a href="https://www.youtube.com/watch?v=1_OFJLyqlXI" target="_blank">les bases de l'UI</a> (chaque action est décrite dans les détails de la vidéo)</li>
+                        <li style="margin-top:-20px">- <a href="https://www.youtube.com/watch?v=KzvkrpA5Y3M" target="_blank">les méthodes d'accès aux nodes</a></li>
+                        <li style="margin-top:-20px">- <a href="https://www.youtube.com/watch?v=W8gYHTjDCic" target="_blank">la création de composants</a></li>
+                        <li style="margin-top:-20px">- la programmation GDScript en <a href="https://www.youtube.com/watch?v=cx_yTggSENU" target="_blank">partie 1</a> et <a href="https://www.youtube.com/watch?v=f5i9pErfvj8" target="_blank">partie 2</a></li>
+                    </ul> 
+                </p>
+                <p>
+                    <a href="https://sourceforge.net/projects/godot-engine.mirror/" target="_blank">Template Android</a>
+                    <br>Mirroir de téléchargement Sourceforge du modèle d'export Android. La source officielle semble couper lors du téléchargement.
+                </p>
+                <p>
+                    <a href="https://opengameart.org/" target="_blank">OpenGameArt</a>
+                    <br>Ressources libres de droit utilisables dans les jeux et applications.
+                </p>
+                <p>
+                    <a href="https://www.pexels.com/fr-fr/" target="_blank">Pexels.com</a><br>
+                    Images, photos et vidéos libres de droit
+                </p>
+                <p>
+                    <a href="https://www.w4games.com/" target="_blank">W4Games</a><br>
+                    Société créée par les créateurs et mainteneurs de Godot, offrant des produits dérivés de Godot.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="madeby">&nbsp;</div>
+</section>
+
+
+<!-- MADE BY -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Fait avec Godot</h3>
+                <p>
+                    <a href="https://lyfflyff.itch.io/veles" target="_blank">Veles</a>
+                    <br>Application de musique gratuite et open source (voici le <a href="https://github.com/LyffLyff/Veles" target="_blank">repo github</a>) écrit en Godot.
+                    Lecture, édition metadata, effets, playlists, lyrics, cover, export, download, stats...
+                    <br><img src="images/veles1.png" height="200">
+                </p>
+                <br>
+                <p>
+                    <a href="https://alfredbaudisch.com/projects/open-source/godello/" target="_blank">Godello</a>
+                    <br>Clone open source de Trello fait avec Godot et disponible en open source (voici le <a href="https://github.com/alfredbaudisch/Godello" target="_blank">repo github</a>).
+                    L'auteur, <a href="https://alfredbaudisch.com/" target="_blank">Alfred Reinold Baudisch</a> est un fervent utilisateur/evangeliste de Godot. Il créée aussi des vidéos de cours
+                    sur Godot pour Udemy (par exemple, ce <a href="https://alfredbaudisch.com/projects/education/dynamic-inventory-system-and-user-interfaces-with-godot-course/" target="_blank">système d'inventaire</a>).
+                    <br><img src="images/godello1.png" height="200">
+                </p>
+                <br>
+                <p>
+                    <a href="https://github.com/scrubmunch/CoolPOS" target="_blank">CoolPOS</a>
+                    <br>App de POS (point of sales) gratuit et open source. Utilise Godot-SQLite comme base de données.
+                    <br><img src="images/coolpos.png" height="200">
+                </p>
+                <br>
+                <p>
+                    <a href="https://github.com/njamster/habituary" target="_blank">Habituary (alpha)</a>
+                    <br>App de gestion de TO-DO, démontrant l'usage de Godot en business app (non jeux).
+                    L'auteur Benjamin Oesterle a fin un atelier (EN) indiquant ses retours d'experience en réalisant
+                    l'app dans <a href="https://www.youtube.com/watch?v=cJ5Rkk5fnGg" target="_blank">cette vidéo Youtube</a>
+                </p>
+                <br>
+                <p>
+                    <a href="https://orama-interactive.itch.io/pixelorama" target="_blank">Pixelorama</a>
+                    <br>App de création pixel art gratuit et open source. Le repo github est aussi disponible <a href="https://github.com/Orama-Interactive/Pixelorama" target="_blank">ici</a>.
+                </p>
+                <br>
+                <p>
+                    <a href="https://github.com/mbrlabs/Lorien" target="_blank">Lorien</a>
+                    <br>Repo github d'une app open source de prise de note et de dessin à canvas infini
+                </p>
+                <br>
+                <p>
+                    <a href="https://pixelover.io/" target="_blank">Pixelover (payant)</a>
+                    <br>App de création pixel art: animation, gradient, kinematics, mesh, particle, material shader, bones, drawing tool,...
+                </p>
+            </div>
+        </div>
+    </div>
+    <div style="padding-bottom:40px"></div>
+</section>
