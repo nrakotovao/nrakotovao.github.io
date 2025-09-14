@@ -19,7 +19,7 @@
             <div class="col-sm-4 text-left">
                 <div class="mkj-menu"><a href="#generalites" class="smoothScroll">Mikasika an'i Godot</a></div>
                 <div class="mkj-menu"><a href="#ui" class="smoothScroll">Endrika (UI)</a></div>
-                <div class="mkj-menu"><a href="#export_android" class="smoothScroll">Fandefasana @ android</a></div>
+                <div class="mkj-menu"><a href="#export_android" class="smoothScroll">Famoahana praograma android</a></div>
                 <div class="mkj-menu"><a href="#config_android" class="smoothScroll">Famaritana tetikasa android</a></div>
             </div>
             <div class="col-sm-4 text-left">
@@ -98,50 +98,49 @@ b. Eo @ propriete: Layout > Anchors pres = full rect
     <div class="container">
         <div class="row">
             <div class="col-md-12 text-left">
-                <h3 class="mkj-title">Fandefasana @ Android</h3>
+                <h3 class="mkj-title">Famoahana praograma Android</h3>
                 <p>
                     Ireto ny dingana arahina raha handefa ny vokatry ny tetikasa mankany @ Android (Mac ny ampiasaina eto):
                     <ol style="margin-top:-16px">
-                        <li>Mamaritra ny fepetra famoahana tetikasa (@ voalohany ihany)</li>
-                        <li>Manome ny modèle d'export Android (@ voalohany ihany)</li>
-                        <li>Mamoaka ny APK vokatr'ilay tetikasa</li>
+                        <li>Omena ny modèle d'export Android (@ voalohany ihany)</li>
+                        <li>Faritana ny fepetra famoahana tetikasa (@ voalohany ihany)</li>
+                        <li>Avoaka ny APK an'ilay tetikasa</li>
                     </ol>
                 </p>
 
                 <br>
-                <b>Mamaritra ny fepetra famoahana tetikasa</b>
+                <b>Omena ny modèle d'export Android</b>
                 <ol>
-                    <li>Mankao @ menoa <b>Godot > Paramèters de l'éditeur... > Exporter > Android</b></li>
-                    <li>Efa fenoiny ary tsy mila kitihina ny <b>Debug keystore</b> sy ny <b>Debug keystore pass</b> @ izao voalohany izao aloha</li>
-                    <li>
-                        Omena ny toerana misy ny <b>SDK JAVA</b>.<br>
-                        Ohatra hoe <b>/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home</b>.<br>
-                        @ Mac dia ao @ vata /Library/Java/JavaVirtualMachines/ no toerana mahazatra misy azy.
-                    </li>
-                    <li>
-                        Omena ny toerana misy ny <b>SDK Android</b>.<br>
-                        Ohatra hoe <b>/Users/unuser/Library/Android/sdk</b>.<br>
-                        Raha mbola tsy manana SDK Android dia ny fampidirana ny praograma <a href="https://developer.android.com/studio" target="_blank">Android Studio</a>
-                        no tsotra indrindra hahazahoana azy.
-                    </li>
+                    <li>Omanina ny fisie modele d'export. <a href="https://1drv.ms/u/c/30aaffec3a3da961/EXVEd0AnLhlMtMd29HhgNEoBnc1pV-_ap-pkFJ43kBnySQ?e=qyapou"
+                            target="_blank">Avy ato</a> ho an'ny Godot 4.4.1.</li>
+                    <li>Mankao @ menoa <b>Project > Export > Add > Android > Manage export template > Install from file</b></li>
+                    <li>Safidiana ilay fisie *.tpz > Open > Close</li>
                 </ol>
 
                 <br>
-                <b>Manome ny modèle d'export Android</b>
+                <b>Faritana ny fepetra famoahana tetikasa</b>
                 <ol>
-                    <li>Mankao @ menoa <b>Projet > Exporter sous... > Ajouter... > Android</b></li>
-                    <li>Kitihina ny bokotra <b>Télécharger...</b> (mila omena alàlana handeha @ Internet i Godot @ bokotra <b>Aller en ligne</b>)</li>
-                    <li>Raha tapaka ny fakàna ilay maodely dia alaina mivantana @ Internet aloha ilay maodely (avy @ Sourceforge ohatra).
-                        Rehefa azo ilay rakitra dia ampidirina @ bokotra <b>Choisir le fichier...</b><br>
-                        Ohatra: <a href="https://1drv.ms/u/c/30aaffec3a3da961/EXVEd0AnLhlMtMd29HhgNEoBnc1pV-_ap-pkFJ43kBnySQ?e=qyapou"
-                            target="_blank">Modely Android</a> ho an'ny Godot 4.4.1.
+                    <li>Mankao @ menoa <b>Editor > Editor settings > Export > Android</b></li>
+                    <li>Efa fenoiny ary tsy mila kitihina ny <b>Debug keystore</b> sy ny <b>Debug keystore pass</b> @ izao voalohany izao aloha</li>
+                    <li>
+                        Omena ny toerana misy ny <b>SDK JAVA</b>.
+                        <br>Ohatra: C:/jdk-24.0.2 ho an'ny Windows.
+                        <br>Na <b>/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home</b> ho an'ny Mac
+                    </li>
+                    <li>
+                        Omena ny toerana misy ny <b>SDK Android</b>.
+                        <br>Ohatra hoe: C:/AndroidSdk ho an'i Windows
+                        <br>Na hoe <b>/Users/unuser/Library/Android/sdk</b>.
+                        <br>Raha mbola tsy manana SDK Android dia ny fampidirana ny praograma <a href="https://developer.android.com/studio" target="_blank">Android Studio</a> no tsotra indrindra hahazahoana azy.
                     </li>
                 </ol>
 
                 <br>
                 <b>Mamoaka ny APK vokatr'ilay tetikasa</b>
                 <ol>
-                    <li>Mankao @ menoa <b>Projet > Exporter sous... > Exporter le projet...</b></li>
+                    <li>Mankao @ menoa <b>Project > Export > Android</b></li>
+                    <li>Ovaina ny version sy nom: Version > Code=1, Name=App v1</li>
+                    <li>Klikena ny Export project... > Save</li>
                     <li>Omena ny toeran'ny vata hasiana ilay rakitra APK, dia kitihina ny <b>Enregistrer</b></li>
                 </ol>
 
