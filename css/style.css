@@ -484,12 +484,87 @@ st {
 	text-decoration: underline;
 }
 
+pre.transparent {
+	border:none;
+	background:transparent;
+	padding:0;
+	border-radius:0;
+}
+
+pre.transparent table {
+	min-width: 100%;
+}
+
+pre.transparent td {
+	border:1px solid #aca4a4;
+	padding:6px 16px 6px 6px;
+	background: #F9F9F9;
+	vertical-align: top;
+}
+
+pre.transparent td:nth-child(2) {
+	color: #777;    /* #aca4a4; */
+}
+
+pre d {
+	color: #777;
+}
+
+pre.transparent c {
+	color: #aca4a4;
+}
+
+pre.transparent cb {
+	color: #000;
+}
+
+pre.transparent b {
+	color: #000000;
+	font-weight: 500;
+	font-size: 15px;
+}
+
 @media only screen and (max-width: 1199px) {
 	.flexslider h1 { font-size: 30px; }
 	.flexslider h2 { font-size: 24px; }
 }
 
-
+a[msword], a[msexcel], a[pdf], a[sql], a[text] {
+	margin-bottom: 8px;
+	margin-right: 8px;
+	padding: 8px 16px;
+	background: #c5f5ec;
+	border-radius: 4px;
+	color: #222;
+	font-weight: normal;
+	display: inline-flex;
+	align-items: left;
+	gap: 12px;
+}
+a[msword]::before, a[msexcel]::before, a[pdf]::before, a[sql]::before, a[text]::before {
+	content: "";
+	display: inline-block;
+	width: 1.5em;
+	height: 1.5em;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: left;
+}
+a[msword]::before {
+	background-image: url("../images/icons8-ms-word-50.png");
+}
+a[msexcel]::before {
+	background-image: url("../images/icons8-ms-excel-50.png");
+}
+a[pdf]::before {
+	background-image: url("../images/icons8-pdf-50.png");
+}
+a[sql]::before {
+	background-image: url("../images/icons8-sql-50.png");
+}
+a[text]::before {
+	background-image: url("../images/icons8-texte-30.png");
+}
 
 /* MODE 768 */
 @media only screen and ( max-width: 768px ) {
@@ -533,3 +608,7 @@ st {
 	}
 }
 
+xmp {
+	border:0;
+	padding:0;
+}

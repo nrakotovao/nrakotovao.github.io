@@ -24,6 +24,8 @@
             </div>
             <div class="col-sm-4 text-left">
                 <div class="mkj-menu"><a href="#sqlite" class="smoothScroll">SQLite</a></div>
+                <div class="mkj-menu"><a href="#gdscr" class="smoothScroll">GDScript</a></div>
+                <div class="mkj-menu"><a href="#datyora" class="smoothScroll">Daty & Ora</a></div>
             </div>
             <div class="col-sm-4 text-left">
                 <div class="mkj-menu"><a href="#sources" class="smoothScroll">Rindrambaiko nilaina</a></div>
@@ -322,7 +324,7 @@ func _handle_item_event(event, item_id):
                 <h3 class="mkj-title">SQLITE</h3>
                 Alohan'ny hampiasa SQLite ao @ Godot dia mila ampidirina ny <b>plugin Godot-SQLite</b>.
                 <pre>
-1. Sokafana ny rindrambaiko Godot
+1. Sokafana ny praograma Godot
 2. Mankao @ menoa AssetLib ery ambony
 3. Tadiavina ny hoe "godot-sqlite"
 4. Klikena ilay singa Godot-SQLite asehony
@@ -351,19 +353,54 @@ Mankao @ Project > Project Settings > tab Globals > Autoload
 Nom: DB
 Chemin: res://DB.gd
 Cocher "Add"  <c>// azo @ DB ny bazy</c>
+</pre>
 
-<c>3. Fampiasàna amina script iray</c>
-var result = DB.sql.query("SELECT * FROM utilisateurs")
-for ligne in result:
-    print(ligne["nom"])
+                <br>Baiko DQL (mamaky ny valera ao @ bazy)
+<pre>
+<c>-- Efa natao autoupload ny var DB eto => azo antsoina n'aiza n'aiza</c>
+DB.sql.query("SELECT * FROM mpampiasa")
+for linina in DB.sql.query_result:
+    print(linina["ito"])
+
+<c>-- Na:</c>
+var vondrona = DB.sql.query("SELECT * FROM mpampiasa")
+for linina in vondrona:
+    print(linina["nom"])
 </pre>
-                <br>
-                Baiko mamaritra ny bazy (DDL)
-                <pre>
+                <br>Baiko DDL (mamaritra ny firafitr'ilay bazy)
+<pre>
+<c># Matetika antsoina avy ao @ fisie DB ireto kaomandy ireto</c>
+
+sql.query("DROP TABLE IF EXISTS compte")
+
+sql.query("CREATE TABLE compte (
+    id INTEGER PRIMARY KEY,
+    libelle TEXT NOT NULL UNIQUE,
+    description TEXT,
+    daty TEXT,             <c>-- tsy manana type date i sqlite</c>
+    date_heure_modification TEXT,       <c>-- tsy manana type datetime i sqlite</c>
+    aktifa INTEGER CHECK(aktifa IN (0, 1)),      <c>-- ferana ho 0 na 1 ihany ny valera ekena</c>
+    )")
+
+sql.query("CREATE TABLE IF NOT EXISTS compte (...)")
 </pre>
-                <br>
-                Baiko manova ny bazy (DML)
-                <pre>
+                <br>Baiko DML (manova ny valera ao @ bazy)
+<pre>
+<c># Ialohavana DB. raha tsy antsoina ao anaty fisie DB</c>
+sql.query("INSERT INTO compte (libelle, modif_dt) VALUES ('BMOI 55210', DATETIME('now'))")
+</pre>
+                <br>Variabla sy fonctions Sqlite
+<pre class="transparent">
+<table>
+    <tr>
+        <td>DATE('now')</td>
+        <td>Daty izao</td>
+    </tr>
+    <tr>
+        <td>DATETIME('now')</td>
+        <td>Daty sy ora izao</td>
+    </tr>
+</table>
 </pre>
                 <br>
                 <p><a href="https://www.youtube.com/watch?v=j-BRiTrw_F0" target="_blank">Ito</a> misy vidéo Youtube manazava ny fampiasàna ny plugin SQLite .</p>
@@ -375,6 +412,54 @@ for ligne in result:
                     ho an'ny Mac Silicon ity.
                 </p>
                 <br>
+            </div>
+        </div>
+    </div>
+    <div id="gdscr">&nbsp;</div>
+</section>
+
+
+<!-- gdscr -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">GDScript</h3>
+<pre class="transparent">
+<table>
+    <tr>
+        <td>Texte lasa noeud singleton</td>
+        <td>var singleton_name = "GameManager"
+var singleton_ref = get_node("/root/" + singleton_name)
+singleton_ref.do_something()</td>
+    </tr>
+</table>
+</pre>
+            </div>
+        </div>
+    </div>
+    <div id="datyora">&nbsp;</div>
+</section>
+
+
+<!-- datyora -->
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Daty & Ora</h3>
+                <pre class="transparent">
+<table>
+    <tr>
+        <td>Daty/Ora izao</td>
+        <td>var modif_dt: String = Time.get_date_string_from_system()   <c># daty</c>
+var modif_dt: Dictionary = Time.get_date_dict_from_system()
+
+var modif_dt: String = Time.get_datetime_string_from_system()   <c># daty sy ora</c>
+var modif_dt: String = Time.get_datetime_dict_from_system()</td>
+    </tr>
+</table>
+</pre>
             </div>
         </div>
     </div>

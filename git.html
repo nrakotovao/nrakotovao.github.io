@@ -288,9 +288,9 @@ fi
 		<div class="row">
 			<div class="col-md-12 text-left">
 				<h3 class="mkj-title">Git-ftp</h3>
-				<p>Git-ftp permet d'envoyer les fichiers modifiés directement en FTP. L'outil s'appuie sur les modifications de GIT pour détecter les fichiers modifiés. Il faut commiter avant d'envoyer les fichiers. Git-ftp refuse de faire un push si des modifications ne sont pas commitées.
-				</p>
-				Installation (sur Mac):
+				<p>Git-ftp permet d'envoyer les fichiers modifiés directement en FTP. L'outil s'appuie sur les modifications de GIT pour détecter les fichiers modifiés. Il faut commiter avant d'envoyer les fichiers. Git-ftp refuse de faire un push si des modifications ne sont pas commitées.</p>
+				<p>Ci-après son <a src="https://github.com/git-ftp/git-ftp" target="_blank">repo github</a>.</p>
+				Installation sur Mac
 				<pre>
 <i>//D'abord, vérifier la présence de command line tools:</i>
 $ xcode-select -p
@@ -299,29 +299,31 @@ $ xcode-select -p
 $ brew install brotli
 $ brew install git-ftp
 </pre>
-				<br>Configuration des scopes:
+				<br>Installation sur Windows
+				<pre>
+<c>1. Aller dans le repertoire d'installation de Git (c:/programmes/git)
+2. Clic droit sur git-bash.exe, puis Exécuter en tant qu'administrateur
+3. Coller la commande ci-après:</c>
+$ curl https://raw.githubusercontent.com/git-ftp/git-ftp/master/git-ftp > /bin/git-ftp
+$ chmod 755 /bin/git-ftp
+</pre>
+				<br>Configurer un scope
 				<pre>
 <i>//Configurer le scope quality</i>
 $ git config git-ftp.quality.user quality@monsite.com
 $ git config git-ftp.quality.url monsite.com  <i>//fourni par votre hébérgeur</i>
 $ git config git-ftp.quality.password  MyPassword   <i>//éviter les caractères très spéciaux. Ex: ()</i>
-
-<i>//Configurer le scope master</i>
-$ git config git-ftp.master.user master@monsite.com
-$ git config git-ftp.master.url monsite.com
-$ git config git-ftp.master.password  MyMsPassword
 </pre>
 				<br>Premier usage des scopes:
 				<pre>
-<i>//Avant d'utiliser git-ftp, il faut indiquer le commit initial à partir duquel git-ftp fera ses comparaisons</i>
-<i>//1. Aller sur la branche correspondante au scope et faire un catchup:</i>
-$ git ftp catchup -s quality
-<i>//Si le nom de la branche et le même que le nom du scope, on peut enlever le nom du scope:</i>
-$ git ftp catchup -s
-
-<i>//Faire pareil sur master aussi</i>
-
-<i>//ATTENTION: le dernier commit devient la référence. Donc, s'il y a des fichiers dans les derniers commits qui nécessitent d'être uploadé au serveur, il faut faire un git reset --hard vers le dernier commit de référence.</i>
+<c>//Si on part d'un repository vide:</c>
+$ git ftp init -s
+<c>//Si on part d'un repository qui existe déjà, il faut indiquer le point de départ à partir duquel git-ftp fera ses comparaisons</c>
+$ git ftp catchup -s quality  <c>// enlever quality si le scope a le même nom que la branche</c>
+</pre>
+				<br>Uploader les derniers commits sur le serveur FTP:
+				<pre>
+$ git ftp push -s quality
 </pre>
 				<br>Supprimer un scope:
 				<pre>
