@@ -170,30 +170,26 @@ b. Eo @ propriete: Layout > Anchors pres = full rect
             <div class="col-md-12 text-left">
                 <h3 class="mkj-title">Famaritana tetikasa android</h3>
                 <p>
-                    Ireto ny  famaritana tokony hapetraka raha hanamboatra vokatra ho an'ny android:
+                    Ireto ny  famaritana tokony hapetraka raha praograma vokatra ho an'ny android:
                     <pre>
 <c># Firafitry ny ekrà:</c>
-Projet > Project Settings > Display > Window
-    Window Width:1080
-    Window Height:1920
-    Viewport Width:360
-    Viewport Height:640
-    Mode: Viewport <c># ilaina @ resaka responsive</c>
-    Aspect:Keep <c># na Keep width</c>
-    Stretch Scale:2.0   <c># mba hampandeha ny xxhdpi</c>
-
-<c># Fandefasana @ android:</c>
-Projet > Export > Android: asiana valera ny Name, Package, Version, Orientation
-    XR Mode:Disabled
+Project > Project Settings
+    > Display > Window
+        <c># Alefa ny Advanced settings</c>
+        Size > Viewport Width: 480
+        Size > Viewport Height: 900
+        Size > Mode: Windowed 
+        Stretch > Mode: viewport     <c># ilaina @ resaka responsive</c>
+        Stretch > Aspect:Expand       <c># manenjika ny saka sy haavon'ny ekra</c>
 
 <c># Ampisehoina ny lohateny eny ambony (daty, aratra, sns)</c>
-Projet > Project Settings > Display > Window
-    mode: windowed
-    borderless: off
-<c>Ampiana an'ito aorian'ny _ready() an'ny scene principale:</c>
-DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
-DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_EXTEND_TO_TITLE, false)
-DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
+Project > Project Settings > Display > Window
+    Size > Mode: windowed
+    Size > Borderless: off
+    <c>Ampiana an'ito aorian'ny _ready() an'ny scene principale:</c>
+    DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+    DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_EXTEND_TO_TITLE, false)
+    DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 </pre>
                 </p>
                 <br>
@@ -367,26 +363,52 @@ for linina in vondrona:
     print(linina["nom"])
 </pre>
                 <br>Baiko DDL (mamaritra ny firafitr'ilay bazy)
-<pre>
-<c># Matetika antsoina avy ao @ fisie DB ireto kaomandy ireto</c>
-
-sql.query("DROP TABLE IF EXISTS compte")
-
-sql.query("CREATE TABLE compte (
-    id INTEGER PRIMARY KEY,
-    libelle TEXT NOT NULL UNIQUE,
-    description TEXT,
-    daty TEXT,             <c>-- tsy manana type date i sqlite</c>
-    date_heure_modification TEXT,       <c>-- tsy manana type datetime i sqlite</c>
-    aktifa INTEGER CHECK(aktifa IN (0, 1)),      <c>-- ferana ho 0 na 1 ihany ny valera ekena</c>
+<pre class="transparent">
+<table>
+    <tr>
+        <td>Fanamarihana</td>
+        <td>- Matetika antsoina avy ao @ fisie DB ireto kaomandy ireto
+- Alefa @ hoe: DB.sql.query ("... kaomandy sql ...")</td>
+    </tr>
+    <tr>
+        <td>Mamorona tabla</td>
+        <td>sql.query("
+    CREATE TABLE kaonty (
+        id INTEGER PRIMARY KEY,
+        titra TEXT NOT NULL UNIQUE,
+        marika TEXT,
+        daty TEXT,             <c>-- tsy manana type date i sqlite</c>
+        daty_ora_nanovana TEXT,       <c>-- tsy manana type datetime i sqlite</c>
+        aktifa INTEGER CHECK(aktifa IN (0, 1)),      <c>-- ferana ho 0 na 1 ihany ny valera ekena</c>
     )")
 
-sql.query("CREATE TABLE IF NOT EXISTS compte (...)")
+<c># Afaka atao koa hoe tsy foronina raha efa misy</c>
+sql.query("DROP TABLE IF EXISTS kaonty ...")</td>
+    </tr>
+    <tr>
+        <td>Mamafa tabla</td>
+        <td>sql.query("DROP TABLE IF EXISTS compte")</td>
+    </tr>
+    <tr>
+        <td>Efa misy ve ny tabla ?</td>
+        <td>sql.query("SELECT name FROM sqlite_master WHERE type='table' AND name='your_table_name'")
+if sql.query_result.size()>0:
+    ... (efa misy)</td>
+    </tr>
+</table>
 </pre>
                 <br>Baiko DML (manova ny valera ao @ bazy)
-<pre>
-<c># Ialohavana DB. raha tsy antsoina ao anaty fisie DB</c>
-sql.query("INSERT INTO compte (libelle, modif_dt) VALUES ('BMOI 55210', DATETIME('now'))")
+<pre class="transparent">
+<table>
+    <tr>
+        <td>Fanamarihana</td>
+        <td>- Ialohavana DB. raha tsy antsoina ao anaty fisie DB</td>
+    </tr>
+    <tr>
+        <td>Fampidirana valera vaovao</td>
+        <td>sql.query("INSERT INTO compte (libelle, modif_dt) VALUES ('BMOI 55210', DATETIME('now'))")</td>
+    </tr>
+</table>
 </pre>
                 <br>Variabla sy fonctions Sqlite
 <pre class="transparent">
@@ -431,6 +453,10 @@ sql.query("INSERT INTO compte (libelle, modif_dt) VALUES ('BMOI 55210', DATETIME
         <td>var singleton_name = "GameManager"
 var singleton_ref = get_node("/root/" + singleton_name)
 singleton_ref.do_something()</td>
+    </tr>
+    <tr>
+        <td>Ao anaty editor ve?</td>
+        <td>if Engine.is_editor_hint(): ...eny...</td>
     </tr>
 </table>
 </pre>
