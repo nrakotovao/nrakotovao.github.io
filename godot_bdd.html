@@ -1,0 +1,230 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><link rel="icon" type="image/x-icon" href="../images/favicon.ico" /><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content=""><meta name="description" content=""><meta http-equiv='cache-control' content='no-cache'> <meta http-equiv='expires' content='0'> <meta http-equiv='pragma' content='no-cache'><title>NAOTY</title><link rel="stylesheet" href="css/bootstrap.min.css"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/font-awesome.min.css"></head><body id="top" data-spy="scroll" data-target=".navbar-collapse"><nav class="navbar navbar-default navbar-fixed-top navbar-expand-lg" role="navigation"><div class="navbar-header"><button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon icon-bar"></span><span class="icon icon-bar"></span><span class="icon icon-bar"></span></button><a href="index.html" class="navbar-brand" style="color:#000;">&nbsp;&nbsp;<i class="fa fa-caret-right" style="font-size:24px"></i>&nbsp;NAOTY</a></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav navbar-right" id="menu-bar"></ul></div></nav><div id="main-contenu"></div>
+
+    
+<!-- DATABASE -->
+<section id="godot" class="section text-center">
+    <div style="padding-top:60px"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mkj-big-title">Sqlite Godot</h2>
+                <div style="margin-top:-24px"><img src="images/caret_up.png" width="20px"/> <a href="godot.html">GODOT</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="resume" class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 text-left">
+                <div class="mkj-menu"><a href="#config" class="smoothScroll">Fanomanana</a></div>
+            </div>
+            <div class="col-sm-4 text-left">
+                <div class="mkj-menu"><a href="#dql" class="smoothScroll">Baiko DQL</a></div>
+                <div class="mkj-menu"><a href="#ddl" class="smoothScroll">Baiko DDL</a></div>
+                <div class="mkj-menu"><a href="#dml" class="smoothScroll">Baiko DML</a></div>
+            </div>
+            <div class="col-sm-4 text-left">
+                <div class="mkj-menu"><a href="#varfonc" class="smoothScroll">Variables & Fonctions</a></div>
+                <div class="mkj-menu"><a href="#ref" class="smoothScroll">References</a></div>
+            </div>
+        </div>
+    </div>
+    <div id="config">&nbsp;</div>
+</section>
+
+
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Fanomanana</h3>
+                Alohan'ny hampiasa SQLite ao @ Godot dia mila ampidirina ny <b>plugin Godot-SQLite</b>.
+                <p>
+                    <pre>
+1. Sokafana ny praograma Godot
+2. Mankao @ menoa AssetLib ery ambony
+3. Tadiavina ny hoe "godot-sqlite"
+4. Klikena ilay singa Godot-SQLite asehony
+5. Manao "Download" (eo @ 60Mo ny habeny)
+6. Klikena ny bokotra "Install"
+7. Rehefa vita ny installlation dia vata "addons" miampy ao @ tetikasa
+8. Mandeha ao @ Project > Projects settings > tab Plugins, dia cocher-na plugin Godot SQLite
+</pre>
+                </p>
+
+                <p>
+                Mba tsy hanokafana/hanakatonana ny bazy isaky ny miova script dia tsara raha atambatra amina
+                <b>singleton</b> anankiray.
+                    <pre>
+<c>1. Manamboatra script manokatra ny bazy. Ohatra: <b>res://DB.gd</b></c>
+extends Node
+var sql: SQLite
+func _ready():
+    sql = SQLite.new()
+    sql.path = "user://labase.db"
+    var ok = sql.open_db()
+    if not ok:
+        push_error("Échec d'ouverture DB: " + error_string(ok))
+    <c>//tokony atao eto ny fanamboarana ny structure bazy sql (DDL)</c>
+
+<c>2. Atao <b>Autoload</b> ny script mba ho lasa singleton</c>
+Mankao @ Project > Project Settings > tab Globals > Autoload
+Nom: DB
+Chemin: res://DB.gd
+Cocher "Add"  <c>// azo @ DB ny bazy</c>
+</pre>
+                </p>
+            </div>
+        </div>
+    <div id="dql">&nbsp;</div>
+</section>
+
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Baiko DQL: mamaky valera</h3>
+                <p>
+                    <pre>
+<c>-- Efa natao autoupload ny var DB eto => azo antsoina n'aiza n'aiza</c>
+DB.sql.query("SELECT * FROM mpampiasa")
+for linina in DB.sql.query_result:
+    print(linina["ito"])
+
+<c>-- Na:</c>
+var vondrona = DB.sql.query("SELECT * FROM mpampiasa")
+for linina in vondrona:
+    print(linina["nom"])
+</pre>
+                </p>
+            </div>
+        </div>
+    <div id="ddl">&nbsp;</div>
+</section>
+
+
+
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Baiko DDL: mamaritra firafitra</h3>
+                <p>
+                    <pre class="transparent">
+<table>
+    <tr>
+        <td>Fanamarihana</td>
+        <td>- Matetika antsoina avy ao @ fisie DB ireto kaomandy ireto
+- Alefa @ hoe: DB.sql.query ("... kaomandy sql ...")</td>
+    </tr>
+    <tr>
+        <td>Mamorona tabla</td>
+        <td>sql.query("
+    CREATE TABLE kaonty (
+        id INTEGER PRIMARY KEY,
+        titra TEXT NOT NULL UNIQUE,
+        marika TEXT,
+        daty TEXT,             <c>-- tsy manana type date i sqlite</c>
+        daty_ora_nanovana TEXT,       <c>-- tsy manana type datetime i sqlite</c>
+        aktifa INTEGER CHECK(aktifa IN (0, 1)),      <c>-- ferana ho 0 na 1 ihany ny valera ekena</c>
+    )")
+
+<c># Afaka atao koa hoe tsy foronina raha efa misy</c>
+sql.query("DROP TABLE IF EXISTS kaonty ...")</td>
+    </tr>
+    <tr>
+        <td>Mamafa tabla</td>
+        <td>sql.query("DROP TABLE IF EXISTS compte")</td>
+    </tr>
+    <tr>
+        <td>Efa misy ve ny tabla ?</td>
+        <td>sql.query("SELECT name FROM sqlite_master WHERE type='table' AND name='your_table_name'")
+if sql.query_result.size()>0:
+    ... (efa misy)</td>
+    </tr>
+</table>
+</pre>
+                </p>
+            </div>
+        </div>
+    <div id="dml">&nbsp;</div>
+</section>
+
+
+
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Baiko DML: manova valera</h3>
+                <p>
+                    <pre class="transparent">
+<table>
+    <tr>
+        <td>Fanamarihana</td>
+        <td>- Ialohavana DB. raha tsy antsoina ao anaty fisie DB</td>
+    </tr>
+    <tr>
+        <td>Fampidirana valera vaovao</td>
+        <td>sql.query("INSERT INTO compte (libelle, modif_dt) VALUES ('BMOI 55210', DATETIME('now'))")</td>
+    </tr>
+</table>
+</pre>
+                </p>
+            </div>
+        </div>
+    <div id="varfonc">&nbsp;</div>
+</section>
+
+
+
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Variables & Fonctions</h3>
+                <p>
+                    <pre class="transparent">
+<table>
+    <tr>
+        <td>DATE('now')</td>
+        <td>Daty izao</td>
+    </tr>
+    <tr>
+        <td>DATETIME('now')</td>
+        <td>Daty sy ora izao</td>
+    </tr>
+</table>
+</pre>
+                </p>
+            </div>
+        </div>
+    <div id="ref">&nbsp;</div>
+</section>
+
+
+
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">References</h3>
+                <p><a href="https://www.youtube.com/watch?v=j-BRiTrw_F0" target="_blank">Ito</a> misy vidéo Youtube manazava ny fampiasàna ny plugin SQLite .</p>
+                <p>
+                    <a href="https://sqlitebrowser.org/" target="_blank">DB Browser for SQLite</a><br>
+                    Rindrambaiko manamora ny fampiasàna ny fichier SQLite.<br>
+                    Ohatra: version
+                    <a href="https://1drv.ms/u/c/30aaffec3a3da961/EQ6twwTkMrRGs_vWIMVuK1kBhPGskRVYsQbEQDP94r55lA?e=fn6T0g" target="_blank">DB.Browser.for.SQLite-v3.13.1</a>
+                    ho an'ny Mac Silicon ity.
+                </p>
+            </div>
+        </div>
+    <div style="padding-bottom:40px"></div>
+</section>
+
+
+
+</div><footer class="text-center" style="background-color: transparent; border:none; padding-top: 8px;"><div class="container" style="background-color:#FFF; color:#555252; font-size:14px;"><div class="row" id="piedpage"><p>© Njaka RAKOTOVAO - 2024</p></div></div></footer><a href="#top" class="go-top"><i class="fa fa-chevron-up fa-1x"></i></a><script src="js/jquery.js"></script><script src="js/bootstrap.min.js"></script><script src="js/smoothscroll.js"></script><script src="js/jquery.flexslider.js"></script><script>$(document).ready(function () { document.querySelector('#piedpage').innerText = '(c) Njaka RAKOTOVAO - ' + (new Date()).getFullYear();$('.flexslider').flexslider({animation: "fade",directionNav: false});$(window).scroll(function () {if ($(this).scrollTop() > 200) {$('.go-top').fadeIn(200);} else {$('.go-top').fadeOut(200);}});$('.go-top').click(function (event) {event.preventDefault();$('html, body').animate({ scrollTop: 0 }, 300);})});</script></body></html>
