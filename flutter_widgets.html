@@ -1,44 +1,123 @@
 <!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><link rel="icon" type="image/x-icon" href="../images/favicon.ico" /><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content=""><meta name="description" content=""><meta http-equiv='cache-control' content='no-cache'> <meta http-equiv='expires' content='0'> <meta http-equiv='pragma' content='no-cache'><title>NAOTY</title><link rel="stylesheet" href="css/bootstrap.min.css"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/font-awesome.min.css"></head><body id="top" data-spy="scroll" data-target=".navbar-collapse"><nav class="navbar navbar-default navbar-fixed-top navbar-expand-lg" role="navigation"><div class="navbar-header"><button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon icon-bar"></span><span class="icon icon-bar"></span><span class="icon icon-bar"></span></button><a href="index.html" class="navbar-brand" style="color:#000;">&nbsp;&nbsp;<i class="fa fa-caret-right" style="font-size:24px"></i>&nbsp;NAOTY</a></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav navbar-right" id="menu-bar"></ul></div></nav><div id="main-contenu"></div>
 
 <!-- DART -->
-    <section id="flutter" class="section text-center">
-        <div style="padding-top:60px"></div>
-		<div class="container">
-            <div class="row">
-                <div class="col-md-12">
-                    <h2 class="mkj-big-title">WIDGETS</h2>
-                    <div style="margin-top:-24px"><img src="images/caret_up.png" width="20px"/> <a href="flutter.html">FLUTTER</a></div>
-                </div>
-            </div>
-        </div>
-	</section>
-
-
-	<!-- MENU -->
-	<section id="resume" class="section  text-center">
-		<div class="container">
-			<div class="row">
-				<div class="col-sm-4 text-left">
-                    <div class="mkj-menu"><a href="#images" class="smoothScroll">Images</a></div>
-				</div>
-				<div class="col-sm-4 text-left">
-				</div>
-				<div class="col-sm-4 text-left">
-                    <div class="mkj-menu"><a href="#utilitaires" class="smoothScroll">Utilitaires</a></div>
-				</div>
+<section id="flutter" class="section text-center">
+	<div style="padding-top:60px"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<h2 class="mkj-big-title">WIDGETS</h2>
+				<div style="margin-top:-24px"><img src="images/caret_up.png" width="20px"/> <a href="flutter.html">FLUTTER</a></div>
 			</div>
 		</div>
-		<div id="images">&nbsp;</div>
-	</section>
+	</div>
+</section>
 
 
-	<!-- IMAGES -->
-	<section class="section  text-center">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-left">
-					<h3 class="mkj-title">Images</h3>
-                        <pre class="mkj-code">
+<!-- MENU -->
+<section id="resume" class="section  text-center">
+	<div class="container">
+		<h2 class="mkj-big-title">USAGES</h2>
+		<div class="row">
+			<div class="col-sm-4 text-left">
+				<div class="mkj-menu"><a href="#cont" class="smoothScroll">Conteneurs</a></div>
+				<div class="mkj-menu"><a href="#scrolls" class="smoothScroll">Scrolls</a></div>
+			</div>
+			<div class="col-sm-4 text-left">
+				<div class="mkj-menu"><a href="#images" class="smoothScroll">Images</a></div>
+			</div>
+			<div class="col-sm-4 text-left">
+				<div class="mkj-menu"><a href="#utilitaires" class="smoothScroll">Utilitaires</a></div>
+				<div class="mkj-menu"><a href="#details" class="smoothScroll">Details widgets **</a></div>
+			</div>
+		</div>
+	</div>
+	<div id="cont">&nbsp;</div>
+</section>
+
+
+
+<!-- CONTENEURS -->
+<section class="section  text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-left">
+				<h3 class="mkj-title">Conteneurs</h3>
+					<pre>
+<a href="#det_matapp" class="smoothScroll">MaterialApp</a>
+    <c>Conteneur principal pour material design. Il est sensé contenir un scaffold comme "home".
+    <cb>home</cb>: (scaffold ou widget), <cb>theme</cb>: ThemeData(), </c>
+
+<a href="#det_scaff" class="smoothScroll">Scaffold</a>
+    <c>Conteneur secondaire contenant les éléments standards d'un app suivant le material design.
+    <cb>appBar</cb>: <a href="#det_appbar" class="smoothScroll">AppBar</a>(), <cb>body</cb>: (widget), <cb>backgroundColor</cb>: Colors.white, <cb>floatingActionButton</cb>: (bouton flottant), <cb>bottomNavigationBar</cb>: (barre navigation bas),  </c>
+
+Container
+    <c>Conteneur générale.
+    <cb>children</cb>: [], <cb>width</cb>: 100, <cb>height</cb>: 100, <cb>color</cb>: Colors.blue,  </c>
+
+Row
+    <c>Place ses widgets enfants horizontalement.
+    <cb>children</cb>: [], <cb>mainAxisAlignment</cb>: start/end/center/spaceBetween/spaceAround/spaceEvenly, <cb>crossAxisAlignment</cb>: start/center/end/stretch/baseline, <cb>mainAxisSize</cb>: MainAxisSize.max/min, </c>
+
+Column
+    <c>Place ses widgets enfants verticalement.
+    <cb>children</cb>: [], <cb>mainAxisAlignment</cb>: start/end/center/spaceBetween/spaceAround/spaceEvenly, <cb>crossAxisAlignment</cb>: start/center/end/stretch/baseline, <cb>mainAxisSize</cb>: MainAxisSize.max/min, </c>
+
+Expanded
+    <c>Enfant direct d'un Row ou Column, occupe l'espace disponible du MainAxis.
+    <cb>child</cb>: {widget}, <cb>flex</cb>: 2 {facteur d'occupation si plusieurs expanded}</c>
+
+</pre>
+			</div>
+		</div>
+	</div>
+	<div id="scrolls">&nbsp;</div>
+</section>
+
+
+
+<!-- SCROLLS -->
+<section class="section  text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-left">
+				<h3 class="mkj-title">Scrolls</h3>
+					<pre>
+ListView
+    <c>Le plus courant. Widget scrollable affichant ses enfants l'une après l'autre dans la direction de scroll.
+    <cb>scrollDirection</cb>: Axis.vertical/horizontal, <cb>padding</cb>: (espace autour contenus), 
+	Utiliser ListView.builder() pour les listes longues pour optimisation (lazy loading automatique). </c>
+
+SingleChildScrollView
+    <c>Pour un seul widget dont l'affichage risque de dépasser le viewport. Par exemple, lorsque le clavier s'affiche et la taille du viewport est réduite.
+    <cb>child</cb>: (widget), <cb>scrollDirection</cb>: Axis.vertical/horizontal, 
+    Column peut être mis comme child, puis insérer comme ses childrens les éléments d'une liste. </c>
+
+<a href="#det_pageview" class="smoothScroll">PageView</a>
+    <c>Liste scrollable où chaque enfant occupe l'entiereté du viewport.
+    <cb>scrollDirection</cb>: Axis.vertical/horizontal, 
+    Utiliser PageView.builder() pour les listes longues pour optimisation (lazy loading automatique). </c>
+
+GridView
+    <c>Grille de widgets scrollable avec optimisation de performances pour les grandes listes. </c>
+
+</pre>
+			</div>
+		</div>
+	</div>
+	<div id="images">&nbsp;</div>
+</section>
+
+
+
+<!-- IMAGES -->
+<section class="section  text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-left">
+				<h3 class="mkj-title">Images</h3>
+					<pre class="mkj-code">
 <span class="mkj-comment">//Afficher simplement une image</span>
 Image.asset('assets/images/logo-mikajy.png')
 
@@ -61,21 +140,21 @@ GestureDetector(
     child: Image.asset('assets/images/logo-mikajy.png'),
 )
 </pre>
-				</div>
 			</div>
 		</div>
-		<div id="utilitaires">&nbsp;</div>
-	</section>
+	</div>
+	<div id="utilitaires">&nbsp;</div>
+</section>
 
 
-    <!-- UTILITAIRES -->
-	<section class="section  text-center">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12 text-left">
-					<h3 class="mkj-title">Utilitaires</h3>
-                        <br><span class="mkj-subtitle">Dimensions</span>
-                        <pre class="mkj-code">
+<!-- UTILITAIRES -->
+<section class="section  text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-left">
+				<h3 class="mkj-title">Utilitaires</h3>
+					<br><span class="mkj-subtitle">Dimensions</span>
+					<pre class="mkj-code">
 <span class="mkj-comment">//Largeur et hauteur de l'écran</span>
 double width = MediaQuery.sizeOf(context).width;
 double height = MediaQuery.sizeOf(context).height;
@@ -96,12 +175,158 @@ Size size = view.physicalSize / view.devicePixelRatio;
 double width = size.width;
 double height = size.height;
 </pre>
+			</div>
+		</div>
+	</div>
+	<div id="details">&nbsp;</div>
+</section>
+
+
+<!-- DETAILS -->
+<section id="resume" class="section  text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-left">
+				<h3 class="mkj-title">Détails Widgets</h3>
+				<div class="row">
+					<div class="col-sm-4 text-left">
+						<div class="mkj-menu"><a href="#det_appbar" class="smoothScroll">AppBar</a></div>
+						<div class="mkj-menu"><a href="#det_matapp" class="smoothScroll">MaterialApp</a></div>
+					</div>
+					<div class="col-sm-4 text-left">
+						<div class="mkj-menu"><a href="#det_pageview" class="smoothScroll">PageView</a></div>
+					</div>
+					<div class="col-sm-4 text-left">
+						<div class="mkj-menu"><a href="#det_scaff" class="smoothScroll">Scaffold</a></div>
+					</div>
 				</div>
 			</div>
 		</div>
-		<!-- div id="langage">&nbsp;</div -->
-		<div style="padding-bottom:40px"></div>
-	</section>
+	</div>
+	<div id="det_matapp">&nbsp;</div>
+</section>
+
+
+
+<section class="section  text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-left">
+				<h3 class="mkj-title">MaterialApp</h3>
+				<pre>
+<c>// Usage classique</c>
+Widget build(BuildContext context, WidgetRef ref) {
+  return MaterialApp(
+    home: Scaffold ( ... )
+  );
+}
+</pre>
+			</div>
+		</div>
+	</div>
+	<div id="det_scaff">&nbsp;</div>
+</section>
+
+
+
+<section class="section  text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-left">
+				<h3 class="mkj-title">Scaffold</h3>
+				<pre>
+<c>// Usage classique d'un scaffold</c>
+Scaffold(
+  appBar: AppBar(title: const Text('My App')),
+  body: const Center(child: Text('Content Area')),
+  floatingActionButton: FloatingActionButton(
+    onPressed: () {},
+    child: const Icon(Icons.add),
+  ),
+);
+</pre>
+			<br>
+			<b><u>NOTES:</u></b> 
+				<br>* Scaffold doit se trouver à l'intérieur d'un <b>MaterialApp</b>, sinon il y a un problème de Directionality.
+				<br>* Scaffold est <b>déjà scrollable</b>. Mettre un autre scrollable (ex: SingleChildScrollView) à l'intérieur génère une exception.
+			</div>
+		</div>
+	</div>
+	<div id="det_pageview">&nbsp;</div>
+</section>
+
+
+<section class="section  text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-left">
+				<h3 class="mkj-title">PageView</h3>
+				<pre>
+<c>// Usage classique d'un PageView</c>
+import 'package:flutter/material.dart';
+
+void main() => runApp(const MyApp());
+
+class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: PageView(
+          children: &lt;Widget&gt;[
+            Container(
+              color: Colors.orange,
+              child: const Center(child: Text('Page 1', style: TextStyle(fontSize: 48))),
+            ),
+            Container(
+              color: Colors.redAccent,
+              child: const Center(child: Text('Page 2', style: TextStyle(fontSize: 48))),
+            ),
+            Container(
+              color: Colors.blueGrey,
+              child: const Center(child: Text('Page 3', style: TextStyle(fontSize: 48))),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+</pre>
+			</div>
+		</div>
+	</div>
+	<div id="det_appbar">&nbsp;</div>
+</section>
+
+
+
+<section class="section  text-center">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12 text-left">
+				<h3 class="mkj-title">AppBar</h3>
+				<p>Utilisé dans le conteneur MaterialApp pour afficher une barre de titre.</p>
+				<pre>
+<c>// Usage classique</c>
+AppBar(
+  <cb>title</cb>: const Text('GeeksforGeeks'),
+  <cb>foregroundColor</cb>: Colors.white,
+  <cb>backgroundColor</cb>: Colors.green,
+  <cb>style</cb>: TextStyle(
+    fontSize: 18,
+	fontWeight: FontWeight(600),
+  ),
+);
+</pre>
+			</div>
+		</div>
+	</div>
+	<div style="padding-bottom:40px"></div>
+</section>
+
 
 
 </div><footer class="text-center" style="background-color: transparent; border:none; padding-top: 8px;"><div class="container" style="background-color:#FFF; color:#555252; font-size:14px;"><div class="row" id="piedpage"><p>© Njaka RAKOTOVAO - 2024</p></div></div></footer><a href="#top" class="go-top"><i class="fa fa-chevron-up fa-1x"></i></a><script src="js/jquery.js"></script><script src="js/bootstrap.min.js"></script><script src="js/smoothscroll.js"></script><script src="js/jquery.flexslider.js"></script><script>$(document).ready(function () { document.querySelector('#piedpage').innerText = '(c) Njaka RAKOTOVAO - ' + (new Date()).getFullYear();$('.flexslider').flexslider({animation: "fade",directionNav: false});$(window).scroll(function () {if ($(this).scrollTop() > 200) {$('.go-top').fadeIn(200);} else {$('.go-top').fadeOut(200);}});$('.go-top').click(function (event) {event.preventDefault();$('html, body').animate({ scrollTop: 0 }, 300);})});</script></body></html>

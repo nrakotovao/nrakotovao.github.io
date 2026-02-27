@@ -469,8 +469,9 @@ pre > c {
 	color: #aca4a4;
 }
 
-pre > cb {
+pre cb {
 	color: #000;
+	font-weight: bold;
 }
 
 pre > b {

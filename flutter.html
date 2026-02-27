@@ -18,19 +18,20 @@
 		<div class="container">
 			<div class="row">
 				<div class="col-sm-4 text-left">
-					<div class="mkj-menu"><a href="flutter_dart.html">DART *</a></div>
-					<div class="mkj-menu"><a href="flutter_widgets.html">Widgets *</a></div>
 					<div class="mkj-menu"><a href="#commandes" class="smoothScroll">Commandes</a></div>
 					<div class="mkj-menu"><a href="#dialog" class="smoothScroll">Dialogues</a></div>
-				</div>
-				<div class="col-sm-4 text-left">
 					<div class="mkj-menu"><a href="#pageroute" class="smoothScroll">Pages & Routes</a></div>
 					<div class="mkj-menu"><a href="#http" class="smoothScroll">Requêtes HTTP</a></div>
+					<div class="mkj-menu"><a href="#cycle" class="smoothScroll">Cycle de vie app</a></div>
+				</div>
+				<div class="col-sm-4 text-left">
+					<div class="mkj-menu"><a href="flutter_dart.html">Dart *</a></div>
+					<div class="mkj-menu"><a href="flutter_widgets.html">Widgets *</a></div>
+					<div class="mkj-menu"><a href="flutter_html.html">Html *</a></div>
 					<div class="mkj-menu"><a href="#bdd" class="smoothScroll">SQFLITE</a></div>
 					<div class="mkj-menu"><a href="#riverpod" class="smoothScroll">Riverpod</a></div>
 				</div>
 				<div class="col-sm-4 text-left">
-					<div class="mkj-menu"><a href="#cycle" class="smoothScroll">Cycle de vie app</a></div>
 					<div class="mkj-menu"><a href="#splash" class="smoothScroll">Splash screen</a></div>
 					<div class="mkj-menu"><a href="#branding" class="smoothScroll">Branding</a></div>
 					<div class="mkj-menu"><a href="#play" class="smoothScroll">Play Store</a></div>
@@ -85,6 +86,15 @@
 							<li>Faire un: <b>flutter config --jdk-dir=$JAVA_HOME</b></li>
 						</ol>
 					</p>
+					<br>
+					<p>
+						<u><b>Erreur: */Podfile.lock: No such file or directory</b></u>
+						<br>Aller dans le dossier */macos
+						<br><b># rm -rf Pods</b>
+						<br><b># rm Podfile.lock</b>
+						<br><b># pod install</b>
+						<br>Retourner dans le dossier racine du projet
+					</p>
 				</div>
 			</div>
 		</div>
@@ -104,6 +114,16 @@
 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
     content: Text(loginController.text),
 ));
+
+<c>// <cb>TANDREMO:</cb> indraindray mahazo erreur "ScaffoldMessenger widget not found" rehefa mampiasa io kaody ambony io
+// Ny antony dia tsy ao anatin'ny context an'ny MaterialApp no niantsoana ilay ScaffoldMessenger.
+// Ny vahaolana dia ny fampiasana <cb>Globalkey</cb> </c>
+final GlobalKey&lt;ScaffoldMessengerState&gt; scaffoldMessengerKey = GlobalKey&lt;ScaffoldMessengerState&gt;(); <c>//any ivelan'ny app mihitsy</c>
+class MikajyNaoty extends ConsumerWidget { ...
+    Widget build(BuildContext context, WidgetRef ref) { ...
+        return MaterialApp(
+            scaffoldMessengerKey: scaffoldMessengerKey, ...
+            scaffoldMessengerKey.currentState?.showSnackBar(SnackBar(content: Text(index.toString()))); </c>
 </pre>
                     </p>
 					<br>
@@ -480,18 +500,18 @@ void main() {
 						<br>Configuration de Riverpod
 						<pre class="mkj-code">
 <span class="mkj-comment">//mettre dans fichier riverpod.dart par exemple</span>
-import 'package: flutter_riverpod/flutter_riverpod.dart'
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final riverpod = StateProvider&lt;int&gt;((ref) {
     return 0;    <span class="mkj-comment">//valeur par défaut</span>
-})
+});
 </pre>
 						<br>Usage sur widget
 						<pre class="mkj-code">
 <span class="mkj-comment">//Il faut faire deux choses:</span>
 <span class="mkj-comment">//  - Modifier StatelessWidget par ConsumerWidget</span>
 <span class="mkj-comment">//  - Ajouter WidgetRef comme params dans build()</span>
-import 'package: flutter_riverpod/flutter_riverpod.dart'
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 class MaClasse extends <span class="mkj-motcle">ConsumerWidget</span> {
     const MaClass({super.key});
 
@@ -542,7 +562,7 @@ class RiverpodModel extends <span class="mkj-motcle">ChangeNotifier</span> {
 						<br>Configuration de Riverpod
 						<pre class="mkj-code">
 <span class="mkj-comment">//mettre dans fichier riverpod.dart par exemple</span>
-import 'package: flutter_riverpod/flutter_riverpod.dart'
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final riverpod = ChangeNotifierProvider&lt;RiverpodModel&gt;((ref) {
     return RiverpodModel(compteur: 0);    <span class="mkj-comment">//valeur par défaut</span>
@@ -553,7 +573,7 @@ final riverpod = ChangeNotifierProvider&lt;RiverpodModel&gt;((ref) {
 <span class="mkj-comment">//Il faut faire deux choses:</span>
 <span class="mkj-comment">//  - Modifier StatelessWidget par ConsumerWidget</span>
 <span class="mkj-comment">//  - Ajouter WidgetRef comme params dans build()</span>
-import 'package: flutter_riverpod/flutter_riverpod.dart'
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 class MaClasse extends <span class="mkj-motcle">ConsumerWidget</span> {
     const MaClass({super.key});
 
