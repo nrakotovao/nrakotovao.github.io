@@ -465,7 +465,7 @@ b {
 	font-size: 16px;
 }
 
-pre > c {
+pre c {
 	color: #aca4a4;
 }
 
@@ -474,7 +474,7 @@ pre cb {
 	font-weight: bold;
 }
 
-pre > b {
+pre b {
 	color:#1c7038;
 	font-weight: bold;
 }

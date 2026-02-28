@@ -303,7 +303,7 @@ dependencies:
   path:
 </pre>
 						<p>Ci-après une méthode classique de traitement de données via <span class="mkj-high">SQFLITE</span>. A mettre dans une fichier database.dart, par exemple, puis à importer depuis les autres fichiers sources au besoin.</p>
-						<pre class="mkj-code">
+						<pre>
 <span class="mkj-comment">/** Fichier: database.dart **/</span>
 import 'package:path/path.dart';
 import 'package:sqflite/sqflite.dart';
@@ -347,8 +347,15 @@ class DB {
     Future<String> getValeur() async {
         Database db = await instance.database;
         final results = await db.rawQuery("SELECT val FROM unetable WHERE id='uneligne'");
-        return results[0]["val"].toString();
+        if (results.isEmpty) {
+            return null;
+        } else {
+            return results[0]["val"].toString();
+        }
     }
+    
+    <span class="mkj-comment">//Pour récupérer une valeur en int: results[0]["id"] as int</span>
+    <c>//Pour un query avec paramètres: final results = await db.rawQuery("SELECT val FROM unetable WHERE id=?", ["une ligne"]);</c>
 }
 </pre>
 					<p>Les méthodes s'utilisent après comme suit dans les autres fichiers:</p>
