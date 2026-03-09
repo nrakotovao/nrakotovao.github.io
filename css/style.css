@@ -503,7 +503,9 @@ pre.transparent td {
 	vertical-align: top;
 }
 
-pre.transparent td:nth-child(2) {
+pre.transparent td:nth-child(2),
+pre.transparent td:nth-child(3),
+pre.transparent td:nth-child(4) {
 	color: #777;    /* #aca4a4; */
 }
 

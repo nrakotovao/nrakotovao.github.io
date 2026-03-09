@@ -22,9 +22,9 @@
                 <div class="mkj-menu"><a href="#config" class="smoothScroll">Fanomanana</a></div>
             </div>
             <div class="col-sm-4 text-left">
-                <div class="mkj-menu"><a href="#dql" class="smoothScroll">Baiko DQL</a></div>
                 <div class="mkj-menu"><a href="#ddl" class="smoothScroll">Baiko DDL</a></div>
                 <div class="mkj-menu"><a href="#dml" class="smoothScroll">Baiko DML</a></div>
+                <div class="mkj-menu"><a href="#trans" class="smoothScroll">Transaction</a></div>
             </div>
             <div class="col-sm-4 text-left">
                 <div class="mkj-menu"><a href="#varfonc" class="smoothScroll">Variables & Fonctions</a></div>
@@ -79,32 +79,8 @@ Cocher "Add"  <c>// azo @ DB ny bazy</c>
                 </p>
             </div>
         </div>
-    <div id="dql">&nbsp;</div>
-</section>
-
-<section class="section  text-center">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12 text-left">
-                <h3 class="mkj-title">Baiko DQL: mamaky valera</h3>
-                <p>
-                    <pre>
-<c>-- Efa natao autoupload ny var DB eto => azo antsoina n'aiza n'aiza</c>
-DB.sql.query("SELECT * FROM mpampiasa")
-for linina in DB.sql.query_result:
-    print(linina["ito"])
-
-<c>-- Na:</c>
-var vondrona = DB.sql.query("SELECT * FROM mpampiasa")
-for linina in vondrona:
-    print(linina["nom"])
-</pre>
-                </p>
-            </div>
-        </div>
     <div id="ddl">&nbsp;</div>
 </section>
-
 
 
 <section class="section  text-center">
@@ -117,8 +93,8 @@ for linina in vondrona:
 <table>
     <tr>
         <td>Fanamarihana</td>
-        <td>- Matetika antsoina avy ao @ fisie DB ireto kaomandy ireto
-- Alefa @ hoe: DB.sql.query ("... kaomandy sql ...")</td>
+        <td>Matetika antsoina avy ao @ fisie DB ireto kaomandy ireto
+Alefa @ hoe: DB.sql.query ("... kaomandy sql ...")</td>
     </tr>
     <tr>
         <td>Mamorona tabla</td>
@@ -145,6 +121,21 @@ sql.query("DROP TABLE IF EXISTS kaonty ...")</td>
 if sql.query_result.size()>0:
     ... (efa misy)</td>
     </tr>
+    <tr>
+        <td>Efa misy ve ny colonne iray ?</td>
+        <td>sql.query("PRAGMA table_info('tresorerie')")
+var contient_colonne_details = false
+for col in sql.query_result:
+    if col.name == 'details':
+        contient_colonne_details = true
+if not contient_colonne_details:
+    ... (efa misy)
+        </td>
+    </tr>
+    <tr>
+        <td>Manampy colonne @ tabla</td>
+        <td>sql.query("ALTER TABLE tresorerie ADD COLUMN details TEXT NOT NULL DEFAULT ''")</td>
+    </tr>
 </table>
 </pre>
                 </p>
@@ -152,7 +143,6 @@ if sql.query_result.size()>0:
         </div>
     <div id="dml">&nbsp;</div>
 </section>
-
 
 
 <section class="section  text-center">
@@ -165,20 +155,60 @@ if sql.query_result.size()>0:
 <table>
     <tr>
         <td>Fanamarihana</td>
-        <td>- Ialohavana DB. raha tsy antsoina ao anaty fisie DB</td>
+        <td>Ialohavana "DB." raha tsy antsoina ao anaty fisie DB</td>
+    </tr>
+    <tr>
+        <td>Famakiana valera</td>
+        <td><cb># Famakiana valera tsotra</cb>
+<cb># Efa natao autoupload ny var DB eto => azo antsoina n'aiza n'aiza</cb>
+DB.sql.query("SELECT * FROM mpampiasa")
+for linina in DB.sql.query_result:
+    print(linina["ito"])
+
+<cb># Na:</cb>
+var vondrona = DB.sql.query("SELECT * FROM mpampiasa")
+for linina in vondrona:
+    print(linina["nom"])
+</td>
     </tr>
     <tr>
         <td>Fampidirana valera vaovao</td>
-        <td>sql.query("INSERT INTO compte (libelle, modif_dt) VALUES ('BMOI 55210', DATETIME('now'))")</td>
+        <td><cb># Fampidirana valera tsotra:</cb>
+sql.query("INSERT INTO compte (libelle, modif_dt) VALUES ('BMOI 55210', DATETIME('now'))")
+
+<cb># Fampidirana miaraka amina parametres:</cb>
+DB.sql.query_with_bindings("
+    INSERT INTO compte (libelle, description, defaut_entree_sortie, modif_dt)
+    VALUES (?, ?, ?, ?)
+    ", [ model.libelle, model.description, model.defaut_entree_sortie, Time.get_datetime_string_from_system() ])
+</td>
     </tr>
 </table>
 </pre>
                 </p>
             </div>
         </div>
-    <div id="varfonc">&nbsp;</div>
+    <div id="trans">&nbsp;</div>
 </section>
 
+
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">Transaction</h3>
+                <p>
+                    Fanokafana sy fanakatonana ny transactions:
+                    <pre>
+DB.sql.query("BEGIN TRANSACTION")     <c># fanokafana</c>
+DB.sql.query("COMMIT")                <c># fanakatonana miampy validation</c>
+DB.sql.query("ROLLBACK")              <c># fanakatonana miampy annulation</c>
+</pre>
+                </p>
+            </div>
+        </div>
+    <div id="varfonc">&nbsp;</div>
+</section>
 
 
 <section class="section  text-center">
