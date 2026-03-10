@@ -220,12 +220,44 @@ DB.sql.query("ROLLBACK")              <c># fanakatonana miampy annulation</c>
                     <pre class="transparent">
 <table>
     <tr>
+        <td><b>CONTROLE</b></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>IFNULL(unecolonne, 'une_valeur')</td>
+        <td>Raha null ny valera ao @ unecolonne dia 'une_valeur' no azo</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td><b>DATE & HEURE</b></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
         <td>DATE('now')</td>
         <td>Daty izao</td>
+        <td></td>
     </tr>
     <tr>
         <td>DATETIME('now')</td>
         <td>Daty sy ora izao</td>
+        <td>SELECT DATETIME('now') FROM dual</td>
+    </tr>
+    <tr>
+        <td><b>AGGREGATION</b></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>MAX(une_colonne)</td>
+        <td>Valera farany ambony misy</td>
+        <td>SELECT MAX(rang) AS maxrang FROM page</td>
+    </tr>
+    <tr>
+        <td>MIN(une_colonne)</td>
+        <td>Valera farany ambany misy</td>
+        <td>SELECT MIN(rang) AS maxrang FROM page</td>
     </tr>
 </table>
 </pre>
