@@ -1,0 +1,79 @@
+<!DOCTYPE html><html lang="fr"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=Edge"><link rel="icon" type="image/x-icon" href="../images/favicon.ico" /><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="keywords" content=""><meta name="description" content=""><meta http-equiv='cache-control' content='no-cache'> <meta http-equiv='expires' content='0'> <meta http-equiv='pragma' content='no-cache'><title>NAOTY</title><link rel="stylesheet" href="css/bootstrap.min.css"><link rel="stylesheet" href="css/style.css"><link rel="stylesheet" href="css/font-awesome.min.css"></head><body id="top" data-spy="scroll" data-target=".navbar-collapse"><nav class="navbar navbar-default navbar-fixed-top navbar-expand-lg" role="navigation"><div class="navbar-header"><button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="icon icon-bar"></span><span class="icon icon-bar"></span><span class="icon icon-bar"></span></button><a href="index.html" class="navbar-brand" style="color:#000;">&nbsp;&nbsp;<i class="fa fa-caret-right" style="font-size:24px"></i>&nbsp;NAOTY</a></div><div class="collapse navbar-collapse"><ul class="nav navbar-nav navbar-right" id="menu-bar"></ul></div></nav><div id="main-contenu"></div>
+
+    
+<!-- COMPONENTS -->
+<section id="godot" class="section text-center">
+    <div style="padding-top:60px"></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2 class="mkj-big-title">Components</h2>
+                <div style="margin-top:-24px"><img src="images/caret_up.png" width="20px"/> <a href="godot.html">GODOT</a></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<section id="resume" class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4 text-left">
+                <div class="mkj-menu"><a href="#lineedit" class="smoothScroll">LineEdit</a></div>
+            </div>
+            <div class="col-sm-4 text-left">
+                <div class="mkj-menu"><a href="godot_richtext.html">Rich Text *</a></div>
+            </div>
+            <div class="col-sm-4 text-left">
+                <div class="mkj-menu"><a href="#scrollcont" class="smoothScroll">ScrollContainer</a></div>
+            </div>
+        </div>
+    </div>
+    <div id="lineedit">&nbsp;</div>
+</section>
+
+
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">LineEdit</h3>
+                <p>Ny LineEdit dia composant natao hampidirana soratra (text).</p>
+                <pre>
+<c>IMPORTANT:
+* Raha tsy mampiseho clavier virtuel ny lineedit @ Android, dia asiana valeur ny propriété <b>Max Length</b> fa tsy avela 0.</c>
+</pre>
+            </div>
+        </div>
+    </div>
+    <div id="scrollcont">&nbsp;</div>
+</section>
+
+
+
+<section class="section  text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-left">
+                <h3 class="mkj-title">ScrollContainer</h3>
+                <p>Ny ScrollContainer dia composant manome fonctionnalité scroll ho an'ny composant ao anatiny. Izany hoe <b>atao ao anatiny</b> izay
+                    composant mety ho lehibe noho ny alehibe azony tànana. Raha vao mihoatra ny ilay halehibe dia mandeha ny scroll ary miseho
+                    ireo barres de scroll.
+                </p>
+                <pre>
+<c># GDScript:</c>
+var scroll_container = ScrollContainer.new()
+scroll_container.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_AUTO   <c>#scroll horizontal alefa</c>
+scroll_container.get_h_scroll_bar().modulate = Color(0, 0, 0, 0)     <c>#tsy aseho ny indicateur scroll na alefa aza ny scroll</c>
+scroll_container.vertical_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED    <c>#scroll vertical tsy alefa</c>
+scroll_container.mouse_filter = Control.MOUSE_FILTER_PASS    <c>#avela miampita @ component parent ny mouse event</c>
+panel_gris.add_child(scroll_container)    <c>#ampidirina @ component tree</c>
+</pre>
+            </div>
+        </div>
+    </div>
+    <div style="padding-bottom:40px"></div>
+</section>
+
+
+</div><footer class="text-center" style="background-color: transparent; border:none; padding-top: 8px;"><div class="container" style="background-color:#FFF; color:#555252; font-size:14px;"><div class="row" id="piedpage"><p>© Njaka RAKOTOVAO - 2024</p></div></div></footer><a href="#top" class="go-top"><i class="fa fa-chevron-up fa-1x"></i></a><script src="js/jquery.js"></script><script src="js/bootstrap.min.js"></script><script src="js/smoothscroll.js"></script><script src="js/jquery.flexslider.js"></script><script>$(document).ready(function () { document.querySelector('#piedpage').innerText = '(c) Njaka RAKOTOVAO - ' + (new Date()).getFullYear();$('.flexslider').flexslider({animation: "fade",directionNav: false});$(window).scroll(function () {if ($(this).scrollTop() > 200) {$('.go-top').fadeIn(200);} else {$('.go-top').fadeOut(200);}});$('.go-top').click(function (event) {event.preventDefault();$('html, body').animate({ scrollTop: 0 }, 300);})});</script></body></html>
